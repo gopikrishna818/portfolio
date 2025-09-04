@@ -9,6 +9,7 @@ import InteractiveDataVisualization from '@/components/InteractiveDataVisualizat
 import TestimonialsSection from '@/components/TestimonialsSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
+import InteractiveResumeTimeline from '@/components/InteractiveResumeTimeline';
 import Footer from '@/components/Footer';
 import ErrorBoundary, { SectionErrorBoundary } from '@/components/ErrorBoundary';
 import { FullPageSkeleton } from '@/components/LoadingSkeleton';
@@ -60,6 +61,10 @@ const Index = () => {
           
           <SectionErrorBoundary sectionName="Experience & Education">
             <ExperienceEducationSection />
+          </SectionErrorBoundary>
+          
+          <SectionErrorBoundary sectionName="Career Timeline">
+            <InteractiveResumeTimeline />
           </SectionErrorBoundary>
           
           <SectionErrorBoundary sectionName="Data Visualization">

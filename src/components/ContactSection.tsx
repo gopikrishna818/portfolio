@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, Send, MapPin, Phone, MessageCircle, Sparkles } from 'lucide-react';
+import { Mail, Linkedin, Github, Send, MapPin, Phone, MessageCircle, Sparkles, Calendar, Clock, CheckCircle, ExternalLink } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const ContactSection = () => {
@@ -35,21 +35,59 @@ const ContactSection = () => {
     }, 1000);
   };
 
-  const socialLinks = [
+  // Enhanced contact methods with calendar integration
+  const contactMethods = [
+    {
+      icon: Calendar,
+      title: "Schedule a Call",
+      description: "Book a 30-minute consultation",
+      action: "Schedule Now",
+      href: "https://calendly.com/gopikrishna-chegoni", // Replace with your actual Calendly link
+      color: "bg-blue-500",
+      hoverColor: "hover:bg-blue-600",
+      responseTime: "Choose your time"
+    },
     {
       icon: Mail,
-      label: 'Email',
-      href: 'mailto:gopikrishna.chegoni@email.com',
-      color: 'hover:text-primary',
-      bgColor: 'hover:bg-primary/10'
+      title: "Send Email",
+      description: "For detailed inquiries",
+      action: "Send Email",
+      href: "mailto:gopikrishna.chegoni@email.com",
+      color: "bg-primary",
+      hoverColor: "hover:bg-primary/80",
+      responseTime: "Within 6 hours"
+    },
+    {
+      icon: MessageCircle,
+      title: "WhatsApp",
+      description: "Quick questions & chat",
+      action: "Message",
+      href: "https://wa.me/919876543210", // Replace with your WhatsApp number
+      color: "bg-green-500",
+      hoverColor: "hover:bg-green-600",
+      responseTime: "Within 2 hours"
     },
     {
       icon: Linkedin,
-      label: 'LinkedIn',
-      href: 'https://linkedin.com/in/gopikrishna-chegoni',
-      color: 'hover:text-blue-400',
-      bgColor: 'hover:bg-blue-500/10'
-    },
+      title: "LinkedIn",
+      description: "Professional networking",
+      action: "Connect",
+      href: "https://linkedin.com/in/gopikrishna-chegoni",
+      color: "bg-blue-600",
+      hoverColor: "hover:bg-blue-700",
+      responseTime: "Within 24 hours"
+    }
+  ];
+
+  const availabilityStatus = {
+    status: "Available",
+    message: "Ready for new opportunities",
+    timezone: "IST (UTC+5:30)",
+    workingHours: "9 AM - 6 PM IST, Mon-Fri",
+    responseCommitment: "All messages answered within 24 hours"
+  };
+
+  const socialLinks = [
     {
       icon: Github,
       label: 'GitHub',
@@ -74,9 +112,9 @@ const ContactSection = () => {
       description: 'Available for remote work worldwide'
     },
     {
-      icon: MessageCircle,
+      icon: Clock,
       label: 'Response Time',
-      value: 'Within 24 hours',
+      value: 'Within 6-24 hours',
       description: 'Quick and professional communication'
     }
   ];
@@ -112,13 +150,77 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center space-y-3 mb-8"
+          className="text-center space-y-3 mb-12"
         >
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Get In Touch</h2>
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Let's Connect</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto" />
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Ready to collaborate on your next project? Let's discuss how we can bring your ideas to life.
+            Ready to collaborate on your next project? Multiple ways to reach me with guaranteed response times.
           </p>
+        </motion.div>
+
+        {/* Availability Status Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/20 rounded-xl p-4 mb-8 max-w-4xl mx-auto"
+        >
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-green-400 font-semibold">{availabilityStatus.status}</span>
+              </div>
+              <span className="text-muted-foreground">•</span>
+              <span className="text-foreground">{availabilityStatus.message}</span>
+            </div>
+            <div className="text-sm text-muted-foreground">
+              {availabilityStatus.workingHours} ({availabilityStatus.timezone})
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Contact Methods Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+        >
+          {contactMethods.map((method, index) => (
+            <motion.a
+              key={index}
+              href={method.href}
+              target={method.href.startsWith('http') ? '_blank' : '_self'}
+              rel={method.href.startsWith('http') ? 'noopener noreferrer' : ''}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-purple-500/50 transition-all duration-300 text-center cursor-pointer"
+            >
+              <div className={`w-16 h-16 ${method.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <method.icon size={28} className="text-white" />
+              </div>
+              
+              <h3 className="text-lg font-semibold text-white mb-2">{method.title}</h3>
+              <p className="text-gray-400 text-sm mb-3">{method.description}</p>
+              
+              <div className="flex items-center justify-center space-x-2 text-purple-400 group-hover:text-purple-300 transition-colors">
+                <span className="text-sm font-medium">{method.action}</span>
+                <ExternalLink size={14} />
+              </div>
+              
+              <div className="mt-3 text-xs text-gray-500">
+                <Clock size={12} className="inline mr-1" />
+                {method.responseTime}
+              </div>
+            </motion.a>
+          ))}
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto">

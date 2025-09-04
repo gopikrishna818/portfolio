@@ -5,33 +5,47 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      role: "Senior Data Manager",
-      company: "TechCorp Solutions",
+      name: "Priya Sharma",
+      role: "Senior Manager",
+      company: "KreativeTimebox",
       image: "/testimonial-1.jpg", // Replace with actual image
       rating: 5,
-      text: "Gopikrishna's expertise in AI and data analytics transformed our business operations. His ability to translate complex data into actionable insights is exceptional. The ML models he developed increased our efficiency by 40%.",
-      project: "Customer Analytics Platform"
+      text: "Gopikrishna delivered exceptional results on our data automation project. His technical skills and dedication to quality made him a standout team member. He consistently exceeded expectations and showed great potential for leadership roles.",
+      project: "Data Automation System",
+      metric: "Reduced processing time by 60%"
     },
     {
       id: 2,
-      name: "Michael Chen",
-      role: "CTO",
-      company: "InnovateTech",
+      name: "Rajesh Kumar",
+      role: "Team Lead",
+      company: "Tech Solutions",
       image: "/testimonial-2.jpg", // Replace with actual image
       rating: 5,
-      text: "Working with Gopikrishna was a game-changer. His deep understanding of machine learning and his professional approach to project delivery exceeded our expectations. Highly recommend for any AI/ML projects.",
-      project: "Predictive Analytics System"
+      text: "Working with Gopikrishna was a pleasure. His eagerness to learn, combined with solid technical fundamentals, made him an invaluable contributor. He quickly adapted to new technologies and delivered clean, maintainable code.",
+      project: "Web Application Development",
+      metric: "100% on-time delivery"
     },
     {
       id: 3,
-      name: "Emily Rodriguez",
-      role: "Product Manager",
-      company: "DataFlow Inc",
+      name: "Dr. Anita Verma",
+      role: "Professor & Mentor",
+      company: "University Engineering Dept",
       image: "/testimonial-3.jpg", // Replace with actual image
       rating: 5,
-      text: "Gopikrishna delivered a comprehensive data pipeline that streamlined our entire workflow. His attention to detail and ability to work with cross-functional teams made the project a huge success.",
-      project: "Real-time Data Pipeline"
+      text: "Gopikrishna demonstrated exceptional problem-solving abilities during his academic projects. His final year project on machine learning applications showed both technical depth and practical business understanding.",
+      project: "ML Research Project",
+      metric: "Published research paper"
+    },
+    {
+      id: 4,
+      name: "Amit Patel",
+      role: "Senior Developer",
+      company: "StartupTech",
+      image: "/testimonial-4.jpg", // Replace with actual image
+      rating: 5,
+      text: "As a mentor to Gopikrishna, I've seen his growth from a curious student to a competent developer. His ability to grasp complex concepts quickly and apply them effectively makes him ready for senior challenges.",
+      project: "Internship Program",
+      metric: "Promoted after 6 months"
     }
   ];
 
