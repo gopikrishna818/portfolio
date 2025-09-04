@@ -1,195 +1,191 @@
-import { motion } from 'framer-motion';
-import { Code, Database, Wrench, Brain } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { Code, Database, Brain, Cloud, BarChart, Zap } from 'lucide-react';
 
-const SkillsSection = () => {
-  const skillCategories = [
-    {
-      title: 'Languages',
-      icon: Code,
-      skills: [
-        { name: 'Python', level: 95 },
-        { name: 'JavaScript/TypeScript', level: 85 },
-        { name: 'SQL', level: 90 },
-        { name: 'C/C++', level: 78 },
-        { name: 'HTML/CSS', level: 80 }
-      ],
-      gradient: 'from-blue-400 to-purple-600',
-      headerColor: 'text-blue-400'
-    },
-    {
-      title: 'Libraries & Frameworks',
-      icon: Database,
-      skills: [
-        { name: 'FastAPI', level: 92 },
-        { name: 'Pandas', level: 90 },
-        { name: 'NumPy', level: 88 },
-        { name: 'Scikit-learn', level: 85 },
-        { name: 'TensorFlow', level: 75 }
-      ],
-      gradient: 'from-green-400 to-blue-600',
-      headerColor: 'text-purple-400'
-    },
-    {
-      title: 'Tools & Technologies',
-      icon: Wrench,
-      skills: [
-        { name: 'PostgreSQL', level: 88 },
-        { name: 'Docker', level: 80 },
-        { name: 'Git/GitHub', level: 90 },
-        { name: 'AWS', level: 75 },
-        { name: 'VS Code', level: 95 }
-      ],
-      gradient: 'from-orange-400 to-red-600',
-      headerColor: 'text-blue-400'
-    },
-    {
-      title: 'Soft Skills',
-      icon: Brain,
-      skills: [
-        { name: 'Problem Solving', level: 95 },
-        { name: 'Team Collaboration', level: 90 },
-        { name: 'Communication', level: 85 },
-        { name: 'Project Management', level: 80 },
-        { name: 'Analytical Thinking', level: 92 }
-      ],
-      gradient: 'from-purple-400 to-pink-600',
-      headerColor: 'text-purple-400'
-    }
-  ];
+// Skills data organized by category
+const skillsData = {
+  'Programming Languages': {
+    icon: Code,
+    color: '#8B5CF6',
+    skills: [
+      { name: 'Python', level: 95, description: 'Advanced proficiency in Python for data science, web development, and automation' },
+      { name: 'JavaScript/TypeScript', level: 88, description: 'Modern JavaScript and TypeScript for full-stack development' },
+      { name: 'SQL', level: 92, description: 'Complex query optimization and database design' },
+      { name: 'R', level: 78, description: 'Statistical analysis and data visualization' }
+    ]
+  },
+  'Data Science & ML': {
+    icon: Brain,
+    color: '#06B6D4',
+    skills: [
+      { name: 'Machine Learning', level: 90, description: 'Supervised and unsupervised learning algorithms' },
+      { name: 'Deep Learning', level: 85, description: 'Neural networks and advanced AI models' },
+      { name: 'Data Analysis', level: 93, description: 'Statistical analysis and pattern recognition' },
+      { name: 'Computer Vision', level: 80, description: 'Image processing and recognition systems' }
+    ]
+  },
+  'Databases & Cloud': {
+    icon: Database,
+    color: '#10B981',
+    skills: [
+      { name: 'PostgreSQL', level: 89, description: 'Advanced database design and optimization' },
+      { name: 'MongoDB', level: 82, description: 'NoSQL database design and aggregation' },
+      { name: 'AWS', level: 87, description: 'Cloud infrastructure and serverless architecture' },
+      { name: 'Docker', level: 85, description: 'Containerization and microservices' }
+    ]
+  },
+  'Frameworks & Tools': {
+    icon: Zap,
+    color: '#F59E0B',
+    skills: [
+      { name: 'FastAPI', level: 92, description: 'High-performance API development' },
+      { name: 'React', level: 88, description: 'Modern frontend development and state management' },
+      { name: 'TensorFlow', level: 83, description: 'Machine learning model development' },
+      { name: 'Pandas', level: 94, description: 'Data manipulation and analysis' }
+    ]
+  },
+  'Data Visualization': {
+    icon: BarChart,
+    color: '#EF4444',
+    skills: [
+      { name: 'Tableau', level: 86, description: 'Interactive dashboard creation' },
+      { name: 'Plotly', level: 91, description: 'Dynamic and interactive visualizations' },
+      { name: 'D3.js', level: 79, description: 'Custom web-based visualizations' },
+      { name: 'Power BI', level: 84, description: 'Business intelligence dashboards' }
+    ]
+  },
+  'DevOps & Tools': {
+    icon: Cloud,
+    color: '#8B5CF6',
+    skills: [
+      { name: 'Git', level: 90, description: 'Version control and collaborative development' },
+      { name: 'CI/CD', level: 83, description: 'Automated testing and deployment pipelines' },
+      { name: 'Linux', level: 87, description: 'System administration and shell scripting' },
+      { name: 'Kubernetes', level: 75, description: 'Container orchestration and scaling' }
+    ]
+  }
+};
 
-  const SkillBar = ({ skill, delay }: { skill: { name: string; level: number }, delay: number }) => (
-    <div className="space-y-2">
-      <div className="flex justify-between items-center">
+// Individual Skill Bar Component
+const SkillBar = ({ skill, delay = 0 }: { skill: any; delay?: number }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  return (
+    <div
+      ref={ref}
+      className="relative group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="flex justify-between items-center mb-2">
         <span className="text-sm font-medium text-foreground">{skill.name}</span>
-        <span className="text-xs text-muted-foreground">{skill.level}%</span>
+        <span className="text-sm text-muted-foreground">{skill.level}%</span>
       </div>
-      <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+      
+      <div className="relative">
+        <div className="w-full bg-muted/30 rounded-full h-2.5 overflow-hidden">
+          <motion.div
+            className="h-full bg-gradient-to-r from-primary to-purple-500 rounded-full relative"
+            initial={{ width: 0 }}
+            animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
+            transition={{ duration: 1.2, delay: delay * 0.1, ease: "easeOut" }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
+              animate={{ x: ['-100%', '100%'] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
+        </div>
+        
+        {/* Tooltip */}
         <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: `${skill.level}%` }}
-          transition={{ duration: 1.5, delay, ease: "easeOut" }}
-          className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
-        />
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
+          transition={{ duration: 0.2 }}
+          className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-background/95 backdrop-blur-sm border rounded-lg shadow-xl text-xs text-center max-w-xs z-10"
+          style={{ pointerEvents: 'none' }}
+        >
+          {skill.description}
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-border"></div>
+        </motion.div>
       </div>
     </div>
   );
+};
+
+// Skills Category Card Component
+const SkillsCategoryCard = ({ categoryName, categoryData, index }: { categoryName: string; categoryData: any; index: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const IconComponent = categoryData.icon;
 
   return (
-    <section id="skills" className="min-h-screen flex items-center bg-gradient-to-br from-background to-muted/30 py-6">
-      <div className="container-width">
-        {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center space-y-3 mb-8"
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="group bg-card/50 backdrop-blur-sm rounded-xl p-6 border hover:shadow-xl transition-all duration-300 hover:scale-105"
+      style={{ 
+        background: `linear-gradient(135deg, ${categoryData.color}10 0%, transparent 100%)`,
+        borderColor: `${categoryData.color}30`
+      }}
+    >
+      <div className="flex items-center space-x-3 mb-6">
+        <div 
+          className="w-12 h-12 rounded-lg flex items-center justify-center"
+          style={{ backgroundColor: `${categoryData.color}20` }}
         >
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-            Skills & Expertise
+          <IconComponent size={24} color={categoryData.color} />
+        </div>
+        <h3 className="text-lg font-semibold text-foreground">{categoryName}</h3>
+      </div>
+      
+      <div className="space-y-4">
+        {categoryData.skills.map((skill: any, skillIndex: number) => (
+          <SkillBar key={skill.name} skill={skill} delay={skillIndex} />
+        ))}
+      </div>
+    </motion.div>
+  );
+};
+
+// Main Skills Section Component
+const SkillsSection = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true });
+
+  return (
+    <section className="py-20 bg-gradient-to-br from-background to-background/50">
+      <div className="container-width">
+        <motion.div
+          ref={sectionRef}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-6">
+            Technical Skills & Expertise
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto" />
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            AI/ML, development, and data engineering expertise for scalable solutions
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            A comprehensive overview of my technical proficiencies and areas of expertise in data science and software engineering
           </p>
         </motion.div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-          {skillCategories.map((category, categoryIndex) => {
-            const IconComponent = category.icon;
-            return (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: categoryIndex * 0.2 }}
-                className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-5 hover:border-purple-500/50 transition-all duration-300 hover:bg-black/60"
-              >
-                {/* Category Header */}
-                <div className="mb-5">
-                  <h3 className={`text-lg font-semibold ${category.headerColor} mb-4`}>
-                    {category.title}
-                  </h3>
-                </div>
-
-                {/* Skills */}
-                <div className="space-y-3">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skill.name} className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-gray-300">{skill.name}</span>
-                        <span className="text-xs text-blue-400 font-semibold">{skill.level}%</span>
-                      </div>
-                      <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.level}%` }}
-                          transition={{ duration: 1.5, delay: categoryIndex * 0.2 + skillIndex * 0.1, ease: "easeOut" }}
-                          className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full relative"
-                        >
-                          <div className="absolute right-0 top-0 w-3 h-2 bg-white rounded-full opacity-80" />
-                        </motion.div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Object.entries(skillsData).map(([categoryName, categoryData], index) => (
+            <SkillsCategoryCard
+              key={categoryName}
+              categoryName={categoryName}
+              categoryData={categoryData}
+              index={index}
+            />
+          ))}
         </div>
-
-        {/* Bottom Dashboard Cards */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-5"
-        >
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-5 text-center hover:border-blue-500/50 transition-all duration-300 hover:bg-black/60"
-          >
-            <div className="w-14 h-14 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/25">
-              <Brain size={28} className="text-white" />
-            </div>
-            <h4 className="text-lg font-semibold mb-2 text-white">Machine Learning</h4>
-            <p className="text-gray-400 text-sm">
-              Advanced algorithms for predictive analytics and pattern recognition
-            </p>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 1.4 }}
-            className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-5 text-center hover:border-purple-500/50 transition-all duration-300 hover:bg-black/60"
-          >
-            <div className="w-14 h-14 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/25">
-              <Code size={28} className="text-white" />
-            </div>
-            <h4 className="text-lg font-semibold mb-2 text-white">API Development</h4>
-            <p className="text-gray-400 text-sm">
-              RESTful APIs and microservices architecture with FastAPI
-            </p>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 1.6 }}
-            className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-5 text-center hover:border-green-500/50 transition-all duration-300 hover:bg-black/60"
-          >
-            <div className="w-14 h-14 bg-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-500/25">
-              <Database size={28} className="text-white" />
-            </div>
-            <h4 className="text-lg font-semibold mb-2 text-white">Data Engineering</h4>
-            <p className="text-gray-400 text-sm">
-              Robust data pipelines and analytics infrastructure
-            </p>
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );

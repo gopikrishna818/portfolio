@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Calendar, MapPin, Building, Briefcase, TrendingUp, Clock, ChevronRight, ExternalLink, Star, Award, Play, Pause } from 'lucide-react';
 
-const ExperienceSection = () => {
+const EnhancedExperienceSection = () => {
   const [selectedExperience, setSelectedExperience] = useState(0);
   const [isTimelineAnimating, setIsTimelineAnimating] = useState(false);
   const [hoveredMetric, setHoveredMetric] = useState<string | null>(null);
@@ -249,241 +249,64 @@ const experiences = [
 					</motion.div>
 				</div>
 
-				<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-					{experiences.map((exp, index) => (
-						<motion.div
-							key={exp.id}
-							initial={{ opacity: 0, y: 50, rotateX: 15 }}
-							whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-							transition={{ 
-								duration: 0.8, 
-								delay: index * 0.3,
-								type: "spring",
-								stiffness: 100
-							}}
-							viewport={{ once: true }}
-							onHoverStart={() => setHoveredCard(exp.id)}
-							onHoverEnd={() => setHoveredCard(null)}
-							className="group perspective-1000"
-						>
-							<div className={`
-								relative bg-gradient-to-br from-card/60 to-card-hover/40 backdrop-blur-xl 
-								border border-white/20 rounded-2xl overflow-hidden cursor-pointer
-								transition-all duration-700 transform-gpu
-								${hoveredCard === exp.id ? 'scale-105 shadow-2xl shadow-' + exp.glowColor + '/25' : 'hover:scale-[1.02]'}
-								${expandedCard === exp.id ? 'scale-105' : ''}
-							`}>
-								{/* Animated Background Glow */}
-								<motion.div
-									animate={hoveredCard === exp.id ? {
-										opacity: [0.05, 0.15, 0.05],
-										scale: [1, 1.1, 1]
-									} : {}}
-									transition={{ duration: 2, repeat: Infinity }}
-									className={`absolute inset-0 bg-gradient-to-br ${exp.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-								/>
+				{/* Interactive Timeline */}
+				<InteractiveTimeline />
 
-								{/* Shimmer Effect */}
-								<div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-									<motion.div
-										animate={hoveredCard === exp.id ? { x: "-100%" } : { x: "-200%" }}
-										transition={{ 
-											duration: 1.5, 
-											ease: "easeInOut",
-											delay: hoveredCard === exp.id ? 0.2 : 0
-										}}
-										className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 transform"
-									/>
-								</div>
-
-								{/* Header Section */}
-								<div className="relative p-6 pb-4">
-									<div className="flex items-start justify-between mb-4">
-										<div className="flex items-center space-x-4">
-											<motion.div
-												whileHover={{ scale: 1.1, rotate: 5 }}
-												className={`w-16 h-16 bg-gradient-to-br ${exp.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300`}
-											>
-												<span className="text-2xl">{exp.logo}</span>
-											</motion.div>
-											<div>
-												<h3 className="text-xl font-bold text-foreground group-hover:text-white transition-colors duration-300">
-													{exp.title}
-												</h3>
-												<div className="flex items-center space-x-2 mt-1">
-													<Building size={16} className={`text-${exp.glowColor} group-hover:text-white transition-colors duration-300`} />
-													<span className="text-muted-foreground group-hover:text-white/80 transition-colors duration-300 font-medium">
-														{exp.company}
-													</span>
-												</div>
-											</div>
-										</div>
-										
-										<div className="flex flex-col items-end">
-											<motion.div
-												whileHover={{ scale: 1.05 }}
-												className={`px-3 py-1 bg-gradient-to-r ${exp.gradient} rounded-full text-white text-xs font-medium shadow-lg`}
-											>
-												{exp.status}
-											</motion.div>
-											<div className="flex items-center mt-2 text-xs text-muted-foreground">
-												<MapPin size={12} className="mr-1" />
-												{exp.location}
-											</div>
-										</div>
-									</div>
-
-									{/* Metrics Dashboard */}
-									<div className="grid grid-cols-3 gap-3 mb-4">
+				{/* Enhanced Experience Details */}
+				{selectedExperience !== null && (
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5 }}
+						className="mt-12 p-8 bg-card/60 backdrop-blur-sm border border-border rounded-2xl"
+					>
+						<div className="grid md:grid-cols-2 gap-8">
+							<div>
+								<h3 className="text-2xl font-bold text-foreground mb-4">Key Highlights</h3>
+								<div className="space-y-3">
+									{experiences[selectedExperience].highlights.map((highlight, index) => (
 										<motion.div
-											whileHover={{ y: -2 }}
-											className="bg-background/50 rounded-lg p-3 border border-white/10 backdrop-blur-sm"
+											key={index}
+											initial={{ opacity: 0, x: -20 }}
+											animate={{ opacity: 1, x: 0 }}
+											transition={{ duration: 0.3, delay: index * 0.1 }}
+											className="flex items-start space-x-3"
 										>
-											<div className="flex items-center justify-between">
-												<TrendingUp size={16} className={`text-${exp.glowColor}`} />
-												<span className="text-xs text-muted-foreground">Projects</span>
-											</div>
-											<div className="text-lg font-bold text-foreground mt-1">
-												{exp.metrics.projects}
-											</div>
+											<div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+											<p className="text-muted-foreground">{highlight}</p>
 										</motion.div>
-										<motion.div
-											whileHover={{ y: -2 }}
-											className="bg-background/50 rounded-lg p-3 border border-white/10 backdrop-blur-sm"
-										>
-											<div className="flex items-center justify-between">
-												<Star size={16} className="text-yellow-500" />
-												<span className="text-xs text-muted-foreground">Accuracy</span>
-											</div>
-											<div className="text-lg font-bold text-foreground mt-1">
-												{exp.metrics.accuracy}%
-											</div>
-										</motion.div>
-										<motion.div
-											whileHover={{ y: -2 }}
-											className="bg-background/50 rounded-lg p-3 border border-white/10 backdrop-blur-sm"
-										>
-											<div className="flex items-center justify-between">
-												<Award size={16} className="text-emerald-500" />
-												<span className="text-xs text-muted-foreground">Impact</span>
-											</div>
-											<div className="text-lg font-bold text-foreground mt-1">
-												+{exp.metrics.efficiency}%
-											</div>
-										</motion.div>
-									</div>
-
-									{/* Period & Duration */}
-									<div className="flex items-center space-x-4 mb-4">
-										<div className="flex items-center space-x-2 text-sm">
-											<Calendar size={16} className={`text-${exp.glowColor}`} />
-											<span className="text-muted-foreground group-hover:text-white/80 transition-colors duration-300">
-												{exp.period}
-											</span>
-										</div>
-										<div className="flex items-center space-x-2 text-sm">
-											<Clock size={16} className="text-muted-foreground" />
-											<span className="text-muted-foreground group-hover:text-white/80 transition-colors duration-300">
-												{exp.duration}
-											</span>
-										</div>
-									</div>
-								</div>
-
-								{/* Content Section */}
-								<div className="px-6 pb-6">
-									<p className="text-muted-foreground group-hover:text-white/90 transition-colors duration-300 mb-4 leading-relaxed">
-										{exp.description}
-									</p>
-
-									{/* Highlights */}
-									<div className="space-y-2 mb-4">
-										<AnimatePresence>
-											{(expandedCard === exp.id ? exp.highlights : exp.highlights.slice(0, 2)).map((highlight, idx) => (
-												<motion.div
-													key={idx}
-													initial={{ opacity: 0, x: -20 }}
-													animate={{ opacity: 1, x: 0 }}
-													exit={{ opacity: 0, x: -20 }}
-													transition={{ delay: idx * 0.1 }}
-													className="flex items-start space-x-3"
-												>
-													<motion.div
-														whileHover={{ scale: 1.2 }}
-														className={`w-2 h-2 bg-gradient-to-r ${exp.gradient} rounded-full mt-2 shadow-lg flex-shrink-0`}
-													/>
-													<span className="text-sm text-muted-foreground group-hover:text-white/80 transition-colors duration-300 leading-relaxed">
-														{highlight}
-													</span>
-												</motion.div>
-											))}
-										</AnimatePresence>
-									</div>
-
-									{/* Tech Stack */}
-									<div className="flex flex-wrap gap-2 mb-4">
-										{exp.techStack.map((tech, idx) => (
-											<motion.span
-												key={idx}
-												whileHover={{ scale: 1.05, y: -2 }}
-												className={`px-3 py-1 bg-gradient-to-r ${exp.gradient} bg-opacity-20 text-foreground border border-white/20 rounded-full text-xs font-medium backdrop-blur-sm hover:bg-opacity-30 transition-all duration-300`}
-											>
-												{tech}
-											</motion.span>
-										))}
-									</div>
-
-									{/* Actions */}
-									<div className="flex items-center justify-between">
-										<motion.button
-											whileHover={{ scale: 1.05 }}
-											whileTap={{ scale: 0.95 }}
-											onClick={() => setExpandedCard(expandedCard === exp.id ? null : exp.id)}
-											className="flex items-center space-x-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
-										>
-											<span>{expandedCard === exp.id ? 'Show Less' : 'Show More'}</span>
-											<motion.div
-												animate={{ rotate: expandedCard === exp.id ? 90 : 0 }}
-												transition={{ duration: 0.3 }}
-											>
-												<ChevronRight size={16} />
-											</motion.div>
-										</motion.button>
-
-										<motion.button
-											whileHover={{ scale: 1.05, x: 5 }}
-											className={`flex items-center space-x-2 px-4 py-2 bg-gradient-to-r ${exp.gradient} text-white rounded-lg text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300`}
-										>
-											<span>View Details</span>
-											<ExternalLink size={14} />
-										</motion.button>
-									</div>
-								</div>
-
-								{/* Status Indicator */}
-								<div className="absolute top-4 right-4">
-									<motion.div
-										animate={{ scale: [1, 1.2, 1] }}
-										transition={{ duration: 2, repeat: Infinity }}
-										className={`w-3 h-3 ${exp.status === 'Current' ? 'bg-green-500' : 'bg-blue-500'} rounded-full shadow-lg`}
-									/>
+									))}
 								</div>
 							</div>
-						</motion.div>
-					))}
-				</div>
-
-				{/* Timeline Connector */}
-				<motion.div
-					initial={{ scaleY: 0 }}
-					whileInView={{ scaleY: 1 }}
-					transition={{ duration: 1, delay: 0.5 }}
-					viewport={{ once: true }}
-					className="hidden lg:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-px h-32 bg-gradient-to-b from-purple-500 to-blue-500 opacity-30"
-				/>
+							<div>
+								<h3 className="text-2xl font-bold text-foreground mb-4">Impact Metrics</h3>
+								<div className="grid grid-cols-2 gap-4">
+									<motion.div
+										whileHover={{ scale: 1.05 }}
+										className="p-4 bg-background/50 rounded-xl border border-border"
+									>
+										<p className="text-3xl font-bold text-green-400">
+											{experiences[selectedExperience].metrics.projects}+
+										</p>
+										<p className="text-sm text-muted-foreground">Projects Delivered</p>
+									</motion.div>
+									<motion.div
+										whileHover={{ scale: 1.05 }}
+										className="p-4 bg-background/50 rounded-xl border border-border"
+									>
+										<p className="text-3xl font-bold text-blue-400">
+											{experiences[selectedExperience].metrics.accuracy}%
+										</p>
+										<p className="text-sm text-muted-foreground">Success Rate</p>
+									</motion.div>
+								</div>
+							</div>
+						</div>
+					</motion.div>
+				)}
 			</div>
 		</section>
 	);
 };
 
-export default ExperienceSection;
+export default EnhancedExperienceSection;
