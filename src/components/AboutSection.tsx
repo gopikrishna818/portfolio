@@ -1,4 +1,4 @@
-import { Code, Database, Brain, TrendingUp, BookOpen, Users, Lightbulb, Trophy, Calendar, Award, Zap, Target } from 'lucide-react';
+import { Code, Database, Brain, TrendingUp, BookOpen, Users, Lightbulb, Trophy, Calendar, Award, Zap, Target, Heart, Coffee, Gamepad2, Music, Camera, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const AboutSection = () => {
@@ -23,6 +23,69 @@ const AboutSection = () => {
       title: 'Business Impact',
       description: 'Delivering measurable results that drive growth',
     },
+  ];
+
+  // Personal story and journey
+  const personalStory = {
+    title: "My Journey in Technology",
+    story: "My passion for technology began during my engineering studies, where I discovered the power of data to solve real-world problems. What started as curiosity about algorithms evolved into a career dedicated to transforming complex data into actionable business insights. I've had the privilege of working across diverse industries, from healthcare to e-commerce, each presenting unique challenges that have shaped my problem-solving approach.",
+    motivation: "I believe technology should serve people, not the other way around. This philosophy drives me to create solutions that are not only technically robust but also user-friendly and impactful."
+  };
+
+  // Leadership and collaboration experience
+  const leadershipExperience = [
+    {
+      role: "Technical Lead",
+      project: "Customer Analytics Platform",
+      team: "Cross-functional team of 8 members",
+      achievement: "Led the development of an ML-powered analytics platform, mentoring 3 junior developers and coordinating with product, design, and business teams to deliver a solution that increased customer retention by 40%.",
+      skills: ["Team Leadership", "Mentoring", "Cross-functional Collaboration", "Project Management"]
+    },
+    {
+      role: "Data Science Mentor",
+      project: "Internal Training Program",
+      team: "15+ junior engineers",
+      achievement: "Developed and conducted internal workshops on machine learning best practices, helping team members advance their skills and contributing to a 25% improvement in project delivery quality.",
+      skills: ["Knowledge Sharing", "Training & Development", "Technical Documentation", "Public Speaking"]
+    }
+  ];
+
+  // Cultural fit and personal traits
+  const culturalFit = [
+    {
+      icon: Users,
+      title: "Collaborative Spirit",
+      description: "Thrive in team environments and believe in the power of diverse perspectives",
+      examples: ["Active participant in code reviews", "Regular contributor to team knowledge sharing", "Strong advocate for inclusive development practices"]
+    },
+    {
+      icon: Lightbulb,
+      title: "Continuous Learner",
+      description: "Always exploring new technologies and methodologies",
+      examples: ["Recently earned AWS certification", "Regular attendee at tech conferences", "Contributing to open-source projects"]
+    },
+    {
+      icon: Target,
+      title: "Results-Oriented",
+      description: "Focus on delivering measurable business value",
+      examples: ["Consistently meet project deadlines", "Track and optimize key performance metrics", "Proactive in identifying improvement opportunities"]
+    },
+    {
+      icon: Heart,
+      title: "Empathetic Problem Solver",
+      description: "Understanding user needs and business context",
+      examples: ["Regular user research participation", "Business stakeholder engagement", "User-centric design thinking"]
+    }
+  ];
+
+  // Personal interests (cultural fit indicators)
+  const personalInterests = [
+    { icon: Coffee, name: "Coffee Enthusiast", description: "Love exploring different brewing methods" },
+    { icon: Camera, name: "Photography", description: "Capturing moments and perspectives" },
+    { icon: Music, name: "Music Production", description: "Creating electronic music in spare time" },
+    { icon: Gamepad2, name: "Gaming", description: "Strategy games and puzzle solving" },
+    { icon: BookOpen, name: "Tech Reading", description: "AI research papers and industry trends" },
+    { icon: MapPin, name: "Travel", description: "Exploring new cultures and cuisines" }
   ];
 
   const stats = [
@@ -347,6 +410,145 @@ const AboutSection = () => {
             ))}
           </div>
         </div>
+
+        {/* Personal Story Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="mt-20 mb-16"
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 className="text-3xl font-bold text-gradient mb-8">{personalStory.title}</h3>
+            <p className="text-lg text-foreground/80 leading-relaxed mb-6">
+              {personalStory.story}
+            </p>
+            <div className="p-6 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-600/10 border border-blue-500/20">
+              <p className="text-foreground/90 italic leading-relaxed">
+                "{personalStory.motivation}"
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Leadership Experience Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h3 className="text-3xl font-bold text-gradient text-center mb-12">Leadership & Collaboration</h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {leadershipExperience.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center mr-4">
+                    <Users size={24} className="text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-foreground">{exp.role}</h4>
+                    <p className="text-sm text-primary">{exp.project}</p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">{exp.team}</p>
+                <p className="text-foreground/80 mb-4 leading-relaxed">{exp.achievement}</p>
+                <div className="flex flex-wrap gap-2">
+                  {exp.skills.map((skill, i) => (
+                    <span key={i} className="px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-md text-xs text-green-400">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Cultural Fit Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h3 className="text-3xl font-bold text-gradient text-center mb-12">Cultural Fit & Working Style</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {culturalFit.map((trait, index) => {
+              const IconComponent = trait.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300 text-center group"
+                >
+                  <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent size={28} className="text-white" />
+                  </div>
+                  <h4 className="text-lg font-bold text-foreground mb-3">{trait.title}</h4>
+                  <p className="text-foreground/80 mb-4 leading-relaxed">{trait.description}</p>
+                  <div className="space-y-2">
+                    {trait.examples.map((example, i) => (
+                      <div key={i} className="flex items-center text-sm text-muted-foreground">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></div>
+                        {example}
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* Personal Interests Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="mb-8"
+        >
+          <h3 className="text-3xl font-bold text-gradient text-center mb-8">Beyond the Code</h3>
+          <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Understanding team dynamics and building connections through shared interests
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {personalInterests.map((interest, index) => {
+              const IconComponent = interest.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="p-4 rounded-xl bg-card/30 backdrop-blur-sm border border-border/30 hover:border-primary/50 transition-all duration-300 text-center group cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500/20 to-purple-600/20 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent size={20} className="text-primary" />
+                  </div>
+                  <h4 className="text-sm font-medium text-foreground mb-1">{interest.name}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{interest.description}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

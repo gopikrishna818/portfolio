@@ -181,8 +181,8 @@ const HeroSection = () => {
               <h1 className="text-hero text-gradient animate-slide-up relative">
                 GOPIKRISHNA CHEGONI
                 {/* Professional Title Badge */}
-                <div className="absolute -top-4 right-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20 backdrop-blur-xl border border-white/10 px-3 py-1 rounded-full text-xs text-blue-400 font-medium">
-                  Available for Opportunities
+                <div className="absolute -top-4 right-0 bg-gradient-to-r from-green-500/20 to-blue-600/20 backdrop-blur-xl border border-green-400/30 px-4 py-2 rounded-full text-sm text-green-400 font-medium animate-pulse-glow">
+                  🟢 Available for Full-time Opportunities
                 </div>
               </h1>
               
