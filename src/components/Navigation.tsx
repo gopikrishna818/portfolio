@@ -37,10 +37,42 @@ const Navigation = () => {
     >
       <div className="container-width">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="text-xl font-bold font-poppins text-gradient">
-            GC
-          </div>
+          {/* Enhanced Professional Logo */}
+          <motion.div 
+            className="flex items-center space-x-3 group cursor-pointer"
+            onClick={() => handleNavClick('#home')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {/* Logo Container */}
+            <div className="relative">
+              {/* Main Logo */}
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/25 group-hover:shadow-purple-500/30 transition-all duration-300">
+                <span className="text-white font-bold text-lg">GC</span>
+              </div>
+              
+              {/* Animated Ring */}
+              <div className="absolute inset-0 rounded-lg border-2 border-blue-500/30 group-hover:border-purple-500/50 transition-colors duration-300 animate-pulse-glow"></div>
+            </div>
+            
+            {/* Brand Text */}
+            <div className="hidden sm:block">
+              <div className="text-lg font-bold font-poppins text-gradient group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                Gopikrishna
+              </div>
+              <div className="text-xs text-muted-foreground group-hover:text-blue-400 transition-colors duration-300">
+                Data Engineer
+              </div>
+            </div>
+            
+            {/* Status Indicator */}
+            <div className="hidden md:block">
+              <div className="flex items-center space-x-2 bg-green-500/10 border border-green-500/20 rounded-full px-3 py-1">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-xs text-green-400 font-medium">Available</span>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
