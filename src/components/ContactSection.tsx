@@ -137,7 +137,7 @@ const ContactSection = () => {
   );
 
   return (
-    <section id="contact" className="min-h-screen flex items-center bg-gradient-to-br from-background to-muted/30 py-6 relative overflow-hidden">
+    <section id="contact" className="py-4 pb-8 bg-gradient-to-br from-background to-muted/30 relative z-10 clear-both">
       {/* Simplified Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-purple-500/30 to-blue-500/30 rounded-full blur-xl" />
@@ -150,9 +150,9 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center space-y-3 mb-12"
+          className="text-center space-y-3 mb-6"
         >
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Let's Connect</h2>
+          <h2 className="text-heading text-gradient">Let's Connect</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto" />
           <p className="text-gray-400 max-w-2xl mx-auto">
             Ready to collaborate on your next project? Multiple ways to reach me with guaranteed response times.
@@ -188,7 +188,7 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6"
         >
           {contactMethods.map((method, index) => (
             <motion.a

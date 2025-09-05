@@ -196,7 +196,7 @@ const experiences = [
   );
 
 	return (
-		<section ref={ref} id="experience" className="section-padding bg-gradient-to-br from-background via-background/95 to-card/20 relative overflow-hidden">
+		<section ref={ref} id="experience" className="py-4 bg-gradient-to-br from-background via-background/95 to-card/20 relative overflow-hidden">
 			{/* Floating Background Elements */}
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
 				<motion.div
@@ -226,14 +226,14 @@ const experiences = [
 			</div>
 
 			<div className="container-width relative z-10">
-				<div className="text-center space-y-6 mb-16">
+				<div className="text-center space-y-6 mb-8">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8 }}
 						viewport={{ once: true }}
 					>
-						<h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent mb-4">
+						<h2 className="text-heading text-gradient">
 							Work Experience
 						</h2>
 						<motion.div 

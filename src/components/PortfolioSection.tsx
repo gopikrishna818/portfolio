@@ -4,6 +4,7 @@ import { KeenSliderPlugin } from 'keen-slider';
 import 'keen-slider/keen-slider.min.css';
 import './portfolio-animations.css';
 import { ExternalLink, Github, X } from 'lucide-react';
+import { FlipCard, MagneticButton } from '@/components/InteractiveElements';
 
 const PortfolioSection = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -411,9 +412,9 @@ const PortfolioSection = () => {
   }, [WheelControls]);
 
   return (
-    <section id="portfolio" className="section-padding">
+    <section id="portfolio" className="relative pt-4 pb-4">
       <div className="container-width">
-        <div className="text-center space-y-3 mb-8">
+        <div className="text-center space-y-3 mb-12">
           <h2 className="text-heading text-gradient">Portfolio</h2>
           <div className="w-20 h-1 bg-gradient-primary rounded-full mx-auto" />
           <p className="text-body text-muted-foreground max-w-2xl mx-auto">
@@ -426,85 +427,113 @@ const PortfolioSection = () => {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className="keen-slider__slide card-elevated group cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col justify-between min-h-[360px] relative overflow-hidden"
-              onClick={() => setSelectedProject(index)}
+              className="keen-slider__slide"
             >
-              {/* Subtle hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-secondary/0 group-hover:from-primary/5 group-hover:to-secondary/5 transition-all duration-300 rounded-xl pointer-events-none" />
-              
-              {/* Project Image */}
-              <div className="aspect-video rounded-xl mb-3 overflow-hidden relative group-hover:shadow-lg transition-all duration-300">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                  <div className="text-sm font-medium mb-1">{project.category}</div>
-                  <div className="text-xs opacity-90">Click to view case study</div>
-                </div>
-              </div>
+              <FlipCard
+                className="h-[400px] cursor-pointer"
+                frontContent={
+                  <div className="card-elevated h-full flex flex-col justify-between relative overflow-hidden rounded-xl p-4">
+                    {/* Project Image */}
+                    <div className="aspect-video rounded-xl mb-3 overflow-hidden relative">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute bottom-4 left-4 right-4 text-white">
+                        <div className="text-sm font-medium mb-1">{project.category}</div>
+                        <div className="text-xs opacity-90">Hover to flip for details</div>
+                      </div>
+                    </div>
 
-              {/* Project Info */}
-              <div className="space-y-2 flex-1 relative z-10">
-                <div>
-                  <h3 className="text-lg font-bold group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-xs group-hover:text-muted-foreground/80 transition-colors duration-300">
-                    {project.subtitle}
-                  </p>
-                </div>
+                    {/* Project Info */}
+                    <div className="space-y-2 flex-1">
+                      <div>
+                        <h3 className="text-lg font-bold text-foreground">
+                          {project.title}
+                        </h3>
+                        <p className="text-muted-foreground text-xs">
+                          {project.subtitle}
+                        </p>
+                      </div>
 
-                <p className="text-sm line-clamp-2 group-hover:text-foreground transition-colors duration-300">
-                  {project.description}
-                </p>
+                      <p className="text-sm line-clamp-2 text-muted-foreground">
+                        {project.description}
+                      </p>
 
-                {/* Tech Stack Preview */}
-                <div className="flex flex-wrap gap-1 mt-2">
-                  {project.techStack.slice(0, 3).map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-2 py-1 bg-muted text-muted-foreground rounded text-xs transition-all duration-300 group-hover:bg-primary/10 group-hover:text-primary group-hover:scale-105"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.techStack.length > 3 && (
-                    <span className="px-2 py-1 bg-muted text-muted-foreground rounded text-xs transition-all duration-300 group-hover:bg-primary/10 group-hover:text-primary">
-                      +{project.techStack.length - 3}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex justify-between items-center pt-3 relative z-10">
-                <div className="flex space-x-2">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-300 hover:scale-110"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Github size={18} />
-                  </a>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-300 hover:scale-110"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <ExternalLink size={18} />
-                  </a>
-                </div>
-                <span className="text-xs text-primary font-medium transform group-hover:translate-x-1 transition-transform duration-300 opacity-70 group-hover:opacity-100">
-                  View Case Study →
-                </span>
-              </div>
+                      {/* Tech Stack Preview */}
+                      <div className="flex flex-wrap gap-1 mt-2">
+                        {project.techStack.slice(0, 3).map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="px-2 py-1 bg-muted text-muted-foreground rounded text-xs"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                        {project.techStack.length > 3 && (
+                          <span className="px-2 py-1 bg-primary/10 text-primary rounded text-xs">
+                            +{project.techStack.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                }
+                backContent={
+                  <div className="card-elevated h-full flex flex-col justify-between relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 p-6">
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground mb-3">
+                        {project.title}
+                      </h3>
+                      
+                      <div className="space-y-3 text-sm">
+                        <div>
+                          <span className="font-semibold text-primary">Client:</span>
+                          <span className="ml-2 text-muted-foreground">{project.client}</span>
+                        </div>
+                        <div>
+                          <span className="font-semibold text-primary">Duration:</span>
+                          <span className="ml-2 text-muted-foreground">{project.duration}</span>
+                        </div>
+                        
+                        {project.results && (
+                          <div>
+                            <span className="font-semibold text-primary">Key Results:</span>
+                            <ul className="ml-2 mt-1 space-y-1">
+                              {project.results.slice(0, 2).map((result, idx) => (
+                                <li key={idx} className="text-xs text-muted-foreground">
+                                  • {result.metric}: {result.value}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    
+                    <div className="flex space-x-2 mt-4">
+                      <MagneticButton
+                        onClick={() => setSelectedProject(index)}
+                        className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+                      >
+                        View Case Study
+                      </MagneticButton>
+                      {project.githubUrl && (
+                        <MagneticButton
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(project.githubUrl, '_blank');
+                          }}
+                          className="px-4 py-2 bg-muted text-muted-foreground rounded-lg text-sm font-medium hover:bg-muted/80 transition-colors"
+                        >
+                          <Github size={16} />
+                        </MagneticButton>
+                      )}
+                    </div>
+                  </div>
+                }
+              />
             </div>
           ))}
         </div>

@@ -124,7 +124,7 @@ const TimelineItem = ({ item, index, isLast }: { item: any; index: number; isLas
       initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.2 }}
-      className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'} mb-12`}
+      className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'} mb-8`}
     >
       <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
         <motion.div
@@ -252,14 +252,14 @@ const InteractiveResumeTimeline = () => {
   const isInView = useInView(sectionRef, { once: true });
 
   return (
-    <section className="py-20 bg-gradient-to-br from-background to-background/50">
+    <section className="pt-8 pb-6 bg-gradient-to-br from-background to-background/50">
       <div className="container-width">
         <motion.div
           ref={sectionRef}
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-6">
             Career Journey
@@ -290,7 +290,7 @@ const InteractiveResumeTimeline = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-16 bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50"
+          className="mt-12 bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50"
         >
           <h3 className="text-2xl font-bold text-center text-foreground mb-8">Skills Evolution Over Time</h3>
           

@@ -95,16 +95,16 @@ const CaseStudiesSection = () => {
   const caseStudies = caseStudiesData;
 
   return (
-    <section id="case-studies" className="py-20 bg-gradient-to-b from-background to-card/30">
+    <section id="case-studies" className="py-4 bg-gradient-to-b from-background to-card/30">
       <div className="container-width">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
-          <h2 className="text-section-heading text-gradient mb-4">
+          <h2 className="text-heading text-gradient">
             Case Studies
           </h2>
           <p className="text-body text-muted-foreground max-w-2xl mx-auto">
@@ -248,7 +248,7 @@ const CaseStudiesSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-8"
         >
           <p className="text-muted-foreground mb-6">
             Interested in discussing a similar project?

@@ -291,7 +291,7 @@ const InteractiveDataVisualization = () => {
   const isInView = useInView(sectionRef, { once: true });
 
   return (
-    <section className="py-20 bg-gradient-to-br from-background to-background/50">
+    <section className="pt-20 md:pt-24 pb-8 md:pb-12 bg-gradient-to-br from-background to-background/50">
       <div className="container-width">
         <motion.div
           ref={sectionRef}

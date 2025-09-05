@@ -35,31 +35,20 @@ const TestimonialsSection = () => {
       text: "Gopikrishna demonstrated exceptional problem-solving abilities during his academic projects. His final year project on machine learning applications showed both technical depth and practical business understanding.",
       project: "ML Research Project",
       metric: "Published research paper"
-    },
-    {
-      id: 4,
-      name: "Amit Patel",
-      role: "Senior Developer",
-      company: "StartupTech",
-      image: "/testimonial-4.jpg", // Replace with actual image
-      rating: 5,
-      text: "As a mentor to Gopikrishna, I've seen his growth from a curious student to a competent developer. His ability to grasp complex concepts quickly and apply them effectively makes him ready for senior challenges.",
-      project: "Internship Program",
-      metric: "Promoted after 6 months"
     }
   ];
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-background to-card/50">
+    <section id="testimonials" className="py-2 bg-gradient-to-b from-background to-card/50 relative z-10 clear-both">
       <div className="container-width">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
-          <h2 className="text-section-heading text-gradient mb-4">
+          <h2 className="text-heading text-gradient">
             Client Testimonials
           </h2>
           <p className="text-body text-muted-foreground max-w-2xl mx-auto">
@@ -126,7 +115,7 @@ const TestimonialsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center mt-12"
+          className="text-center mt-6"
         >
           <p className="text-muted-foreground mb-6">
             Ready to work together? Let's discuss your project.

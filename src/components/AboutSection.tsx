@@ -1,5 +1,140 @@
-import { Code, Database, Brain, TrendingUp, BookOpen, Users, Lightbulb, Trophy, Calendar, Award, Zap, Target, Heart, Coffee, Gamepad2, Music, Camera, MapPin, Globe, Shield, DollarSign, TrendingDown, ArrowUpRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Code, Database, Brain, TrendingUp, BookOpen, Users, Lightbulb, Trophy, Calendar, Award, Zap, Target, Heart, Coffee, Gamepad2, Music, Camera, MapPin, Globe, Shield, DollarSign, TrendingDown, ArrowUpRight, ChevronDown, Star, Briefcase, GraduationCap, Rocket } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { StatsCard, ProgressiveSkillReveal } from '@/components/ScrollTriggeredAnimations';
+import { MagneticButton, ParallaxSection } from '@/components/InteractiveElements';
+import { useRef, useState } from 'react';
+
+// Individual Timeline Item Component
+const TimelineItem = ({ item, index, isLast }: { item: any; index: number; isLast: boolean }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const getTypeColor = (type: string) => {
+    switch (type) {
+      case 'education': return 'bg-blue-500';
+      case 'work': return 'bg-purple-500';
+      case 'growth': return 'bg-orange-500';
+      default: return 'bg-green-500';
+    }
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'} mb-8`}
+    >
+      <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
+        <motion.div
+          whileHover={{ scale: 1.02 }}
+          className="glass-enhanced rounded-2xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-300 cursor-pointer"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          {/* Header */}
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center space-x-3">
+              <div className={`w-12 h-12 rounded-xl ${getTypeColor(item.type)} flex items-center justify-center`}>
+                <item.icon size={24} className="text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-foreground">{item.title}</h3>
+                <p className="text-sm text-muted-foreground">{item.subtitle}</p>
+              </div>
+            </div>
+            <motion.div
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChevronDown size={20} className="text-muted-foreground" />
+            </motion.div>
+          </div>
+
+          {/* Period & Location */}
+          <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-4">
+            <div className="flex items-center space-x-1">
+              <Calendar size={14} />
+              <span>{item.period}</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <MapPin size={14} />
+              <span>{item.location}</span>
+            </div>
+          </div>
+
+          {/* Achievements */}
+          <div className="space-y-2 mb-4">
+            {item.achievements.map((achievement: any, achIndex: number) => (
+              <motion.div
+                key={achIndex}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.4, delay: (index * 0.2) + (achIndex * 0.1) }}
+                className="flex items-center space-x-2 text-sm"
+              >
+                <achievement.icon size={14} className="text-primary" />
+                <span className="text-foreground">{achievement.text}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Skills Tags */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {item.skills.slice(0, isExpanded ? item.skills.length : 4).map((skill: string, skillIndex: number) => (
+              <motion.span
+                key={skillIndex}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.3, delay: (index * 0.2) + (skillIndex * 0.05) }}
+                className="px-2 py-1 bg-primary/10 text-primary rounded-md text-xs font-medium"
+              >
+                {skill}
+              </motion.span>
+            ))}
+            {!isExpanded && item.skills.length > 4 && (
+              <span className="px-2 py-1 bg-muted text-muted-foreground rounded-md text-xs">
+                +{item.skills.length - 4} more
+              </span>
+            )}
+          </div>
+
+          {/* Expandable Content */}
+          <motion.div
+            initial={false}
+            animate={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="pt-4 border-t border-border/30">
+              <p className="text-sm text-muted-foreground mb-4">{item.description}</p>
+              
+              {item.projects && (
+                <div>
+                  <h4 className="text-sm font-semibold text-foreground mb-2">Key Projects:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {item.projects.map((project: string, projIndex: number) => (
+                      <span
+                        key={projIndex}
+                        className="px-2 py-1 bg-secondary/20 text-secondary-foreground rounded text-xs"
+                      >
+                        {project}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+      
+      {/* Timeline dot */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-primary to-purple-500 rounded-full border-4 border-background z-10"></div>
+    </motion.div>
+  );
+};
 
 const AboutSection = () => {
   // Work Authorization & Location Info
@@ -71,31 +206,91 @@ const AboutSection = () => {
     }
   ];
 
-  // Soft Skills with Evidence
-  const softSkillsEvidence = [
+  // Skills progression data
+  const skillsEvolution = {
+    2022: ['HTML/CSS', 'JavaScript', 'Python Basics', 'SQL'],
+    2023: ['React', 'Node.js', 'MongoDB', 'Git', 'Python (Advanced)', 'Machine Learning'],
+    2024: ['FastAPI', 'PostgreSQL', 'AWS', 'Docker', 'Deep Learning', 'Data Engineering'],
+    2025: ['AI/ML Production', 'Cloud Architecture', 'Team Leadership', 'System Design']
+  };
+
+  // Timeline data with achievements
+  const timelineData = [
     {
-      skill: "Leadership",
-      evidence: "Led cross-functional team of 8 members for customer analytics platform",
-      outcome: "40% increase in customer retention, on-time delivery",
-      icon: Users
+      id: 1,
+      year: '2022',
+      period: 'Jan 2022 - Dec 2022',
+      type: 'education',
+      title: 'Computer Science Engineering',
+      subtitle: 'Final Year Student',
+      location: 'Engineering College',
+      icon: GraduationCap,
+      color: 'from-blue-500 to-cyan-500',
+      achievements: [
+        { text: 'Machine Learning Specialization', icon: Award },
+        { text: 'Final Year Project: AI-based System', icon: Code },
+        { text: 'CGPA: 8.5/10', icon: Star }
+      ],
+      skills: skillsEvolution[2022],
+      description: 'Built foundation in computer science with focus on AI and machine learning. Completed multiple projects in web development and data analysis.',
+      projects: ['Student Management System', 'ML Prediction Model', 'Web Portfolio']
     },
     {
-      skill: "Communication",
-      evidence: "Presented technical solutions to C-level executives and non-technical stakeholders",
-      outcome: "Secured $500K budget approval for data infrastructure modernization",
-      icon: Lightbulb
+      id: 2,
+      year: '2023',
+      period: 'Jan 2023 - Dec 2023',
+      type: 'work',
+      title: 'Junior Software Engineer',
+      subtitle: 'KreativeTimebox / Startup',
+      location: 'Hyderabad, India',
+      icon: Briefcase,
+      color: 'from-purple-500 to-pink-500',
+      achievements: [
+        { text: 'Delivered 5+ full-stack projects', icon: Code },
+        { text: 'Improved system performance by 30%', icon: TrendingUp },
+        { text: 'Mentored 2 junior developers', icon: Users }
+      ],
+      skills: skillsEvolution[2023],
+      description: 'Started professional career focused on full-stack development and data processing. Quickly adapted to modern technologies and agile methodologies.',
+      projects: ['E-commerce Platform', 'Data Analytics Dashboard', 'API Integration System']
     },
     {
-      skill: "Problem Solving",
-      evidence: "Diagnosed and resolved critical data pipeline failures within 2-hour SLA",
-      outcome: "Maintained 99.9% system uptime, prevented $100K potential revenue loss",
-      icon: Target
+      id: 3,
+      year: '2024',
+      period: 'Jan 2024 - Dec 2024',
+      type: 'work',
+      title: 'Software Engineer',
+      subtitle: 'Growth & Advanced Projects',
+      location: 'Remote/Hybrid',
+      icon: Rocket,
+      color: 'from-green-500 to-emerald-500',
+      achievements: [
+        { text: 'Led ML implementation projects', icon: Award },
+        { text: 'Architected scalable data pipelines', icon: Code },
+        { text: 'Contributed to 3 open-source projects', icon: BookOpen }
+      ],
+      skills: skillsEvolution[2024],
+      description: 'Expanded expertise to ML engineering and cloud technologies. Led multiple high-impact projects and contributed to team technical decisions.',
+      projects: ['ML Recommendation Engine', 'Cloud Data Platform', 'Real-time Analytics']
     },
     {
-      skill: "Mentoring",
-      evidence: "Mentored 15+ junior engineers through internal training programs",
-      outcome: "25% improvement in code quality, 3 mentees promoted within 6 months",
-      icon: BookOpen
+      id: 4,
+      year: '2025',
+      period: 'Present',
+      type: 'growth',
+      title: 'Seeking Senior Opportunities',
+      subtitle: 'Ready for Leadership Roles',
+      location: 'Open to Global Remote',
+      icon: TrendingUp,
+      color: 'from-orange-500 to-red-500',
+      achievements: [
+        { text: 'AI/ML Production Experience', icon: Award },
+        { text: 'Full-Stack + Data Engineering', icon: Code },
+        { text: 'Leadership & Mentoring Ready', icon: Users }
+      ],
+      skills: skillsEvolution[2025],
+      description: 'Prepared for senior engineering roles with proven track record. Combining technical expertise with growing leadership experience.',
+      projects: ['Portfolio Showcase', 'Open Source Contributions', 'Technical Blog']
     }
   ];
 
@@ -221,7 +416,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="section-padding bg-gradient-surface">
+    <section id="about" className="py-8 bg-gradient-surface pb-4">
       <div className="container-width">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -273,7 +468,7 @@ const AboutSection = () => {
           </div>
 
           {/* Highlights Grid */}
-          <div className="grid gap-4 mt-24">
+          <div className="grid gap-4 mt-12">
             {highlights.map((item, index) => (
               <div
                 key={index}
@@ -514,7 +709,7 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mt-20 mb-16"
+          className="mt-12 mb-8"
         >
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-3xl font-bold text-gradient mb-8">{personalStory.title}</h3>
@@ -535,7 +730,7 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-8"
         >
           <h3 className="text-3xl font-bold text-gradient text-center mb-12">Leadership & Collaboration</h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -577,7 +772,7 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-8"
         >
           <h3 className="text-3xl font-bold text-gradient text-center mb-12">Cultural Fit & Working Style</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -656,123 +851,125 @@ const AboutSection = () => {
         </motion.div>
 
         {/* Business Impact Metrics */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h3 className="text-3xl font-bold text-gradient text-center mb-8">
-            <TrendingUp className="inline w-8 h-8 mr-2" />
-            Quantified Business Impact
-          </h3>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {businessImpact.map((impact, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group p-6 bg-gradient-to-br from-green-500/10 to-blue-500/10 rounded-xl border border-green-500/20 hover:border-green-500/40 transition-all duration-300"
-              >
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-green-500/20 text-green-400 mb-4 group-hover:scale-110 transition-transform">
-                  <impact.icon size={24} />
-                </div>
-                
-                <div className="text-3xl font-bold text-green-400 mb-2">{impact.metric}</div>
-                <h4 className="font-semibold text-foreground mb-2">{impact.title}</h4>
-                <p className="text-sm text-muted-foreground mb-3">{impact.description}</p>
-                <p className="text-xs text-green-300/80 italic">{impact.details}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Soft Skills with Evidence */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h3 className="text-3xl font-bold text-gradient text-center mb-8">
-            <Users className="inline w-8 h-8 mr-2" />
-            Leadership & Communication Evidence
-          </h3>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {softSkillsEvidence.map((skill, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="p-6 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-500/20"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
-                    <skill.icon className="w-6 h-6 text-purple-400" />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <h4 className="text-lg font-semibold text-foreground mb-2">{skill.skill}</h4>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      <strong>Evidence:</strong> {skill.evidence}
-                    </p>
-                    <p className="text-sm text-purple-300">
-                      <strong>Outcome:</strong> {skill.outcome}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Career Progression Story */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h3 className="text-3xl font-bold text-gradient text-center mb-8">
-            <ArrowUpRight className="inline w-8 h-8 mr-2" />
-            Career Growth Trajectory
-          </h3>
-          
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-0.5 w-0.5 h-full bg-gradient-to-b from-blue-500 to-purple-500"></div>
+        <ParallaxSection offset={10} className="mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-3xl font-bold text-gradient text-center mb-12">
+              <TrendingUp className="inline w-8 h-8 mr-2" />
+              Quantified Business Impact
+            </h3>
             
-            <div className="space-y-8">
-              {careerProgression.map((stage, index) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <StatsCard
+                title="Revenue Generated"
+                value={2.5}
+                suffix="M+"
+                prefix="$"
+                description="Through ML-driven customer segmentation and recommendation systems"
+                icon={<DollarSign size={24} />}
+                delay={0}
+              />
+              <StatsCard
+                title="Cost Savings"
+                value={500}
+                suffix="K+"
+                prefix="$"
+                description="Via automated data processing and infrastructure optimization"
+                icon={<TrendingDown size={24} />}
+                delay={0.1}
+              />
+              <StatsCard
+                title="ROI Improvement"
+                value={40}
+                suffix="%"
+                description="On marketing campaigns through data-driven insights"
+                icon={<ArrowUpRight size={24} />}
+                delay={0.2}
+              />
+              <StatsCard
+                title="Teams Impacted"
+                value={15}
+                suffix="+"
+                description="Cross-functional collaboration and knowledge transfer"
+                icon={<Users size={24} />}
+                delay={0.3}
+              />
+            </div>
+          </motion.div>
+        </ParallaxSection>
+
+        {/* Career Journey Timeline */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-8"
+        >
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-gradient mb-4">
+              <ArrowUpRight className="inline w-8 h-8 mr-2" />
+              Career Journey
+            </h3>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              From academic foundations to professional growth - tracking my evolution in data science and analytics.
+            </p>
+          </div>
+
+          {/* Skills Evolution Summary */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mb-12 bg-gradient-to-r from-primary/5 to-purple-500/5 rounded-2xl p-8 border border-primary/10"
+          >
+            <h4 className="text-xl font-semibold text-foreground mb-6 text-center">Skills Evolution Over Time</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {Object.entries(skillsEvolution).map(([year, skills], index) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  key={year}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+                  className="text-center"
                 >
-                  <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                    <div className="p-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl border border-blue-500/20">
-                      <div className="text-blue-400 font-semibold text-lg mb-2">{stage.year}</div>
-                      <h4 className="text-xl font-bold text-foreground mb-3">{stage.role}</h4>
-                      <p className="text-sm text-muted-foreground mb-3">{stage.growth}</p>
-                      <p className="text-sm text-blue-300 font-medium">{stage.achievement}</p>
-                    </div>
+                  <div className="text-2xl font-bold text-primary mb-2">{year}</div>
+                  <div className="text-sm text-muted-foreground mb-3">Focus Areas</div>
+                  <div className="space-y-1">
+                    {skills.map((skill, skillIndex) => (
+                      <div
+                        key={skillIndex}
+                        className="text-xs bg-card/50 px-2 py-1 rounded border"
+                      >
+                        {skill}
+                      </div>
+                    ))}
                   </div>
-                  
-                  {/* Timeline dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-background"></div>
                 </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Interactive Timeline */}
+          <div className="relative max-w-6xl mx-auto">
+            {/* Central Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-purple-500 to-green-500 rounded-full"></div>
+            
+            {/* Timeline Items */}
+            <div className="relative">
+              {timelineData.map((item, index) => (
+                <TimelineItem
+                  key={index}
+                  item={item}
+                  index={index}
+                  isLast={index === timelineData.length - 1}
+                />
               ))}
             </div>
           </div>
@@ -784,7 +981,7 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
-          className="mb-8"
+          className="mt-12 mb-8 pt-4 pb-4"
         >
           <h3 className="text-3xl font-bold text-gradient text-center mb-8">Beyond the Code</h3>
           <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -812,6 +1009,17 @@ const AboutSection = () => {
               );
             })}
           </div>
+        </motion.div>
+        
+        {/* Section Separator */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="mt-8 mb-4 flex justify-center"
+        >
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
         </motion.div>
       </div>
     </section>

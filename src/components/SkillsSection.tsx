@@ -1,6 +1,8 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Code, Database, Brain, Cloud, BarChart, Zap } from 'lucide-react';
+import { ProgressiveSkillReveal, StatsCard } from '@/components/ScrollTriggeredAnimations';
+import { StaggerChildren, ParallaxSection } from '@/components/InteractiveElements';
 
 // Skills data organized by category
 const skillsData = {
@@ -128,7 +130,7 @@ const SkillsCategoryCard = ({ categoryName, categoryData, index }: { categoryNam
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group bg-card/50 backdrop-blur-sm rounded-xl p-6 border hover:shadow-xl transition-all duration-300 hover:scale-105"
+      className="group glass-card hover:card-3d backdrop-blur-sm rounded-xl p-6 border hover:shadow-xl transition-all duration-300 hover:scale-105"
       style={{ 
         background: `linear-gradient(135deg, ${categoryData.color}10 0%, transparent 100%)`,
         borderColor: `${categoryData.color}30`
@@ -159,16 +161,16 @@ const SkillsSection = () => {
   const isInView = useInView(sectionRef, { once: true });
 
   return (
-    <section className="py-20 bg-gradient-to-br from-background to-background/50">
+    <section className="py-4 bg-gradient-to-br from-background to-background/50">
       <div className="container-width">
         <motion.div
           ref={sectionRef}
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-6">
+          <h2 className="text-heading text-gradient">
             Technical Skills & Expertise
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -176,16 +178,78 @@ const SkillsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(skillsData).map(([categoryName, categoryData], index) => (
-            <SkillsCategoryCard
-              key={categoryName}
-              categoryName={categoryName}
-              categoryData={categoryData}
-              index={index}
+        {/* Skills Statistics */}
+        <ParallaxSection offset={10} className="mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+            <StatsCard
+              title="Programming Languages"
+              value={8}
+              suffix="+"
+              description="Proficient in multiple languages"
+              icon={<Code size={24} />}
+              delay={0}
             />
-          ))}
-        </div>
+            <StatsCard
+              title="Years Experience"
+              value={3}
+              suffix="+"
+              description="In professional development"
+              icon={<Brain size={24} />}
+              delay={0.1}
+            />
+            <StatsCard
+              title="Projects Completed"
+              value={25}
+              suffix="+"
+              description="Across various domains"
+              icon={<Zap size={24} />}
+              delay={0.2}
+            />
+            <StatsCard
+              title="Technologies Mastered"
+              value={30}
+              suffix="+"
+              description="Frameworks and tools"
+              icon={<Database size={24} />}
+              delay={0.3}
+            />
+          </div>
+        </ParallaxSection>
+
+        {/* Enhanced Skills with Progressive Reveal */}
+        <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Object.entries(skillsData).map(([categoryName, categoryData], index) => {
+            const IconComponent = categoryData.icon;
+            const skillsWithIcons = categoryData.skills.map(skill => ({
+              ...skill,
+              category: categoryName,
+              icon: <IconComponent size={16} />
+            }));
+
+            return (
+              <motion.div
+                key={categoryName}
+                className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-300"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="flex items-center space-x-3 mb-6">
+                  <motion.div 
+                    className="w-12 h-12 rounded-lg flex items-center justify-center"
+                    style={{ backgroundColor: `${categoryData.color}20` }}
+                    whileHover={{ scale: 1.1, rotate: 360 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <IconComponent size={24} color={categoryData.color} />
+                  </motion.div>
+                  <h3 className="text-lg font-semibold text-foreground">{categoryName}</h3>
+                </div>
+                
+                <ProgressiveSkillReveal skills={skillsWithIcons} />
+              </motion.div>
+            );
+          })}
+        </StaggerChildren>
       </div>
     </section>
   );

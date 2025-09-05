@@ -4,15 +4,198 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Z-index management for overlapping elements */
+@layer utilities {
+  .z-cursor { z-index: 100; }
+  .z-scroll-progress { z-index: 50; }
+  .z-nav-dots { z-index: 40; }
+  .z-nav { z-index: 30; }
+  .z-content { z-index: 10; }
+}
+
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  cursor: none; /* Hide default cursor for custom cursor */
 }
 
 /* Optimize scroll performance */
 * {
   -webkit-overflow-scrolling: touch;
+}
+
+/* Custom cursor styles */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none !important;
+  }
+  
+  /* Only hide cursor on interactive elements, not input fields */
+  a, button, [data-cursor="pointer"] {
+    cursor: none !important;
+  }
+  
+  /* Keep normal cursor for inputs and text areas */
+  input, textarea, select, [contenteditable] {
+    cursor: text !important;
+  }
+}
+
+/* On mobile devices, ensure normal cursor behavior */
+@media (max-width: 767px) or (hover: none) or (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+}
+
+/* 3D Transform utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Eliminate external section spacing - keep internal padding only */
+.section-spacing {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  clear: both;
+  isolation: isolate;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 640px) {
+  .section-spacing {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-spacing {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* Minimal section separation */
+.section-separator {
+  height: 1rem;
+  width: 100%;
+  clear: both;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .section-separator {
+    height: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-separator {
+    height: 2rem;
+  }
+}
+
+/* Prevent section overlapping - Minimal spacing */
+section {
+  position: relative;
+  z-index: 1;
+  display: block;
+  clear: both;
+  isolation: isolate;
+  transform: translateZ(0); /* Force hardware acceleration and separate layer */
+  margin-top: 0 !important; /* Prevent negative margins */
+  transform: none !important; /* Prevent transforms that cause overlapping */
+  margin-bottom: 2rem; /* Minimal consistent spacing */
+}
+
+/* Eliminate all external section margins */
+section:not(:first-child) {
+  margin-top: 0 !important;
+}
+
+/* Force zero margins between Contact and Footer */
+section#contact {
+  margin-bottom: 0 !important;
+}
+
+section#contact + * {
+  margin-top: 0 !important;
+}
+
+/* Remove section bottom margins globally */
+section {
+  position: relative;
+  z-index: 1;
+  display: block;
+  clear: both;
+  isolation: isolate;
+  transform: translateZ(0); /* Force hardware acceleration and separate layer */
+  margin-top: 0 !important; /* Remove all external top margins */
+  transform: none !important; /* Prevent transforms that cause overlapping */
+  margin-bottom: 0 !important; /* Remove all external bottom margins */
+}
+
+@media (min-width: 768px) {
+  section:not(:first-child) {
+    margin-top: 0 !important;
+  }
+  
+  section#contact {
+    margin-bottom: 0 !important;
+  }
+  
+  section#contact + * {
+    margin-top: 0 !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  section:not(:first-child) {
+    margin-top: 6rem !important;
+  }
+}
+
+/* Force proper stacking context for motion components */
+[data-motion-component] {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure no negative margins cause overlapping */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
 }
 
 /* Portfolio Design System for AI & Data-Driven Engineer */
@@ -170,6 +353,39 @@ html {
     @apply bg-card/50 backdrop-blur-md border border-border/50 rounded-xl p-6;
   }
 
+  /* Enhanced 3D Card Effects */
+  .card-3d {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-10deg);
+    transition: transform 0.3s ease;
+    @apply bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl p-6;
+  }
+
+  .card-3d:hover {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Enhanced Glass Morphism */
+  .glass-enhanced {
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    background: rgba(255, 255, 255, 0.05);
+    @apply rounded-xl;
+  }
+
+  .glass-card {
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    background: rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    @apply rounded-xl p-6;
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
   /* Glow Effects */
   .glow-primary {
     box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
@@ -195,7 +411,7 @@ html {
 
   /* Section Spacing */
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28;
   }
 
   .container-width {

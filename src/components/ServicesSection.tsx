@@ -56,10 +56,10 @@ const ServicesSection = () => {
   return (
     <>
       {/* Services Section */}
-      <section id="services" className="min-h-screen flex items-center bg-gradient-to-br from-background to-muted/30 py-12">
+      <section id="services" className="flex items-center bg-gradient-to-br from-background to-muted/30 py-2">
         <div className="container-width">
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Services</h2>
+            <h2 className="text-heading text-gradient">Services</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto" />
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
               Comprehensive solutions tailored to transform your ideas into powerful, data-driven applications
@@ -123,10 +123,10 @@ const ServicesSection = () => {
       </section>
 
       {/* Development Process Section */}
-      <section id="development-process" className="min-h-screen flex items-center bg-gradient-to-br from-background to-muted/30 py-12">
+      <section id="development-process" className="flex items-center bg-gradient-to-br from-background to-muted/30 py-2">
         <div className="container-width">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Development Process</h2>
+            <h2 className="text-heading text-gradient">Development Process</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mt-4" />
             <p className="text-gray-400 text-lg mt-6 max-w-2xl mx-auto">From concept to deployment - A comprehensive approach to building exceptional solutions</p>
           </div>
