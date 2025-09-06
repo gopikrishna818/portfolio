@@ -49,7 +49,7 @@ const Index = () => {
   return (
     <ErrorBoundary>
       <PageTransition>
-        <div className="min-h-screen bg-background relative">
+        <div className="min-h-screen bg-background relative m-0 p-0">
           {/* Particle Background */}
           <ParticleBackground />
           
@@ -61,7 +61,7 @@ const Index = () => {
           <Navigation />
           
           {/* Main Content with Clean Section Separation */}
-          <main className="scrollbar-custom relative z-content">
+          <main className="scrollbar-custom relative z-content m-0 p-0">
             <SectionErrorBoundary sectionName="Hero Section">
               <HeroSection />
             </SectionErrorBoundary>
