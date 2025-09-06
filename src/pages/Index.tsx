@@ -49,7 +49,7 @@ const Index = () => {
   return (
     <ErrorBoundary>
       <PageTransition>
-        <div className="min-h-screen bg-background relative m-0 p-0">
+        <div className="min-h-screen bg-background relative">
           {/* Particle Background */}
           <ParticleBackground />
           
@@ -61,7 +61,7 @@ const Index = () => {
           <Navigation />
           
           {/* Main Content with Clean Section Separation */}
-          <main className="scrollbar-custom relative z-content m-0 p-0">
+          <main className="scrollbar-custom relative z-content">
             <SectionErrorBoundary sectionName="Hero Section">
               <HeroSection />
             </SectionErrorBoundary>
@@ -117,13 +117,13 @@ const Index = () => {
             <SectionErrorBoundary sectionName="Contact">
               <ContactSection />
             </SectionErrorBoundary>
+            
+            {/* Footer - Inside main background container */}
+            <SectionErrorBoundary sectionName="Footer">
+              <Footer />
+            </SectionErrorBoundary>
           </main>
-        
-        {/* Footer - Fully separated */}
-        <SectionErrorBoundary sectionName="Footer">
-          <Footer />
-        </SectionErrorBoundary>
-      </div>
+        </div>
       </PageTransition>
     </ErrorBoundary>
   );

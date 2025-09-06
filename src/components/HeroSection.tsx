@@ -23,10 +23,15 @@ const HeroSection = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Force scroll to top on load to prevent navbar offset issues
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section
       id="home"
-      className="h-screen w-full flex items-center justify-center relative overflow-hidden m-0 p-0"
+      className="h-screen w-full flex items-center justify-center relative overflow-hidden m-0 p-0 scroll-mt-20"
       style={{
         backgroundImage: `url(${heroBg})`,
         backgroundSize: 'cover',
@@ -110,7 +115,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="container-width relative z-10 pt-16 md:pt-20">
+      <div className="container-width relative z-10">
         <div className="text-center space-y-6 md:space-y-8">
           {/* Profile Image with Enhanced Design */}
           <div className="relative mx-auto w-40 h-40 md:w-48 md:h-48 group">
