@@ -1,17 +1,17 @@
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
+import KeyAchievementsSection from '@/components/KeyAchievementsSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import SkillsSection from '@/components/SkillsSection';
 import ServicesSection from '@/components/ServicesSection';
 import ExperienceEducationSection from '@/components/ExperienceEducationSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import CertificationsSection from '@/components/CertificationsSection';
-import AwardsSection from '@/components/AwardsSection';
 import ContactSection from '@/components/ContactSection';
 import CustomLoadingAnimation from '@/components/CustomLoadingAnimation';
 import { CustomCursor } from '@/components/InteractiveElements';
-import { ScrollProgress, FloatingNavDots, PageTransition, SectionTransition, useSmootherScroll } from '@/components/SmoothTransitions';
+import { FloatingNavDots, PageTransition, SectionTransition, useSmootherScroll } from '@/components/SmoothTransitions';
 import ParticleBackground from '@/components/ParticleBackground';
 import Footer from '@/components/Footer';
 import ErrorBoundary, { SectionErrorBoundary } from '@/components/ErrorBoundary';
@@ -49,102 +49,79 @@ const Index = () => {
   return (
     <ErrorBoundary>
       <PageTransition>
-        <div className="min-h-screen bg-background relative">
+        <div className="min-h-screen bg-background relative m-0 p-0">
           {/* Particle Background */}
           <ParticleBackground />
           
           {/* Enhanced UI Elements */}
           <CustomCursor />
-          <ScrollProgress />
           <FloatingNavDots />
           
           {/* Navigation */}
           <Navigation />
           
           {/* Main Content with Clean Section Separation */}
-          <main className="scrollbar-custom relative z-content">
+          <main className="scrollbar-custom relative z-content m-0 p-0">
             <SectionErrorBoundary sectionName="Hero Section">
-              <SectionTransition id="hero">
-                <HeroSection />
-              </SectionTransition>
+              <HeroSection />
             </SectionErrorBoundary>
             
             <SectionErrorBoundary sectionName="About Section">
-              <SectionTransition id="about">
-                <div className="section-spacing">
-                  <AboutSection />
-                </div>
-              </SectionTransition>
+              <div className="section-spacing">
+                <AboutSection />
+              </div>
+            </SectionErrorBoundary>
+            
+            <SectionErrorBoundary sectionName="Key Achievements">
+              <div className="section-spacing">
+                <KeyAchievementsSection />
+              </div>
             </SectionErrorBoundary>
             
             <SectionErrorBoundary sectionName="Portfolio">
-              <SectionTransition id="portfolio">
-                <div className="section-spacing">
-                  <PortfolioSection />
-                </div>
-              </SectionTransition>
+              <div className="section-spacing">
+                <PortfolioSection />
+              </div>
             </SectionErrorBoundary>
             
             <SectionErrorBoundary sectionName="Interactive Skills">
-              <SectionTransition id="skills">
-                <div className="section-spacing">
-                  <SkillsSection />
-                </div>
-              </SectionTransition>
+              <div className="section-spacing">
+                <SkillsSection />
+              </div>
             </SectionErrorBoundary>
             
             <SectionErrorBoundary sectionName="Services">
-              <SectionTransition id="services">
-                <div className="section-spacing">
-                  <ServicesSection />
-                </div>
-              </SectionTransition>
+              <div className="section-spacing">
+                <ServicesSection />
+              </div>
             </SectionErrorBoundary>
             
             <SectionErrorBoundary sectionName="Experience & Education">
-              <SectionTransition id="experience">
-                <div className="section-spacing">
-                  <ExperienceEducationSection />
-                </div>
-              </SectionTransition>
+              <div className="section-spacing">
+                <ExperienceEducationSection />
+              </div>
             </SectionErrorBoundary>
             
-            <SectionErrorBoundary sectionName="Certifications">
-              <SectionTransition id="certifications">
-                <div className="section-spacing">
-                  <CertificationsSection />
-                </div>
-              </SectionTransition>
-            </SectionErrorBoundary>
-            
-            <SectionErrorBoundary sectionName="Awards & Recognition">
-              <SectionTransition id="awards">
-                <div className="section-spacing">
-                  <AwardsSection />
-                </div>
-              </SectionTransition>
+            <SectionErrorBoundary sectionName="Certifications & Awards">
+              <div className="section-spacing">
+                <CertificationsSection />
+              </div>
             </SectionErrorBoundary>
             
             <SectionErrorBoundary sectionName="Testimonials">
-              <SectionTransition id="testimonials">
-                <div className="section-spacing">
-                  <TestimonialsSection />
-                </div>
-              </SectionTransition>
+              <div className="section-spacing">
+                <TestimonialsSection />
+              </div>
             </SectionErrorBoundary>
             
             <SectionErrorBoundary sectionName="Contact">
-              <SectionTransition id="contact">
-                <ContactSection />
-              </SectionTransition>
+              <ContactSection />
             </SectionErrorBoundary>
           </main>
         
         {/* Footer - Fully separated */}
         <SectionErrorBoundary sectionName="Footer">
-          <SectionTransition id="footer">
-            <Footer />
-          </SectionTransition>
+          <Footer />
         </SectionErrorBoundary>
       </div>
       </PageTransition>

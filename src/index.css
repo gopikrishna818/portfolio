@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CRITICAL: Full viewport reset to prevent black spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Z-index management for overlapping elements */
 @layer utilities {
   .z-cursor { z-index: 100; }
@@ -13,19 +20,50 @@
   .z-content { z-index: 10; }
 }
 
-/* Smooth Scrolling */
-html {
+/* Navbar Specific Styles */
+.navbar-solid {
+  background-color: #0f172a !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.3) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Reset and Smooth Scrolling */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100%;
+  width: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
   cursor: none; /* Hide default cursor for custom cursor */
+  overflow-x: hidden;
 }
 
-/* Optimize scroll performance */
+/* Ensure root takes full height */
+#root {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Optimize scroll and animation performance */
 * {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Custom cursor styles */
+/* Hardware acceleration for smooth animations */
+.cursor-element, [data-cursor], .motion-element {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+}
+
+/* Custom cursor styles with performance optimizations */
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
   body {
     cursor: none !important;
@@ -34,11 +72,20 @@ html {
   /* Only hide cursor on interactive elements, not input fields */
   a, button, [data-cursor="pointer"] {
     cursor: none !important;
+    will-change: transform; /* Optimize for smooth interactions */
   }
   
   /* Keep normal cursor for inputs and text areas */
   input, textarea, select, [contenteditable] {
     cursor: text !important;
+  }
+  
+  /* Optimize custom cursor element */
+  [data-cursor-element] {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 }
 
@@ -58,11 +105,11 @@ html {
   transform-style: preserve-3d;
 }
 
-/* Eliminate external section spacing - keep internal padding only */
+/* Section spacing with top padding for visual separation */
 .section-spacing {
   margin-bottom: 0;
   margin-top: 0;
-  padding-top: 0;
+  padding-top: 4rem;
   padding-bottom: 0;
   clear: both;
   isolation: isolate;
@@ -74,7 +121,7 @@ html {
   .section-spacing {
     margin-bottom: 0;
     margin-top: 0;
-    padding-top: 0;
+    padding-top: 5rem;
     padding-bottom: 0;
   }
 }
@@ -83,7 +130,7 @@ html {
   .section-spacing {
     margin-bottom: 0;
     margin-top: 0;
-    padding-top: 0;
+    padding-top: 6rem;
     padding-bottom: 0;
   }
 }
@@ -92,7 +139,7 @@ html {
   .section-spacing {
     margin-bottom: 0;
     margin-top: 0;
-    padding-top: 0;
+    padding-top: 8rem;
     padding-bottom: 0;
   }
 }
@@ -274,15 +321,7 @@ section {
     font-family: 'Inter', sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     min-height: 100vh;
-    background: linear-gradient(120deg, #3a8ef9, #a259f7, #43e97b, #38f9d7);
-    background-size: 400% 400%;
-    animation: gradientBG 12s ease infinite;
-  }
-
-  @keyframes gradientBG {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+    background: hsl(var(--background));
   }
 
   html {

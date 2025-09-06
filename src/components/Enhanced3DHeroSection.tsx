@@ -28,7 +28,7 @@ const Enhanced3DHeroSection = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="h-screen flex items-center justify-center relative overflow-hidden"
       style={{
         backgroundImage: `url(${heroBg})`,
         backgroundSize: 'cover',

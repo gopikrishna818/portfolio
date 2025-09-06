@@ -1017,6 +1017,125 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, scaleX: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
           viewport={{ once: true }}
+          className="mt-8 mb-8 flex justify-center"
+        >
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+        </motion.div>
+
+        {/* Technical Blog & Resources Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto"
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-xl font-bold text-foreground mb-3">Technical Blog & Resources</h3>
+            <p className="text-sm text-muted-foreground">
+              Sharing insights on AI development, data engineering, and software architecture
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {/* Technical Articles */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="glass-enhanced rounded-xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-300"
+            >
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-500/20 to-blue-600/20 flex items-center justify-center">
+                  <BookOpen size={20} className="text-blue-500" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">Technical Articles</h4>
+                  <p className="text-xs text-muted-foreground">12+ published</p>
+                </div>
+              </div>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• "Building Scalable AI Infrastructure with FastAPI"</li>
+                <li>• "Optimizing ML Model Performance in Production"</li>
+                <li>• "Advanced Data Pipeline Patterns with Snowflake"</li>
+              </ul>
+              <motion.a
+                href="https://medium.com/@gopikrishna818"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                className="mt-4 inline-flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
+              >
+                <span>Read Articles</span>
+                <ArrowUpRight size={14} />
+              </motion.a>
+            </motion.div>
+
+            {/* Open Source Contributions */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="glass-enhanced rounded-xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-300"
+            >
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-green-500/20 to-green-600/20 flex items-center justify-center">
+                  <Code size={20} className="text-green-500" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">Open Source</h4>
+                  <p className="text-xs text-muted-foreground">88+ GitHub stars</p>
+                </div>
+              </div>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• AI-powered document analysis tools</li>
+                <li>• Content strategy automation frameworks</li>
+                <li>• Data visualization libraries</li>
+              </ul>
+              <motion.a
+                href="https://github.com/gopikrishna818"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                className="mt-4 inline-flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
+              >
+                <span>View Projects</span>
+                <ArrowUpRight size={14} />
+              </motion.a>
+            </motion.div>
+
+            {/* Problem-Solving Philosophy */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="glass-enhanced rounded-xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-300"
+            >
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500/20 to-purple-600/20 flex items-center justify-center">
+                  <Lightbulb size={20} className="text-purple-500" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">Philosophy</h4>
+                  <p className="text-xs text-muted-foreground">Business-first approach</p>
+                </div>
+              </div>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>• Understand business impact before coding</li>
+                <li>• Prioritize scalability and maintainability</li>
+                <li>• Data-driven decision making</li>
+              </ul>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="mt-4 inline-flex items-center space-x-2 text-primary text-sm font-medium"
+              >
+                <span>Learn More</span>
+                <ArrowUpRight size={14} />
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.div>
+        
+        {/* Final Section Separator */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          viewport={{ once: true }}
           className="mt-8 mb-4 flex justify-center"
         >
           <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>

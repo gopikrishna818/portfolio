@@ -74,6 +74,7 @@ const CertificationsSection = () => {
   ];
 
   const certificationItems = certifications.filter(item => item.type === 'certification');
+  const awards = certifications.filter(item => item.type === 'award');
 
   return (
     <section id="certifications" className="py-4 bg-gradient-to-b from-card/30 to-background relative z-10 clear-both">
@@ -169,6 +170,67 @@ const CertificationsSection = () => {
                       <ExternalLink size={14} className="ml-1" />
                     </a>
                   )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Awards Section */}
+        <div className="mt-8">
+          <motion.h3
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-2xl font-bold text-foreground mb-8 flex items-center"
+          >
+            <Award className="mr-3 text-yellow-500" size={28} />
+            Awards & Recognition
+          </motion.h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {awards.map((award, index) => (
+              <motion.div
+                key={award.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative"
+              >
+                <div className="h-full p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-yellow-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-500/10">
+                  {/* Award Icon */}
+                  <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Award size={28} className="text-white" />
+                  </div>
+
+                  {/* Award Info */}
+                  <h4 className="text-lg font-bold text-foreground mb-2 group-hover:text-yellow-400 transition-colors duration-300">
+                    {award.title}
+                  </h4>
+                  
+                  <p className="text-yellow-400 font-medium mb-2">{award.issuer}</p>
+                  
+                  <div className="flex items-center text-sm text-muted-foreground mb-4">
+                    <Calendar size={14} className="mr-2" />
+                    {award.date}
+                  </div>
+
+                  {award.description && (
+                    <p className="text-foreground/80 mb-4 leading-relaxed">
+                      {award.description}
+                    </p>
+                  )}
+
+                  {/* Skills */}
+                  <div className="flex flex-wrap gap-2">
+                    {award.skills.map((skill, i) => (
+                      <span key={i} className="px-2 py-1 bg-yellow-500/10 border border-yellow-500/20 rounded-md text-xs text-yellow-400">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}

@@ -6,17 +6,21 @@ export const useCursorFollow = () => {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   
-  const springConfig = { damping: 25, stiffness: 700 };
+  // Much more responsive spring configuration for smoother movement
+  const springConfig = { damping: 15, stiffness: 1000, mass: 0.1 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 16);
-      cursorY.set(e.clientY - 16);
+      // Use requestAnimationFrame for smoother updates
+      requestAnimationFrame(() => {
+        cursorX.set(e.clientX - 12);
+        cursorY.set(e.clientY - 12);
+      });
     };
 
-    window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('mousemove', moveCursor, { passive: true });
     return () => window.removeEventListener('mousemove', moveCursor);
   }, [cursorX, cursorY]);
 
@@ -90,24 +94,26 @@ export const CustomCursor = () => {
       style={{
         x: cursorXSpring,
         y: cursorYSpring,
+        willChange: 'transform', // Optimize for smooth transforms
       }}
       animate={{
         opacity: isVisible ? 1 : 0,
       }}
       transition={{
-        opacity: { duration: 0.2 }
+        opacity: { duration: 0.1, ease: "easeOut" }
       }}
     >
       <motion.div
         className="w-full h-full bg-white rounded-full"
         animate={{
-          scale: isHovering ? 1.5 : 1,
-          opacity: isHovering ? 0.8 : 0.6,
+          scale: isHovering ? 1.8 : 1,
+          opacity: isHovering ? 0.9 : 0.7,
         }}
         transition={{
           type: "spring",
-          stiffness: 300,
-          damping: 20,
+          stiffness: 500,
+          damping: 25,
+          mass: 0.1,
         }}
       />
     </motion.div>
@@ -132,7 +138,8 @@ export const MagneticButton = ({
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   
-  const springConfig = { damping: 15, stiffness: 150 };
+  // More responsive spring for magnetic effect
+  const springConfig = { damping: 20, stiffness: 300, mass: 0.1 };
   const xSpring = useSpring(x, springConfig);
   const ySpring = useSpring(y, springConfig);
 
@@ -146,8 +153,11 @@ export const MagneticButton = ({
     const deltaX = (e.clientX - centerX) * magneticStrength;
     const deltaY = (e.clientY - centerY) * magneticStrength;
     
-    x.set(deltaX);
-    y.set(deltaY);
+    // Use requestAnimationFrame for smoother updates
+    requestAnimationFrame(() => {
+      x.set(deltaX);
+      y.set(deltaY);
+    });
   };
 
   const handleMouseLeave = () => {

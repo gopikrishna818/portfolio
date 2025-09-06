@@ -1,7 +1,7 @@
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import heroBg from '@/assets/hero-bg.jpg';
-import profileImg from '@/assets/profile-placeholder.jpg';
+import heroBg from '../assets/hero-bg.jpg';
+import profileImage from '../assets/profile-placeholder.jpg';
 
 const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -26,12 +26,15 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="h-screen w-full flex items-center justify-center relative overflow-hidden m-0 p-0"
       style={{
         backgroundImage: `url(${heroBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
+        position: 'relative',
+        top: 0,
+        left: 0,
       }}
     >
       {/* Overlay */}
@@ -111,48 +114,46 @@ const HeroSection = () => {
         <div className="text-center space-y-6 md:space-y-8">
           {/* Profile Image with Enhanced Design */}
           <div className="relative mx-auto w-40 h-40 md:w-48 md:h-48 group">
-            {/* Professional Image Container */}
+            {/* Profile Image Container */}
             <div className="relative w-full h-full">
-              {/* Main Image - Professional Placeholder */}
-              <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 flex items-center justify-center shadow-2xl shadow-blue-500/25 group-hover:shadow-purple-500/30 transition-all duration-500">
-                {/* Temporary Professional Avatar */}
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-600/20 backdrop-blur-sm">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-white mb-1">GC</div>
-                    <div className="text-xs text-blue-200 font-medium">AI Engineer</div>
-                  </div>
-                </div>
-                
-                {/* Professional Image Overlay (Replace src with your professional photo) */}
-                <img
-                  src={profileImg}
-                  alt="Gopikrishna Chegoni - AI & Data Engineer"
-                  className="absolute inset-0 w-full h-full object-cover rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  onLoad={(e) => {
-                    // Show the actual image if it loads successfully
-                    (e.target as HTMLImageElement).style.opacity = '1';
-                    ((e.target as HTMLImageElement).parentElement?.children[0] as HTMLElement).style.opacity = '0';
-                  }}
-                  onError={(e) => {
-                    // Keep the professional placeholder if image fails to load
+              {/* Immediate Fallback for Testing */}
+              <div className="w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
+                <span className="text-white font-bold text-4xl">GC</span>
+              </div>
+              
+              {/* Actual Profile Image - will overlay on successful load */}
+              <img
+                src="/profile-placeholder.jpg"
+                alt="Gopikrishna Chegoni - AI & Data Engineer"
+                className="absolute inset-0 w-full h-full object-cover rounded-full shadow-2xl transition-transform duration-500 group-hover:scale-105"
+                style={{ opacity: 0, zIndex: 10 }}
+                onLoad={(e) => {
+                  console.log('Profile image loaded successfully');
+                  (e.target as HTMLImageElement).style.opacity = '1';
+                }}
+                onError={(e) => {
+                  console.log('JPG failed, trying PNG...');
+                  (e.target as HTMLImageElement).src = '/profile-placeholder.png';
+                  (e.target as HTMLImageElement).onerror = () => {
+                    console.log('Both image formats failed');
                     (e.target as HTMLImageElement).style.display = 'none';
-                  }}
-                />
-              </div>
+                  };
+                }}
+              />
+            </div>
+            
+            {/* Animated Border Ring */}
+            <div className="absolute inset-0 rounded-full">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-spin-slow opacity-75"></div>
+              <div className="absolute inset-1 rounded-full bg-background"></div>
+            </div>
               
-              {/* Animated Border Ring */}
-              <div className="absolute inset-0 rounded-full">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-spin-slow opacity-75"></div>
-                <div className="absolute inset-1 rounded-full bg-background"></div>
-              </div>
+            {/* Glow Effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-600/20 animate-pulse-glow blur-xl"></div>
               
-              {/* Glow Effect */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-600/20 animate-pulse-glow blur-xl"></div>
-              
-              {/* Professional Status Badge */}
-              <div className="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-background flex items-center justify-center animate-bounce">
-                <div className="w-2 h-2 bg-white rounded-full"></div>
-              </div>
+            {/* Professional Status Badge */}
+            <div className="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-background flex items-center justify-center animate-bounce">
+              <div className="w-2 h-2 bg-white rounded-full"></div>
             </div>
             
             {/* Personal Logo/Monogram */}
