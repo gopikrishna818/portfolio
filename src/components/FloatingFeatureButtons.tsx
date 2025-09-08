@@ -2,10 +2,6 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, Brain, TrendingUp, Github, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import InteractiveCodePlayground from '@/components/InteractiveCodePlayground';
-import ModalAIAssistant from '@/components/ModalAIAssistant';
-import InteractiveDataVisualization from '@/components/InteractiveDataVisualization';
-import GitHubIntegration from '@/components/GitHubIntegration';
 
 interface FloatingButtonProps {
   icon: React.ComponentType<any>;
@@ -126,10 +122,34 @@ const FloatingFeatureButtons = () => {
           </DialogHeader>
           
           <div className="p-4">
-            {activeModal === 'ai-assistant' && <ModalAIAssistant />}
-            {activeModal === 'github-activity' && <GitHubIntegration />}
-            {activeModal === 'code-playground' && <InteractiveCodePlayground />}
-            {activeModal === 'data-analytics' && <InteractiveDataVisualization />}
+            {activeModal === 'ai-assistant' && (
+              <div className="text-white text-center py-8">
+                <Brain className="w-16 h-16 mx-auto mb-4 text-purple-400" />
+                <h3 className="text-xl font-bold mb-2">AI Assistant</h3>
+                <p className="text-gray-300">AI-powered portfolio assistant coming soon!</p>
+              </div>
+            )}
+            {activeModal === 'github-activity' && (
+              <div className="text-white text-center py-8">
+                <Github className="w-16 h-16 mx-auto mb-4 text-blue-400" />
+                <h3 className="text-xl font-bold mb-2">GitHub Integration</h3>
+                <p className="text-gray-300">Real-time GitHub activity dashboard coming soon!</p>
+              </div>
+            )}
+            {activeModal === 'code-playground' && (
+              <div className="text-white text-center py-8">
+                <Terminal className="w-16 h-16 mx-auto mb-4 text-green-400" />
+                <h3 className="text-xl font-bold mb-2">Code Playground</h3>
+                <p className="text-gray-300">Interactive code playground coming soon!</p>
+              </div>
+            )}
+            {activeModal === 'data-analytics' && (
+              <div className="text-white text-center py-8">
+                <TrendingUp className="w-16 h-16 mx-auto mb-4 text-orange-400" />
+                <h3 className="text-xl font-bold mb-2">Data Analytics</h3>
+                <p className="text-gray-300">Interactive data visualization coming soon!</p>
+              </div>
+            )}
           </div>
         </DialogContent>
       </Dialog>

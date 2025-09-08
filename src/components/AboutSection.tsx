@@ -1,8 +1,38 @@
 import { Code, Database, Brain, TrendingUp, BookOpen, Users, Lightbulb, Trophy, Calendar, Award, Zap, Target, Heart, Coffee, Gamepad2, Music, Camera, MapPin, Globe, Shield, DollarSign, TrendingDown, ArrowUpRight, ChevronDown, Star, Briefcase, GraduationCap, Rocket } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
-import { StatsCard, ProgressiveSkillReveal } from '@/components/ScrollTriggeredAnimations';
 import { MagneticButton, ParallaxSection } from '@/components/InteractiveElements';
 import { useRef, useState } from 'react';
+
+// Simple StatsCard component
+const StatsCard = ({ title, value, suffix, prefix = '', description, icon, delay }: {
+  title: string;
+  value: number;
+  suffix: string;
+  prefix?: string;
+  description: string;
+  icon: React.ReactNode;
+  delay: number;
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay }}
+      className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center"
+    >
+      <div className="text-purple-400 mb-3 flex justify-center">{icon}</div>
+      <div className="text-3xl font-bold text-white mb-2">
+        {prefix}{value}{suffix}
+      </div>
+      <div className="text-lg font-medium text-white mb-2">{title}</div>
+      <div className="text-sm text-gray-400">{description}</div>
+    </motion.div>
+  );
+};
 
 // Individual Timeline Item Component
 const TimelineItem = ({ item, index, isLast }: { item: any; index: number; isLast: boolean }) => {

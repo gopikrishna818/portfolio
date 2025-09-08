@@ -257,7 +257,6 @@ const Footer = () => {
             >
               <motion.div
                 animate={{ 
-                  rotate: [0, 360, 0],
                   rotate: [0, 15, -15, 0]
                 }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

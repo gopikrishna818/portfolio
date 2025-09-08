@@ -1,8 +1,37 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Code, Database, Brain, Cloud, BarChart, Zap } from 'lucide-react';
-import { ProgressiveSkillReveal, StatsCard } from '@/components/ScrollTriggeredAnimations';
 import { StaggerChildren, ParallaxSection } from '@/components/InteractiveElements';
+
+// Simple StatsCard component
+const StatsCard = ({ title, value, suffix, description, icon, delay }: {
+  title: string;
+  value: number;
+  suffix: string;
+  description: string;
+  icon: React.ReactNode;
+  delay: number;
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay }}
+      className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center"
+    >
+      <div className="text-purple-400 mb-3 flex justify-center">{icon}</div>
+      <div className="text-3xl font-bold text-white mb-2">
+        {value}{suffix}
+      </div>
+      <div className="text-lg font-medium text-white mb-1">{title}</div>
+      <div className="text-sm text-gray-400">{description}</div>
+    </motion.div>
+  );
+};
 
 // Skills data organized by category
 const skillsData = {
@@ -164,7 +193,7 @@ const SkillsSection = () => {
   const isInView = useInView(sectionRef, { once: true });
 
   return (
-    <section className="py-4 bg-gradient-to-br from-background to-background/50">
+    <section id="skills" className="py-4 bg-gradient-to-br from-background to-background/50">
       <div className="container-width">
         <motion.div
           ref={sectionRef}
@@ -248,7 +277,28 @@ const SkillsSection = () => {
                   <h3 className="text-lg font-semibold text-foreground">{categoryName}</h3>
                 </div>
                 
-                <ProgressiveSkillReveal skills={skillsWithIcons} />
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {skillsWithIcons.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: skillIndex * 0.1 }}
+                      className="bg-white/5 rounded-lg p-3 text-center"
+                    >
+                      <div className="text-white text-sm font-medium">{skill.name}</div>
+                      <div className="w-full bg-gray-700 rounded-full h-2 mt-2">
+                        <motion.div
+                          className="bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skill.level}%` }}
+                          transition={{ duration: 1, delay: skillIndex * 0.1 }}
+                        />
+                      </div>
+                      <div className="text-xs text-gray-400 mt-1">{skill.level}%</div>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             );
           })}

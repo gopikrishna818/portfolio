@@ -2,10 +2,8 @@ import { useState } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import { KeenSliderPlugin } from 'keen-slider';
 import 'keen-slider/keen-slider.min.css';
-import './portfolio-animations.css';
 import { ExternalLink, Github, X, Play } from 'lucide-react';
 import { FlipCard, MagneticButton } from '@/components/InteractiveElements';
-import ProjectDemoViewer from './ProjectDemoViewer';
 
 const PortfolioSection = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
