@@ -247,7 +247,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-          {/* Enhanced CTA Buttons with Resume Download */}
+          {/* Enhanced CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center animate-slide-up mb-6 md:mb-8 lg:mb-12 px-2" style={{ animationDelay: '0.6s' }}>
             {/* Primary CTAs */}
             <button
@@ -256,26 +256,6 @@ const HeroSection = () => {
             >
               <span className="relative z-10">View Portfolio</span>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
-            
-            {/* Resume Download Button - CRITICAL for HR */}
-            <button
-              onClick={() => {
-                // Replace with your actual resume URL
-                const resumeUrl = '/resume-gopikrishna-chegoni.pdf';
-                const link = document.createElement('a');
-                link.href = resumeUrl;
-                link.download = 'Gopikrishna_Chegoni_Resume.pdf';
-                link.click();
-              }}
-              className="w-full sm:w-auto group relative overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/40 text-white px-6 md:px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:bg-white/20"
-            >
-              <span className="relative z-10 flex items-center justify-center space-x-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span>Download Resume</span>
-              </span>
             </button>
             
             <button

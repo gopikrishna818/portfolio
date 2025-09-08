@@ -6,14 +6,15 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   const navItems = [
-    { href: '#home', label: 'Home', icon: <Home size={16} /> },
-    { href: '#about', label: 'About', icon: <User size={16} /> },
-    { href: '#skills', label: 'Skills', icon: <Zap size={16} /> },
-    { href: '#portfolio', label: 'Portfolio', icon: <Code size={16} /> },
-    { href: '#experience', label: 'Experience', icon: <Sparkles size={16} /> },
-    { href: '#contact', label: 'Contact', icon: <Mail size={16} /> },
+    { href: '#home', label: 'Home', icon: <Home size={16} />, id: 'home' },
+    { href: '#about', label: 'About', icon: <User size={16} />, id: 'about' },
+    { href: '#portfolio', label: 'Portfolio', icon: <Code size={16} />, id: 'portfolio' },
+    { href: '#skills', label: 'Skills', icon: <Zap size={16} />, id: 'skills' },
+    { href: '#experience', label: 'Experience', icon: <Sparkles size={16} />, id: 'experience' },
+    { href: '#contact', label: 'Contact', icon: <Mail size={16} />, id: 'contact' },
   ];
 
   useEffect(() => {
@@ -30,6 +31,117 @@ const Navigation = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Fixed smart section detection with scroll-based fallback
+  useEffect(() => {
+    // Method 1: Enhanced Intersection Observer
+    const observerOptions = {
+      root: null,
+      rootMargin: '-15% 0px -40% 0px', // Optimized for About section
+      threshold: [0.1, 0.3, 0.5]
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      const visibleEntries = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (visibleEntries.length > 0) {
+        const mostVisible = visibleEntries[0];
+        const sectionId = mostVisible.target.id;
+        if (sectionId) {
+          setActiveSection(sectionId);
+          console.log('🎯 Observer detected:', sectionId, `${Math.round(mostVisible.intersectionRatio * 100)}% visible`);
+        }
+      }
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Method 2: Scroll-based detection as backup
+    const scrollHandler = () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const sections = [
+        { id: 'home', element: document.querySelector('section[id="home"], #home') },
+        { id: 'about', element: document.querySelector('section[id="about"], #about') },
+        { id: 'portfolio', element: document.querySelector('section[id="portfolio"], #portfolio') },
+        { id: 'skills', element: document.querySelector('section[id="skills"], #skills') },
+        { id: 'experience', element: document.querySelector('section[id="experience"], #experience') },
+        { id: 'contact', element: document.querySelector('section[id="contact"], #contact') }
+      ].filter(section => section.element);
+
+      let currentSection = 'home';
+      
+      for (const section of sections) {
+        if (section.element) {
+          const rect = section.element.getBoundingClientRect();
+          const elementTop = scrollTop + rect.top;
+          const elementBottom = elementTop + rect.height;
+          
+          // Check if section is in the middle 50% of viewport
+          const viewportMiddle = scrollTop + windowHeight / 2;
+          if (viewportMiddle >= elementTop && viewportMiddle <= elementBottom) {
+            currentSection = section.id;
+            break;
+          }
+        }
+      }
+
+      // Only update if different from current
+      if (currentSection !== activeSection) {
+        setActiveSection(currentSection);
+        console.log('📍 Scroll detected:', currentSection, 'at scroll:', scrollTop);
+      }
+    };
+
+    // Setup observers
+    const sections = [
+      { id: 'home', selectors: ['section[id="home"]', '#home', '.hero-section'] },
+      { id: 'about', selectors: ['section[id="about"]', '#about', '.about-section'] },
+      { id: 'portfolio', selectors: ['section[id="portfolio"]', '#portfolio', '.portfolio-section'] },
+      { id: 'skills', selectors: ['section[id="skills"]', '#skills', '.skills-section'] },
+      { id: 'experience', selectors: ['section[id="experience"]', '#experience', '.experience-section'] },
+      { id: 'contact', selectors: ['section[id="contact"]', '#contact', '.contact-section'] }
+    ];
+
+    sections.forEach(({ id, selectors }) => {
+      let element = null;
+      for (const selector of selectors) {
+        element = document.querySelector(selector);
+        if (element) break;
+      }
+      
+      if (element) {
+        observer.observe(element);
+        console.log('✅ Observing:', id, element.tagName, element.className);
+      } else {
+        console.warn('❌ Section not found:', id);
+      }
+    });
+
+    // Add scroll listener with throttling
+    let ticking = false;
+    const throttledScrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          scrollHandler();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledScrollHandler, { passive: true });
+    
+    // Initial check
+    setTimeout(scrollHandler, 100);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', throttledScrollHandler);
+    };
+  }, [activeSection]);
 
   const handleNavClick = (href: string) => {
     setIsOpen(false);
@@ -51,19 +163,21 @@ const Navigation = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        pastHero 
-          ? 'bg-slate-900/95 backdrop-blur-xl border-b border-cyan-500/20' 
-          : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 transition-all duration-500`}
       style={{
-        backdropFilter: pastHero ? 'blur(20px) saturate(180%)' : 'none',
-        boxShadow: pastHero ? '0 4px 20px rgba(0, 0, 0, 0.3)' : 'none',
+        zIndex: 99999, // Maximum z-index to ensure it's always on top
+        background: pastHero 
+          ? 'linear-gradient(135deg, #0f172a, #1e293b)' 
+          : 'linear-gradient(135deg, #000000, #0f172a)',
+        borderBottom: pastHero ? '1px solid rgba(6, 182, 212, 0.3)' : '1px solid rgba(59, 130, 246, 0.2)',
+        boxShadow: pastHero 
+          ? '0 8px 32px rgba(0, 0, 0, 0.4)' 
+          : '0 4px 20px rgba(0, 0, 0, 0.2)',
         pointerEvents: 'auto',
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 relative">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-6 relative" style={{ zIndex: 99999 }}>
+        <div className="flex items-center justify-between h-16" style={{ zIndex: 99999 }}>
           {/* Clean Brand Logo */}
           <motion.div 
             className="flex items-center space-x-4 cursor-pointer group"
@@ -133,47 +247,88 @@ const Navigation = () => {
 
           {/* Navigation and Resume Section */}
           <div className="flex items-center space-x-6">
-            {/* Clean Desktop Navigation */}
+            {/* Modern 3D Desktop Navigation */}
             <motion.div 
-              className="hidden md:flex items-center space-x-6"
+              className="hidden md:flex items-center space-x-2 bg-gray-800/90 rounded-2xl p-2 border border-gray-600/50"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
+              style={{
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                zIndex: 99999,
+                position: 'relative',
+              }}
             >
               {navItems.map((item, idx) => (
                 <motion.div
                   key={item.href}
-                  className="relative group"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  className="relative"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.05 * idx }}
                 >
                   <motion.button
                     onClick={() => handleNavClick(item.href)}
-                    className={`flex items-center space-x-2 px-4 py-2 text-base font-medium transition-all duration-200 rounded-lg ${
-                      pastHero 
-                        ? 'text-cyan-100 hover:text-white hover:bg-cyan-500/10' 
-                        : 'text-blue-100 hover:text-white hover:bg-blue-500/10'
+                    className={`relative flex items-center space-x-2 px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-300 ${
+                      activeSection === item.id
+                        ? 'text-white shadow-lg' 
+                        : 'text-gray-300 hover:text-white'
                     }`}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.2 }}
+                    style={{
+                      background: activeSection === item.id
+                        ? pastHero 
+                          ? 'linear-gradient(135deg, #0891b2, #06b6d4)'
+                          : 'linear-gradient(135deg, #3b82f6, #6366f1)'
+                        : 'transparent',
+                      boxShadow: activeSection === item.id
+                        ? pastHero
+                          ? '0 4px 20px rgba(6, 182, 212, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                          : '0 4px 20px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                        : 'none',
+                      transform: activeSection === item.id ? 'translateY(-1px)' : 'translateY(0)',
+                      zIndex: 99999,
+                      position: 'relative',
+                    }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      y: -2,
+                      transition: { duration: 0.2 }
+                    }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <div className={pastHero ? 'text-cyan-400' : 'text-blue-400'}>
-                      {item.icon}
-                    </div>
-                    <span>{item.label}</span>
-                    
-                    {/* Simple Underline */}
-                    <motion.div
-                      className={`absolute -bottom-1 left-0 h-0.5 ${
-                        pastHero 
-                          ? 'bg-cyan-400' 
-                          : 'bg-blue-400'
+                    {/* 3D Icon */}
+                    <motion.div 
+                      className={`transition-colors duration-300 ${
+                        activeSection === item.id 
+                          ? 'text-white drop-shadow-sm' 
+                          : pastHero ? 'text-cyan-400' : 'text-blue-400'
                       }`}
-                      initial={{ width: 0 }}
-                      whileHover={{ width: "100%" }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    />
+                      whileHover={{ rotateY: 10 }}
+                      style={{ transformStyle: 'preserve-3d' }}
+                    >
+                      {item.icon}
+                    </motion.div>
+                    
+                    {/* 3D Text */}
+                    <motion.span 
+                      className="drop-shadow-sm"
+                      whileHover={{ x: 2 }}
+                    >
+                      {item.label}
+                    </motion.span>
+
+                    {/* Active Indicator */}
+                    {activeSection === item.id && (
+                      <motion.div
+                        className="absolute inset-0 rounded-xl"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+                        }}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3, type: "spring" }}
+                      />
+                    )}
                   </motion.button>
                 </motion.div>
               ))}
@@ -262,9 +417,13 @@ const Navigation = () => {
                 key={item.href}
                 onClick={() => handleNavClick(item.href)}
                 className={`flex items-center space-x-3 w-full text-left p-3 rounded-lg transition-all duration-300 ${
-                  pastHero
-                    ? 'text-cyan-100 hover:text-white hover:bg-cyan-500/10'
-                    : 'text-blue-100 hover:text-white hover:bg-blue-500/10'
+                  activeSection === item.id
+                    ? pastHero
+                      ? 'text-white bg-cyan-500/20 border border-cyan-400/50'
+                      : 'text-white bg-blue-500/20 border border-blue-400/50'
+                    : pastHero
+                      ? 'text-cyan-100 hover:text-white hover:bg-cyan-500/10'
+                      : 'text-blue-100 hover:text-white hover:bg-blue-500/10'
                 }`}
                 initial={{ opacity: 0, x: -20 }}
                 animate={isOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
@@ -278,7 +437,11 @@ const Navigation = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <motion.div
-                  className={`${pastHero ? 'text-cyan-400' : 'text-blue-400'}`}
+                  className={
+                    activeSection === item.id 
+                      ? pastHero ? 'text-cyan-300' : 'text-blue-300'
+                      : pastHero ? 'text-cyan-400' : 'text-blue-400'
+                  }
                 >
                   {item.icon}
                 </motion.div>
