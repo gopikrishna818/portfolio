@@ -291,57 +291,51 @@ const InteractiveDataVisualization = () => {
   const isInView = useInView(sectionRef, { once: true });
 
   return (
-    <section className="pt-20 md:pt-24 pb-8 md:pb-12 bg-gradient-to-br from-background to-background/50">
-      <div className="container-width">
-        <motion.div
-          ref={sectionRef}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-6">
+    <div className="bg-gradient-to-br from-background to-background/50 p-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-8">
+          <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-3">
             Data-Driven Impact
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          </h3>
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
             Visualizing my journey through interactive charts and metrics
           </p>
-        </motion.div>
+        </div>
 
         {/* Impact Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {impactMetrics.map((metric, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border text-center hover:shadow-xl transition-all duration-300"
+              className="bg-card/50 backdrop-blur-sm rounded-xl p-4 border text-center hover:shadow-xl transition-all duration-300"
             >
               <div 
-                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
                 style={{ backgroundColor: `${metric.color}20` }}
               >
-                <metric.icon size={32} color={metric.color} />
+                <metric.icon size={24} color={metric.color} />
               </div>
-              <div className="text-3xl font-bold text-foreground mb-2" style={{ color: metric.color }}>
+              <div className="text-2xl font-bold text-foreground mb-1" style={{ color: metric.color }}>
                 <AnimatedCounter value={parseInt(metric.value.replace(/[^\d]/g, ''))} suffix={metric.value.replace(/[\d]/g, '')} />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">{metric.title}</h3>
-              <p className="text-sm text-muted-foreground">{metric.description}</p>
+              <h3 className="text-sm font-semibold text-foreground mb-1">{metric.title}</h3>
+              <p className="text-xs text-muted-foreground">{metric.description}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Interactive Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <InteractiveBarChart />
           <InteractiveLineChart />
           <InteractiveRadarChart />
           <InteractivePieChart />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

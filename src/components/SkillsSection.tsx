@@ -68,38 +68,41 @@ const skillsData = {
   }
 };
 
-// Individual Skill Bar Component
+// Individual Skill Bar Component with Enhanced Interactions
 const SkillBar = ({ skill, delay = 0 }: { skill: any; delay?: number }) => {
   const [isHovered, setIsHovered] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   return (
-    <div
+    <motion.div
       ref={ref}
       className="relative group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.2 }}
     >
       <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium text-foreground">{skill.name}</span>
-        <span className="text-sm text-muted-foreground">{skill.level}%</span>
+        <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-300">{skill.name}</span>
+        <motion.span 
+          className="text-sm text-muted-foreground"
+          animate={isHovered ? { scale: 1.1, color: '#8B5CF6' } : { scale: 1 }}
+          transition={{ duration: 0.2 }}
+        >
+          {skill.level}%
+        </motion.span>
       </div>
       
       <div className="relative">
-        <div className="w-full bg-muted/30 rounded-full h-2.5 overflow-hidden">
+        <div className="w-full bg-muted/30 rounded-full h-2.5 overflow-hidden shadow-inner">
           <motion.div
             className="h-full bg-gradient-to-r from-primary to-purple-500 rounded-full relative"
             initial={{ width: 0 }}
             animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
             transition={{ duration: 1.2, delay: delay * 0.1, ease: "easeOut" }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
-              animate={{ x: ['-100%', '100%'] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
+            whileHover={{ scale: 1.05 }}
+          />
         </div>
         
         {/* Tooltip */}
@@ -114,7 +117,7 @@ const SkillBar = ({ skill, delay = 0 }: { skill: any; delay?: number }) => {
           <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-border"></div>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -130,7 +133,7 @@ const SkillsCategoryCard = ({ categoryName, categoryData, index }: { categoryNam
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group glass-card hover:card-3d backdrop-blur-sm rounded-xl p-6 border hover:shadow-xl transition-all duration-300 hover:scale-105"
+      className="group glass-card backdrop-blur-sm rounded-xl p-6 border hover:shadow-xl transition-all duration-200 hover:scale-105"
       style={{ 
         background: `linear-gradient(135deg, ${categoryData.color}10 0%, transparent 100%)`,
         borderColor: `${categoryData.color}30`

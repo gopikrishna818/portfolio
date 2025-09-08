@@ -9,13 +9,14 @@ import ExperienceEducationSection from '@/components/ExperienceEducationSection'
 import TestimonialsSection from '@/components/TestimonialsSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
-import CustomLoadingAnimation from '@/components/CustomLoadingAnimation';
+import StunningLoadingAnimation from '@/components/StunningLoadingAnimation';
 import { CustomCursor } from '@/components/InteractiveElements';
 import { FloatingNavDots, PageTransition, SectionTransition, useSmootherScroll } from '@/components/SmoothTransitions';
-import ParticleBackground from '@/components/ParticleBackground';
+import ParticleBackgroundOptimized from '@/components/ParticleBackgroundOptimized';
 import Footer from '@/components/Footer';
 import ErrorBoundary, { SectionErrorBoundary } from '@/components/ErrorBoundary';
 import { FullPageSkeleton } from '@/components/LoadingSkeleton';
+import FloatingFeatureButtons from '@/components/FloatingFeatureButtons';
 import { useState, useEffect } from 'react';
 
 const Index = () => {
@@ -26,20 +27,25 @@ const Index = () => {
   useSmootherScroll();
 
   useEffect(() => {
-    // Simulate loading for components initialization
-    const timer = setTimeout(() => {
+    // Failsafe: Allow 4-second animation experience before forcing load
+    const failsafeTimer = setTimeout(() => {
+      console.log('Failsafe: Force loading complete');
       setIsLoading(false);
-    }, 1500);
+      setShowCustomLoader(false);
+    }, 6000); // 6 seconds failsafe for 4-second target experience
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(failsafeTimer);
+    };
   }, []);
 
   const handleLoadingComplete = () => {
     setShowCustomLoader(false);
+    setIsLoading(false);
   };
 
   if (showCustomLoader) {
-    return <CustomLoadingAnimation onComplete={handleLoadingComplete} />;
+    return <StunningLoadingAnimation onComplete={handleLoadingComplete} />;
   }
 
   if (isLoading) {
@@ -51,7 +57,7 @@ const Index = () => {
       <PageTransition>
         <div className="min-h-screen bg-background relative m-0 p-0">
           {/* Particle Background */}
-          <ParticleBackground />
+          <ParticleBackgroundOptimized />
           
           {/* Enhanced UI Elements */}
           <CustomCursor />
@@ -124,6 +130,9 @@ const Index = () => {
             </SectionErrorBoundary>
           </main>
         </div>
+        
+        {/* Floating Feature Buttons - Advanced Interactive Features */}
+        <FloatingFeatureButtons />
       </PageTransition>
     </ErrorBoundary>
   );

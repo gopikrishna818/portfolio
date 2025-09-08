@@ -108,8 +108,8 @@ const DefaultErrorFallback = ({ error, retry }: { error?: Error; retry: () => vo
           className="flex flex-col sm:flex-row gap-3 justify-center"
         >
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{}}
+            whileTap={{}}
             onClick={retry}
             className="flex items-center justify-center space-x-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
           >
@@ -118,8 +118,8 @@ const DefaultErrorFallback = ({ error, retry }: { error?: Error; retry: () => vo
           </motion.button>
 
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{}}
+            whileTap={{}}
             onClick={() => window.location.href = '/'}
             className="flex items-center justify-center space-x-2 px-6 py-3 bg-muted text-muted-foreground rounded-lg font-medium hover:bg-muted/80 transition-colors"
           >
@@ -174,8 +174,8 @@ export const SectionErrorBoundary = ({
           Something went wrong while loading this section.
         </p>
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{}}
+          whileTap={{}}
           onClick={retry}
           className="inline-flex items-center space-x-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
         >

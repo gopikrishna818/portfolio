@@ -103,8 +103,8 @@ const Enhanced3DHeroSection = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="p-3 bg-background/20 backdrop-blur-sm rounded-full border border-primary/30 hover:bg-primary/20 transition-all duration-300 group"
-          whileHover={{ scale: 1.1, x: 5 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ x: 5 }}
+          whileTap={{}}
         >
           <Github className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
         </motion.a>
@@ -114,8 +114,8 @@ const Enhanced3DHeroSection = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="p-3 bg-background/20 backdrop-blur-sm rounded-full border border-primary/30 hover:bg-primary/20 transition-all duration-300 group"
-          whileHover={{ scale: 1.1, x: 5 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ x: 5 }}
+          whileTap={{}}
         >
           <Linkedin className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
         </motion.a>
@@ -123,8 +123,8 @@ const Enhanced3DHeroSection = () => {
         <motion.a
           href="mailto:gopikrishna.chegoni@example.com"
           className="p-3 bg-background/20 backdrop-blur-sm rounded-full border border-primary/30 hover:bg-primary/20 transition-all duration-300 group"
-          whileHover={{ scale: 1.1, x: 5 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ x: 5 }}
+          whileTap={{}}
         >
           <Mail className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
         </motion.a>
@@ -251,16 +251,16 @@ const Enhanced3DHeroSection = () => {
               className="flex flex-col sm:flex-row gap-4 pt-4"
             >
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(139, 92, 246, 0.3)" }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ boxShadow: "0 0 30px rgba(139, 92, 246, 0.3)" }}
+                whileTap={{}}
                 className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300"
               >
                 View Portfolio
               </motion.button>
               
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{}}
+                whileTap={{}}
                 className="px-8 py-3 border border-primary text-primary rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               >
                 Download Resume
@@ -276,7 +276,7 @@ const Enhanced3DHeroSection = () => {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 p-2 text-foreground/60 hover:text-foreground transition-colors cursor-pointer z-20"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        whileHover={{ scale: 1.1 }}
+        whileHover={{}}
       >
         <ChevronDown className="w-6 h-6" />
       </motion.button>

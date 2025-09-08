@@ -4,6 +4,54 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Dark mode CSS variables */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
 /* CRITICAL: Full viewport reset to prevent black spacing */
 * {
   margin: 0;
@@ -22,11 +70,72 @@
 
 /* Navbar Specific Styles */
 .navbar-solid {
-  background-color: #0f172a !important;
+  background-color: rgba(15, 23, 42, 0.95) !important;
   background-image: none !important;
-  backdrop-filter: none !important;
+  backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+.dark .navbar-solid {
+  background-color: rgba(15, 23, 42, 0.95) !important;
   border-bottom: 1px solid rgba(59, 130, 246, 0.3) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Modern Navigation Enhancements */
+.modern-nav-blur {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Theme Toggle Animation */
+.theme-toggle-rotate {
+  transition: transform 0.3s ease-in-out;
+}
+
+.theme-toggle-rotate:hover {
+  transform: rotate(180deg);
+}
+
+/* Navigation Underline Animation */
+.nav-underline {
+  position: relative;
+}
+
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-underline:hover::after {
+  width: 100%;
+}
+
+/* Navbar height compensation */
+.navbar-height {
+  height: 64px; /* Standard navbar height */
+}
+
+/* Hero section adjustments */
+#home {
+  scroll-margin-top: 0; /* Remove scroll offset for hero */
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  position: relative;
+  top: 0;
+  transform: translateY(0) !important;
+}
+
+/* All other sections need offset for fixed navbar */
+section:not(#home) {
+  scroll-margin-top: 80px;
 }
 
 /* Reset and Smooth Scrolling */
@@ -38,6 +147,48 @@ html, body {
   scroll-behavior: smooth;
   cursor: none; /* Hide default cursor for custom cursor */
   overflow-x: hidden;
+  /* Enhanced font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure root div has no spacing */
+#root {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Ensure no spacing on main containers */
+.min-h-screen {
+  margin: 0 !important;
+}
+
+main {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Mobile Text Size Improvements */
+@media (max-width: 768px) {
+  .text-xs { font-size: 0.8rem !important; }
+  .text-sm { font-size: 0.95rem !important; }
+  .text-base { font-size: 1.1rem !important; }
+  .text-lg { font-size: 1.25rem !important; }
+  .text-xl { font-size: 1.4rem !important; }
+  
+  /* Better touch targets */
+  button, a[role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improved readability */
+  p, div, span {
+    line-height: 1.6 !important;
+  }
 }
 
 /* Ensure root takes full height */
@@ -174,6 +325,13 @@ section {
   margin-top: 0 !important; /* Prevent negative margins */
   transform: none !important; /* Prevent transforms that cause overlapping */
   margin-bottom: 2rem; /* Minimal consistent spacing */
+}
+
+/* Override for hero section - NO spacing at all */
+section#home {
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /* Eliminate all external section margins */
@@ -483,6 +641,23 @@ section {
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* Text truncation utilities */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 /* Keyframe Animations */
@@ -564,7 +739,7 @@ section {
   }
   50% {
     opacity: 0.6;
-    transform: scale(1.05);
+    transform: scale(1);
   }
 }
 

@@ -3,12 +3,14 @@ import { useKeenSlider } from 'keen-slider/react';
 import { KeenSliderPlugin } from 'keen-slider';
 import 'keen-slider/keen-slider.min.css';
 import './portfolio-animations.css';
-import { ExternalLink, Github, X } from 'lucide-react';
+import { ExternalLink, Github, X, Play } from 'lucide-react';
 import { FlipCard, MagneticButton } from '@/components/InteractiveElements';
+import ProjectDemoViewer from './ProjectDemoViewer';
 
 const PortfolioSection = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [demoViewerOpen, setDemoViewerOpen] = useState<number | null>(null);
 
   const projects = [
     {
@@ -37,6 +39,7 @@ const PortfolioSection = () => {
       techStack: ['Node.js', 'n8n', 'Supabase', 'Retell AI', 'cal.com', 'Vercel', 'SMTP', 'Python', 'Web Scraping'],
       category: 'Full-Stack Automation',
       image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+      demoGif: 'https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif', // Placeholder - replace with actual demo
       githubUrl: 'https://github.com/gopikrishna818/gemini-key-rotator-n8n',
       liveUrl: 'https://gemini-key-rotator-demo.vercel.app', // Updated with working demo
       stars: 24,
@@ -58,6 +61,7 @@ const PortfolioSection = () => {
       techStack: ['React.js', 'FastAPI', 'OpenAI GPT', 'MongoDB', 'D3.js', 'Chart.js', 'Twitter API', 'YouTube API', 'Reddit API', 'Google Trends'],
       category: 'AI & Data Platform',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+      demoGif: 'https://media.giphy.com/media/l46Cy1rHbQ92uuLXa/giphy.gif', // Placeholder - replace with actual demo
       githubUrl: 'https://github.com/gopikrishna818/ai-content-strategy-engine',
       liveUrl: 'https://ai-content-strategy-demo.vercel.app', // Working demo
       stars: 31,
@@ -107,6 +111,7 @@ const PortfolioSection = () => {
       techStack: ['Python', 'FastAPI', 'LayoutLMv3', 'spaCy', 'Streamlit', 'Docker', 'Swagger', 'JWT', 'Label Studio', 'EasyOCR', 'Gemma'],
       category: 'AI Document Intelligence',
       image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+      demoGif: 'https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif', // Placeholder - replace with actual demo
       githubUrl: 'https://github.com/gopikrishna818/ai-financial-doc-analysis',
       liveUrl: 'https://ai-financial-docs-demo.streamlit.app', // Streamlit demo
       stars: 18,
@@ -218,14 +223,25 @@ const PortfolioSection = () => {
 
         {/* Content */}
         <div className="p-6 space-y-8">
-          {/* Project Image Card */}
+          {/* Project Image Card with Demo */}
           <div className="flex justify-center">
-            <div className="w-80 h-48 bg-gradient-to-br from-card to-muted border border-border rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="w-80 h-48 bg-gradient-to-br from-card to-muted border border-border rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group relative">
               <img 
                 src={project.image} 
                 alt={project.title}
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
+              {project.demoGif && (
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button
+                    onClick={() => setDemoViewerOpen(project.id)}
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all transform hover:scale-105"
+                  >
+                    <Play size={16} />
+                    Watch Demo
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 
@@ -539,14 +555,59 @@ const PortfolioSection = () => {
               <FlipCard
                 className="h-[400px] cursor-pointer"
                 frontContent={
-                  <div className="card-elevated h-full flex flex-col justify-between relative overflow-hidden rounded-xl p-4">
-                    {/* Project Image */}
+                  <div className="card-elevated h-full flex flex-col justify-between relative overflow-hidden rounded-xl p-4 group">
+                    {/* Project Image with Enhanced Hover Effects */}
                     <div className="aspect-video rounded-xl mb-3 overflow-hidden relative">
                       <img 
                         src={project.image} 
                         alt={project.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
+                      
+                      {/* Enhanced Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {/* Featured Badge */}
+                        {project.featured && (
+                          <div className="absolute top-4 right-4 px-2 py-1 bg-yellow-500/90 text-yellow-900 rounded-full text-xs font-bold transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            ⭐ FEATURED
+                          </div>
+                        )}
+                        
+                        {/* Demo Button */}
+                        {project.demoGif && (
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setDemoViewerOpen(project.id);
+                              }}
+                              className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all transform hover:scale-105"
+                            >
+                              <Play size={16} />
+                              Demo
+                            </button>
+                          </div>
+                        )}
+                        
+                        {/* GitHub Stats */}
+                        {(project.stars || project.forks) && (
+                          <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm px-2 py-1 rounded-full text-white text-xs flex items-center space-x-2 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            {project.stars && (
+                              <span className="flex items-center space-x-1">
+                                <span>⭐</span>
+                                <span>{project.stars}</span>
+                              </span>
+                            )}
+                            {project.forks && (
+                              <span className="flex items-center space-x-1">
+                                <span>🔀</span>
+                                <span>{project.forks}</span>
+                              </span>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                      
                       <div className="absolute bottom-4 left-4 right-4 text-white">
                         <div className="text-sm font-medium mb-1">{project.category}</div>
                         <div className="text-xs opacity-90">Hover to flip for details</div>
@@ -568,18 +629,18 @@ const PortfolioSection = () => {
                         {project.description}
                       </p>
 
-                      {/* Tech Stack Preview */}
+                      {/* Enhanced Tech Stack Preview with Icons */}
                       <div className="flex flex-wrap gap-1 mt-2">
                         {project.techStack.slice(0, 3).map((tech, techIndex) => (
                           <span
                             key={techIndex}
-                            className="px-2 py-1 bg-muted text-muted-foreground rounded text-xs"
+                            className="px-3 py-1 bg-gradient-to-r from-primary/10 to-purple-600/10 text-primary border border-primary/20 rounded-full text-xs font-medium hover:scale-105 transition-transform duration-200 cursor-default"
                           >
                             {tech}
                           </span>
                         ))}
                         {project.techStack.length > 3 && (
-                          <span className="px-2 py-1 bg-primary/10 text-primary rounded text-xs">
+                          <span className="px-3 py-1 bg-gradient-to-r from-orange-500/10 to-red-500/10 text-orange-600 border border-orange-500/20 rounded-full text-xs font-medium">
                             +{project.techStack.length - 3} more
                           </span>
                         )}
@@ -628,10 +689,7 @@ const PortfolioSection = () => {
                       </MagneticButton>
                       {project.githubUrl && (
                         <MagneticButton
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(project.githubUrl, '_blank');
-                          }}
+                          onClick={() => window.open(project.githubUrl, '_blank')}
                           className="px-4 py-2 bg-muted text-muted-foreground rounded-lg text-sm font-medium hover:bg-muted/80 transition-colors flex items-center space-x-1"
                         >
                           <Github size={16} />
@@ -683,6 +741,17 @@ const PortfolioSection = () => {
         {/* Modal */}
         {selectedProject !== null && (
           <ProjectModal project={projects[selectedProject]} />
+        )}
+
+        {/* Demo Viewer */}
+        {demoViewerOpen !== null && (
+          <ProjectDemoViewer
+            demoUrl={projects.find(p => p.id === demoViewerOpen)?.demoGif}
+            staticImage={projects.find(p => p.id === demoViewerOpen)?.image || ''}
+            title={projects.find(p => p.id === demoViewerOpen)?.title || ''}
+            isOpen={demoViewerOpen !== null}
+            onClose={() => setDemoViewerOpen(null)}
+          />
         )}
       </div>
     </section>

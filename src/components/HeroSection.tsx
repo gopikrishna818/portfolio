@@ -31,11 +31,15 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="h-[100svh] w-full flex items-center justify-center relative overflow-hidden m-0 p-0"
+      className="min-h-screen h-screen w-full flex items-center justify-center relative overflow-hidden"
       style={{
         backgroundImage: `url(${heroBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        margin: '0',
+        padding: '0',
+        marginTop: '0',
+        paddingTop: '0',
       }}
     >
       {/* Overlay */}
@@ -111,15 +115,15 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="container-width relative z-10">
-        <div className="text-center space-y-6 md:space-y-8">
+      <div className="container-width relative z-10 px-4 py-8 md:py-12">
+        <div className="text-center space-y-4 md:space-y-6 lg:space-y-8">
           {/* Profile Image with Enhanced Design */}
-          <div className="relative mx-auto w-40 h-40 md:w-48 md:h-48 group">
+          <div className="relative mx-auto w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 group mb-4 md:mb-6 mt-4 md:mt-8">
             {/* Profile Image Container */}
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full z-20">
               {/* Immediate Fallback for Testing */}
               <div className="w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
-                <span className="text-white font-bold text-4xl">GC</span>
+                <span className="text-white font-bold text-2xl md:text-3xl lg:text-4xl">GC</span>
               </div>
               
               {/* Actual Profile Image - will overlay on successful load */}
@@ -143,18 +147,9 @@ const HeroSection = () => {
               />
             </div>
             
-            {/* Animated Border Ring */}
-            <div className="absolute inset-0 rounded-full">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-spin-slow opacity-75"></div>
-              <div className="absolute inset-1 rounded-full bg-background"></div>
-            </div>
-              
-            {/* Glow Effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-600/20 animate-pulse-glow blur-xl"></div>
-              
             {/* Professional Status Badge */}
-            <div className="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-background flex items-center justify-center animate-bounce">
-              <div className="w-2 h-2 bg-white rounded-full"></div>
+            <div className="absolute -bottom-1 -right-1 md:-bottom-2 md:-right-2 bg-green-500 w-4 h-4 md:w-6 md:h-6 rounded-full border-2 md:border-4 border-background flex items-center justify-center animate-bounce">
+              <div className="w-1 h-1 md:w-2 md:h-2 bg-white rounded-full"></div>
             </div>
             
             {/* Personal Logo/Monogram */}
@@ -177,57 +172,87 @@ const HeroSection = () => {
           </div>
 
           {/* Enhanced Hero Text with Branding */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {/* Main Name with Animated Typing Effect */}
-            <div className="space-y-2">
-              <h1 className="text-hero text-gradient animate-slide-up relative">
+            <div className="space-y-2 md:space-y-3">
+              <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight text-gradient animate-slide-up relative">
                 GOPIKRISHNA CHEGONI
-                {/* Professional Title Badge */}
-                <div className="absolute -top-4 right-0 bg-gradient-to-r from-green-500/20 to-blue-600/20 backdrop-blur-xl border border-green-400/30 px-4 py-2 rounded-full text-sm text-green-400 font-medium animate-pulse-glow">
+                {/* Professional Title Badge - Hide on mobile for cleaner look */}
+                <div className="hidden md:block absolute -top-4 right-0 bg-gradient-to-r from-green-500/20 to-blue-600/20 backdrop-blur-xl border border-green-400/30 px-4 py-2 rounded-full text-sm text-green-400 font-medium animate-pulse-glow">
                   🟢 Available for Full-time Opportunities
                 </div>
               </h1>
               
-              {/* Enhanced Tagline */}
-              <div className="space-y-2">
-                <p className="text-subheading text-muted-foreground animate-slide-up" style={{ animationDelay: '0.2s' }}>
-                  AI & Data-Driven Software Engineer
+              {/* Mobile Professional Badge */}
+              <div className="md:hidden bg-gradient-to-r from-green-500/20 to-blue-600/20 backdrop-blur-xl border border-green-400/30 px-3 py-2 rounded-full text-xs text-green-400 font-medium animate-pulse-glow inline-block">
+                🟢 Available for Full-time Opportunities
+              </div>
+              
+              {/* Enhanced Value Proposition */}
+              <div className="space-y-1 md:space-y-2">
+                <p className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                  I Turn Raw Data Into Business Gold 💰
                 </p>
-                <p className="text-lg font-medium bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent animate-slide-up" style={{ animationDelay: '0.3s' }}>
-                  Transforming Data into Business Solutions
+                <p className="text-lg md:text-xl lg:text-2xl font-semibold text-muted-foreground animate-slide-up" style={{ animationDelay: '0.25s' }}>
+                  AI-Powered Data Engineer | $950K+ ROI Generated | 95% Automation Success
                 </p>
+                
+                {/* Impact Metrics Row */}
+                <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+                  <div className="bg-black/30 backdrop-blur-xl border border-green-400/30 px-3 py-2 rounded-lg">
+                    <div className="text-green-400 font-bold text-sm md:text-base">$950K+</div>
+                    <div className="text-xs text-gray-400">Total ROI</div>
+                  </div>
+                  <div className="bg-black/30 backdrop-blur-xl border border-blue-400/30 px-3 py-2 rounded-lg">
+                    <div className="text-blue-400 font-bold text-sm md:text-base">99.9%</div>
+                    <div className="text-xs text-gray-400">Uptime</div>
+                  </div>
+                  <div className="bg-black/30 backdrop-blur-xl border border-purple-400/30 px-3 py-2 rounded-lg">
+                    <div className="text-purple-400 font-bold text-sm md:text-base">15+</div>
+                    <div className="text-xs text-gray-400">Projects</div>
+                  </div>
+                  <div className="bg-black/30 backdrop-blur-xl border border-orange-400/30 px-3 py-2 rounded-lg">
+                    <div className="text-orange-400 font-bold text-sm md:text-base">3+</div>
+                    <div className="text-xs text-gray-400">Years</div>
+                  </div>
+                </div>
+                
+                {/* Elevator Pitch */}
+                <p className="text-sm md:text-base text-foreground/70 animate-slide-up max-w-2xl mx-auto mt-4" style={{ animationDelay: '0.35s' }}>
+                  From fraud detection to content automation, I build intelligent systems that deliver measurable business impact through data-driven solutions
+                </p>
+                
+                {/* Location & Remote Preference */}
+                <div className="flex flex-wrap justify-center gap-3 text-xs md:text-sm text-muted-foreground animate-slide-up" style={{ animationDelay: '0.4s' }}>
+                  <div className="flex items-center gap-1 bg-white/5 backdrop-blur-sm border border-white/10 px-3 py-1 rounded-full">
+                    <svg className="w-3 h-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Open to Relocation</span>
+                  </div>
+                  <div className="flex items-center gap-1 bg-white/5 backdrop-blur-sm border border-white/10 px-3 py-1 rounded-full">
+                    <svg className="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span>Remote Friendly</span>
+                  </div>
+                  <div className="flex items-center gap-1 bg-white/5 backdrop-blur-sm border border-white/10 px-3 py-1 rounded-full">
+                    <svg className="w-3 h-3 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Full-time Ready</span>
+                  </div>
+                </div>
               </div>
             </div>
-            
-            {/* Professional Summary */}
-            <p className="text-body max-w-3xl mx-auto text-foreground/80 animate-slide-up leading-relaxed" style={{ animationDelay: '0.4s' }}>
-              Experienced software engineer specializing in AI, machine learning, and data analytics. 
-              Proven track record of delivering scalable solutions that drive innovation and measurable business impact.
-            </p>
-            
-            {/* Key Metrics */}
-            <div className="flex flex-wrap justify-center gap-6 animate-slide-up" style={{ animationDelay: '0.5s' }}>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-blue-400">3+</div>
-                <div className="text-sm text-gray-400">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-purple-400">15+</div>
-                <div className="text-sm text-gray-400">Projects Completed</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-cyan-400">95%</div>
-                <div className="text-sm text-gray-400">Client Satisfaction</div>
-              </div>
-            </div>
-          </div>
 
           {/* Enhanced CTA Buttons with Resume Download */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up mb-8 md:mb-12" style={{ animationDelay: '0.6s' }}>
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center animate-slide-up mb-6 md:mb-8 lg:mb-12 px-2" style={{ animationDelay: '0.6s' }}>
             {/* Primary CTAs */}
             <button
               onClick={() => document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
+              className="w-full sm:w-auto group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-6 md:px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
             >
               <span className="relative z-10">View Portfolio</span>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -243,9 +268,9 @@ const HeroSection = () => {
                 link.download = 'Gopikrishna_Chegoni_Resume.pdf';
                 link.click();
               }}
-              className="group relative overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/40 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:bg-white/20"
+              className="w-full sm:w-auto group relative overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/40 text-white px-6 md:px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:bg-white/20"
             >
-              <span className="relative z-10 flex items-center space-x-2">
+              <span className="relative z-10 flex items-center justify-center space-x-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
@@ -255,12 +280,13 @@ const HeroSection = () => {
             
             <button
               onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group relative overflow-hidden bg-transparent border-2 border-blue-500/50 hover:border-blue-400 text-blue-400 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:bg-blue-500/20"
+              className="w-full sm:w-auto group relative overflow-hidden bg-transparent border-2 border-blue-500/50 hover:border-blue-400 text-blue-400 hover:text-white px-6 md:px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:bg-blue-500/20"
             >
               <span className="relative z-10">Get In Touch</span>
             </button>
           </div>
         </div>
+      </div>
       </div>
 
       {/* Left Side Social Icons */}

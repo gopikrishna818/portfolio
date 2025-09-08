@@ -106,8 +106,8 @@ export const CustomCursor = () => {
       <motion.div
         className="w-full h-full bg-white rounded-full"
         animate={{
-          scale: isHovering ? 1.8 : 1,
-          opacity: isHovering ? 0.9 : 0.7,
+          scale: 1, // Keep consistent size - no scaling on hover
+          opacity: isHovering ? 0.9 : 0.7, // Only change opacity for hover feedback
         }}
         transition={{
           type: "spring",

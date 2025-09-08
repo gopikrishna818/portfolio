@@ -1003,8 +1003,8 @@ const AboutSection = () => {
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500/20 to-purple-600/20 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
                     <IconComponent size={20} className="text-primary" />
                   </div>
-                  <h4 className="text-sm font-medium text-foreground mb-1">{interest.name}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{interest.description}</p>
+                  <h4 className="text-base font-medium text-foreground mb-2">{interest.name}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{interest.description}</p>
                 </motion.div>
               );
             })}
@@ -1031,8 +1031,8 @@ const AboutSection = () => {
           className="max-w-4xl mx-auto"
         >
           <div className="text-center mb-8">
-            <h3 className="text-xl font-bold text-foreground mb-3">Technical Blog & Resources</h3>
-            <p className="text-sm text-muted-foreground">
+            <h3 className="text-3xl font-bold text-gradient text-center mb-8">Technical Blog & Resources</h3>
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
               Sharing insights on AI development, data engineering, and software architecture
             </p>
           </div>
@@ -1048,11 +1048,11 @@ const AboutSection = () => {
                   <BookOpen size={20} className="text-blue-500" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground">Technical Articles</h4>
-                  <p className="text-xs text-muted-foreground">12+ published</p>
+                  <h4 className="text-lg font-semibold text-foreground">Technical Articles</h4>
+                  <p className="text-sm text-muted-foreground">12+ published</p>
                 </div>
               </div>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-base text-muted-foreground">
                 <li>• "Building Scalable AI Infrastructure with FastAPI"</li>
                 <li>• "Optimizing ML Model Performance in Production"</li>
                 <li>• "Advanced Data Pipeline Patterns with Snowflake"</li>
@@ -1062,7 +1062,7 @@ const AboutSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
-                className="mt-4 inline-flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
+                className="mt-4 inline-flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors text-base font-medium"
               >
                 <span>Read Articles</span>
                 <ArrowUpRight size={14} />
@@ -1079,11 +1079,11 @@ const AboutSection = () => {
                   <Code size={20} className="text-green-500" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground">Open Source</h4>
-                  <p className="text-xs text-muted-foreground">88+ GitHub stars</p>
+                  <h4 className="text-lg font-semibold text-foreground">Open Source</h4>
+                  <p className="text-sm text-muted-foreground">88+ GitHub stars</p>
                 </div>
               </div>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-base text-muted-foreground">
                 <li>• AI-powered document analysis tools</li>
                 <li>• Content strategy automation frameworks</li>
                 <li>• Data visualization libraries</li>
@@ -1093,7 +1093,7 @@ const AboutSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
-                className="mt-4 inline-flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors text-sm font-medium"
+                className="mt-4 inline-flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors text-base font-medium"
               >
                 <span>View Projects</span>
                 <ArrowUpRight size={14} />
@@ -1110,18 +1110,18 @@ const AboutSection = () => {
                   <Lightbulb size={20} className="text-purple-500" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground">Philosophy</h4>
-                  <p className="text-xs text-muted-foreground">Business-first approach</p>
+                  <h4 className="text-lg font-semibold text-foreground">Philosophy</h4>
+                  <p className="text-sm text-muted-foreground">Business-first approach</p>
                 </div>
               </div>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-base text-muted-foreground">
                 <li>• Understand business impact before coding</li>
                 <li>• Prioritize scalability and maintainability</li>
                 <li>• Data-driven decision making</li>
               </ul>
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="mt-4 inline-flex items-center space-x-2 text-primary text-sm font-medium"
+                className="mt-4 inline-flex items-center space-x-2 text-primary text-base font-medium"
               >
                 <span>Learn More</span>
                 <ArrowUpRight size={14} />

@@ -14,22 +14,32 @@ const CustomLoadingAnimation = ({ onComplete }: CustomLoadingAnimationProps) => 
     // Start showing initials after a brief delay
     setTimeout(() => setShowInitials(true), 300);
 
-    // Progress animation
+    // Progress animation - optimized for 3 second experience
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(interval);
           setTimeout(() => {
             setIsComplete(true);
-            setTimeout(onComplete, 800);
-          }, 500);
+            setTimeout(onComplete, 400);
+          }, 300);
           return 100;
         }
-        return prev + 2;
+        return prev + 4; // Optimized for ~2.5 seconds progress
       });
-    }, 40);
+    }, 100); // 25 steps × 100ms = 2.5 seconds + delays = ~3 seconds total
 
-    return () => clearInterval(interval);
+    // Failsafe timer - set to 4 seconds to allow full 3-second experience
+    const failsafeTimer = setTimeout(() => {
+      clearInterval(interval);
+      setIsComplete(true);
+      onComplete();
+    }, 4000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(failsafeTimer);
+    };
   }, [onComplete]);
 
   const letterVariants = {
@@ -45,17 +55,17 @@ const CustomLoadingAnimation = ({ onComplete }: CustomLoadingAnimationProps) => 
       scale: 1,
       rotate: 0,
       transition: {
-        delay: 0.8 + i * 0.2,
-        duration: 0.8,
+        delay: 0.8 + i * 0.3, // Adjusted for 3-second experience
+        duration: 1.0, // Slightly shorter duration
         type: "spring" as const,
-        stiffness: 100,
-        damping: 10
+        stiffness: 80,
+        damping: 12
       }
     }),
     pulse: {
-      scale: [1, 1.1, 1],
+      scale: [1, 1.15, 1], // More dramatic scaling
       transition: {
-        duration: 2,
+        duration: 3, // Slower pulse (was 2)
         repeat: Infinity,
         ease: "easeInOut" as const
       }
@@ -86,8 +96,100 @@ const CustomLoadingAnimation = ({ onComplete }: CustomLoadingAnimationProps) => 
           variants={backgroundVariants}
           initial="hidden"
           exit="exit"
-          className="fixed inset-0 z-50 flex items-center justify-center"
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
           style={{
+            background: `
+              radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.3) 0%, transparent 70%),
+              radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.2) 0%, transparent 70%),
+              radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+              linear-gradient(135deg, 
+                hsl(var(--background)) 0%, 
+                hsl(var(--background)) 40%,
+                rgba(139, 92, 246, 0.05) 60%,
+                rgba(59, 130, 246, 0.05) 100%
+              )
+            `
+          }}
+        >
+          {/* Animated Background Particles */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-full"
+                initial={{
+                  x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1920,
+                  y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 1080,
+                  scale: 0,
+                  opacity: 0
+                }}
+                animate={{
+                  x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1920,
+                  y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 1080,
+                  scale: [0, 1, 0],
+                  opacity: [0, 0.6, 0]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 2,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Floating Geometric Shapes */}
+          <div className="absolute inset-0">
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={`shape-${i}`}
+                className={`absolute ${
+                  i % 3 === 0 ? 'w-8 h-8 rounded-full' : 
+                  i % 3 === 1 ? 'w-6 h-6 rotate-45' : 'w-4 h-12 rounded-full'
+                } bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-sm`}
+                initial={{
+                  x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1920,
+                  y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 1080,
+                  rotate: 0,
+                  scale: 0
+                }}
+                animate={{
+                  x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1920,
+                  y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 1080,
+                  rotate: 360,
+                  scale: [0, 1, 0.5, 1, 0]
+                }}
+                transition={{
+                  duration: 4 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 2,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Central Glow Effect */}
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <motion.div
+              className="w-96 h-96 rounded-full bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                rotate: [0, 180, 360]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </motion.div>
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
           }}
         >

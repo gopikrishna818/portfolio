@@ -5,7 +5,18 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Ensure smooth scrolling works across all browsers
+    if (window.scrollTo) {
+      window.scrollTo({ 
+        top: 0, 
+        left: 0,
+        behavior: 'smooth' 
+      });
+    } else {
+      // Fallback for older browsers
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
   };
 
   const services = [
@@ -151,12 +162,11 @@ const Footer = () => {
                   initial={{ opacity: 0, scale: 0, rotateY: 180 }}
                   whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
                   whileHover={{ 
-                    scale: 1.2, 
                     y: -8, 
                     rotateY: 360,
                     rotateX: 15,
                   }}
-                  whileTap={{ scale: 0.9 }}
+                  whileTap={{}}
                   transition={{ 
                     duration: 0.6,
                     delay: index * 0.2,
@@ -194,7 +204,7 @@ const Footer = () => {
             className="space-y-3"
           >
             <motion.h3 
-              whileHover={{ scale: 1.05 }}
+              whileHover={{}}
               className="text-lg font-bold flex items-center space-x-2 text-white"
             >
               <motion.div
@@ -242,12 +252,12 @@ const Footer = () => {
             className="space-y-3"
           >
             <motion.h3 
-              whileHover={{ scale: 1.05 }}
+              whileHover={{}}
               className="text-lg font-bold flex items-center space-x-2 text-white"
             >
               <motion.div
                 animate={{ 
-                  scale: [1, 1.2, 1],
+                  rotate: [0, 360, 0],
                   rotate: [0, 15, -15, 0]
                 }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -291,30 +301,35 @@ const Footer = () => {
         >
           <motion.div 
             className="text-sm text-gray-400"
-            whileHover={{ scale: 1.02 }}
+            whileHover={{}}
           >
             <span>© {currentYear} Gopikrishna Chegoni.</span>
           </motion.div>
 
           {/* Enhanced 3D Back to Top Button */}
           <motion.button
-            onClick={scrollToTop}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              scrollToTop();
+            }}
             initial={{ opacity: 0, rotateX: 90 }}
             whileInView={{ opacity: 1, rotateX: 0 }}
             whileHover={{ 
-              scale: 1.1, 
               y: -8,
               rotateX: 15,
               rotateY: 5,
             }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{}}
             transition={{ duration: 0.3, type: "spring", stiffness: 200 }}
             viewport={{ once: true }}
-            className="group relative overflow-hidden bg-gradient-to-r from-purple-500/20 to-blue-500/20 hover:from-purple-500/40 hover:to-blue-500/40 border border-purple-500/30 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 backdrop-blur-sm"
+            className="group relative overflow-hidden bg-gradient-to-r from-purple-500/20 to-blue-500/20 hover:from-purple-500/40 hover:to-blue-500/40 border border-purple-500/30 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 backdrop-blur-sm cursor-pointer"
             style={{ 
               transformStyle: 'preserve-3d',
               filter: 'drop-shadow(0 4px 12px rgba(139, 92, 246, 0.3))'
             }}
+            aria-label="Back to top"
+            type="button"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
             <div className="relative flex items-center space-x-2 text-white">
