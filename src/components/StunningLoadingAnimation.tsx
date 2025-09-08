@@ -9,38 +9,62 @@ const StunningLoadingAnimation = ({ onComplete }: StunningLoadingAnimationProps)
   const [progress, setProgress] = useState(0);
   const [showInitials, setShowInitials] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [currentBootMessage, setCurrentBootMessage] = useState(0);
+
+  const bootMessages = [
+    "> Boot Sequence: ONLINE",
+    "> Neural Engine: READY", 
+    "> Automation Modules: DEPLOYED",
+    "System Status: Operational ✅"
+  ];
 
   useEffect(() => {
     // Start showing initials after a brief delay
-    setTimeout(() => setShowInitials(true), 300);
+    setTimeout(() => setShowInitials(true), 200); // slightly faster
 
-    // Progress animation - optimized for 4 second experience
+    // Boot message progression (all messages within 3 seconds)
+    const bootDuration = 3000; // 3 seconds
+    const messageIntervalTime = bootDuration / bootMessages.length;
+    const messageInterval = setInterval(() => {
+      setCurrentBootMessage(prev => {
+        if (prev < bootMessages.length - 1) {
+          return prev + 1;
+        }
+        clearInterval(messageInterval);
+        return prev;
+      });
+    }, messageIntervalTime);
+
+    // Progress animation - optimized for 3 second experience
+    const progressSteps = 30; // 3 seconds / 100ms = 30 steps
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(interval);
           setTimeout(() => {
             setIsComplete(true);
-            setTimeout(onComplete, 500);
-          }, 400);
+            setTimeout(onComplete, 300);
+          }, 200);
           return 100;
         }
-        return prev + 2.5; // Optimized for ~4 seconds progress
+        return prev + (100 / progressSteps); // 3 seconds progress
       });
-    }, 100); // 40 steps × 100ms = 4 seconds + delays = ~4 seconds total
+    }, 100); // 30 steps × 100ms = 3 seconds
 
-    // Failsafe timer - set to 5 seconds to allow full 4-second experience
+    // Failsafe timer - set to just over 3 seconds
     const failsafeTimer = setTimeout(() => {
       clearInterval(interval);
+      clearInterval(messageInterval);
       setIsComplete(true);
       onComplete();
-    }, 5000);
+    }, 3400);
 
     return () => {
       clearInterval(interval);
+      clearInterval(messageInterval);
       clearTimeout(failsafeTimer);
     };
-  }, [onComplete]);
+  }, [onComplete, bootMessages.length]);
 
   const letterVariants = {
     hidden: { 
@@ -379,7 +403,7 @@ const StunningLoadingAnimation = ({ onComplete }: StunningLoadingAnimationProps)
                   ease: "easeInOut"
                 }}
               >
-                Data Whisperer & Full-Stack Engineer
+                "Initializing Data-Core Systems..."
               </motion.p>
             </motion.div>
 
@@ -427,19 +451,50 @@ const StunningLoadingAnimation = ({ onComplete }: StunningLoadingAnimationProps)
                   />
                 </motion.div>
               </div>
+              
+              {/* Boot Sequence Messages */}
+              <div className="mt-6 space-y-2">
+                {bootMessages.map((message, index) => (
+                  <motion.p
+                    key={index}
+                    className={`text-sm md:text-base font-mono ${
+                      index < currentBootMessage ? 'text-green-400' : 
+                      index === currentBootMessage ? 'text-cyan-400' : 
+                      'text-white/30'
+                    }`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ 
+                      opacity: index <= currentBootMessage ? 1 : 0.3,
+                      x: index <= currentBootMessage ? 0 : -20,
+                      scale: index === currentBootMessage ? [1, 1.05, 1] : 1
+                    }}
+                    transition={{ 
+                      duration: 0.5,
+                      delay: index === currentBootMessage ? 0 : 0,
+                      scale: {
+                        duration: 1,
+                        repeat: index === currentBootMessage ? Infinity : 0,
+                        ease: "easeInOut"
+                      }
+                    }}
+                  >
+                    {message}
+                  </motion.p>
+                ))}
+              </div>
+              
               <motion.p
-                className="text-white/90 text-lg mt-4 font-medium"
+                className="text-white/60 text-sm mt-4 font-medium"
                 animate={{ 
-                  opacity: [0.7, 1, 0.7],
-                  scale: [1, 1.02, 1]
+                  opacity: [0.4, 1, 0.4]
                 }}
                 transition={{ 
-                  duration: 1.5, 
+                  duration: 2, 
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
               >
-                {progress}% • Crafting Excellence...
+                {progress}% Complete
               </motion.p>
             </motion.div>
           </div>

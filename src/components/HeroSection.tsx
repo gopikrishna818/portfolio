@@ -191,35 +191,35 @@ const HeroSection = () => {
               {/* Enhanced Value Proposition */}
               <div className="space-y-1 md:space-y-2">
                 <p className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent animate-slide-up" style={{ animationDelay: '0.2s' }}>
-                  I Turn Raw Data Into Business Gold 💰
+                  Engineering Scalable Data Pipelines & AI Systems
                 </p>
                 <p className="text-lg md:text-xl lg:text-2xl font-semibold text-muted-foreground animate-slide-up" style={{ animationDelay: '0.25s' }}>
-                  AI-Powered Data Engineer | $950K+ ROI Generated | 95% Automation Success
+                  AI & Data Engineer | Specializing in Real-Time Data Processing, ML Deployment
                 </p>
                 
                 {/* Impact Metrics Row */}
                 <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
                   <div className="bg-black/30 backdrop-blur-xl border border-green-400/30 px-3 py-2 rounded-lg">
-                    <div className="text-green-400 font-bold text-sm md:text-base">$950K+</div>
-                    <div className="text-xs text-gray-400">Total ROI</div>
+                    <div className="text-green-400 font-bold text-sm md:text-base">100M+</div>
+                    <div className="text-xs text-gray-400">Records Processed</div>
                   </div>
                   <div className="bg-black/30 backdrop-blur-xl border border-blue-400/30 px-3 py-2 rounded-lg">
-                    <div className="text-blue-400 font-bold text-sm md:text-base">99.9%</div>
-                    <div className="text-xs text-gray-400">Uptime</div>
+                    <div className="text-blue-400 font-bold text-sm md:text-base">15+</div>
+                    <div className="text-xs text-gray-400">AI Models Deployed</div>
                   </div>
                   <div className="bg-black/30 backdrop-blur-xl border border-purple-400/30 px-3 py-2 rounded-lg">
-                    <div className="text-purple-400 font-bold text-sm md:text-base">15+</div>
-                    <div className="text-xs text-gray-400">Projects</div>
+                    <div className="text-purple-400 font-bold text-sm md:text-base">10+</div>
+                    <div className="text-xs text-gray-400">Projects Delivered</div>
                   </div>
                   <div className="bg-black/30 backdrop-blur-xl border border-orange-400/30 px-3 py-2 rounded-lg">
-                    <div className="text-orange-400 font-bold text-sm md:text-base">3+</div>
-                    <div className="text-xs text-gray-400">Years</div>
+                    <div className="text-orange-400 font-bold text-sm md:text-base">1+</div>
+                    <div className="text-xs text-gray-400">Years Experience</div>
                   </div>
                 </div>
                 
                 {/* Elevator Pitch */}
                 <p className="text-sm md:text-base text-foreground/70 animate-slide-up max-w-2xl mx-auto mt-4" style={{ animationDelay: '0.35s' }}>
-                  From fraud detection to content automation, I build intelligent systems that deliver measurable business impact through data-driven solutions
+                  From data ingestion to model deployment, I engineer end-to-end AI systems that transform raw data into reliable, scalable, and automated solutions.
                 </p>
                 
                 {/* Location & Remote Preference */}
@@ -295,7 +295,7 @@ const HeroSection = () => {
         
         <div className="group">
           <a
-            href="mailto:gopikrishna.chegoni@email.com"
+            href="mailto:gkchegoni@gmail.com"
             className="flex items-center justify-center w-12 h-12 rounded-full bg-card/30 backdrop-blur-md border border-border/50 transition-all duration-300 hover:scale-110 hover:bg-accent/20 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/25"
           >
             <Mail size={20} className="text-foreground/80 group-hover:text-accent transition-colors duration-300" />

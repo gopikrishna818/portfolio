@@ -125,17 +125,18 @@
 
 /* Hero section adjustments */
 #home {
-  scroll-margin-top: 0; /* Remove scroll offset for hero */
+  scroll-margin-top: 0 !important;
   margin-top: 0 !important;
   padding-top: 0 !important;
-  position: relative;
-  top: 0;
-  transform: translateY(0) !important;
+  /* Remove all manual margin/padding for hero section */
 }
 
 /* All other sections need offset for fixed navbar */
 section:not(#home) {
   scroll-margin-top: 80px;
+  /* Remove all manual margin-top and padding-top for sections */
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 /* Reset and Smooth Scrolling */
@@ -259,7 +260,7 @@ main {
 .section-spacing {
   margin-bottom: 0;
   margin-top: 0;
-  padding-top: 4rem;
+  padding-top: 0 !important;
   padding-bottom: 0;
   clear: both;
   isolation: isolate;
@@ -271,7 +272,7 @@ main {
   .section-spacing {
     margin-bottom: 0;
     margin-top: 0;
-    padding-top: 5rem;
+    padding-top: 0 !important;
     padding-bottom: 0;
   }
 }
@@ -280,7 +281,7 @@ main {
   .section-spacing {
     margin-bottom: 0;
     margin-top: 0;
-    padding-top: 6rem;
+    padding-top: 0 !important;
     padding-bottom: 0;
   }
 }
@@ -289,7 +290,7 @@ main {
   .section-spacing {
     margin-bottom: 0;
     margin-top: 0;
-    padding-top: 8rem;
+    padding-top: 0 !important;
     padding-bottom: 0;
   }
 }
@@ -314,6 +315,7 @@ main {
   }
 }
 
+
 /* Prevent section overlapping - Minimal spacing */
 section {
   position: relative;
@@ -322,9 +324,10 @@ section {
   clear: both;
   isolation: isolate;
   transform: translateZ(0); /* Force hardware acceleration and separate layer */
-  margin-top: 0 !important; /* Prevent negative margins */
-  transform: none !important; /* Prevent transforms that cause overlapping */
-  margin-bottom: 2rem; /* Minimal consistent spacing */
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  transform: none !important;
+  margin-bottom: 0 !important;
 }
 
 /* Override for hero section - NO spacing at all */
@@ -337,6 +340,7 @@ section#home {
 /* Eliminate all external section margins */
 section:not(:first-child) {
   margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 /* Force zero margins between Contact and Footer */
@@ -346,19 +350,6 @@ section#contact {
 
 section#contact + * {
   margin-top: 0 !important;
-}
-
-/* Remove section bottom margins globally */
-section {
-  position: relative;
-  z-index: 1;
-  display: block;
-  clear: both;
-  isolation: isolate;
-  transform: translateZ(0); /* Force hardware acceleration and separate layer */
-  margin-top: 0 !important; /* Remove all external top margins */
-  transform: none !important; /* Prevent transforms that cause overlapping */
-  margin-bottom: 0 !important; /* Remove all external bottom margins */
 }
 
 @media (min-width: 768px) {

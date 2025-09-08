@@ -159,25 +159,62 @@ const Navigation = () => {
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 transition-all duration-500`}
-      style={{
-        zIndex: 99999, // Maximum z-index to ensure it's always on top
-        background: pastHero 
-          ? 'linear-gradient(135deg, #0f172a, #1e293b)' 
-          : 'linear-gradient(135deg, #000000, #0f172a)',
-        borderBottom: pastHero ? '1px solid rgba(6, 182, 212, 0.3)' : '1px solid rgba(59, 130, 246, 0.2)',
-        boxShadow: pastHero 
-          ? '0 8px 32px rgba(0, 0, 0, 0.4)' 
-          : '0 4px 20px rgba(0, 0, 0, 0.2)',
-        pointerEvents: 'auto',
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-6 relative" style={{ zIndex: 99999 }}>
-        <div className="flex items-center justify-between h-16" style={{ zIndex: 99999 }}>
+    <>
+      {/* Force navigation to be on top with CSS */}
+      <style>{`
+        nav[data-navigation="true"] {
+          z-index: 2147483647 !important;
+          pointer-events: auto !important;
+          position: fixed !important;
+        }
+        nav[data-navigation="true"] * {
+          pointer-events: auto !important;
+          z-index: inherit !important;
+        }
+        nav[data-navigation="true"] button {
+          cursor: pointer !important;
+          pointer-events: auto !important;
+        }
+      `}</style>
+      
+      <motion.nav
+        data-navigation="true"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className={`fixed top-0 left-0 right-0 transition-all duration-500`}
+        style={{
+          zIndex: 2147483647, // Maximum possible z-index value
+          background: '#0f172a', // Completely solid background - no transparency
+          borderBottom: '1px solid rgba(6, 182, 212, 0.5)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8)',
+          pointerEvents: 'auto',
+          isolation: 'isolate', // Create a new stacking context
+          position: 'fixed',
+          width: '100%',
+          top: 0,
+          left: 0,
+          right: 0,
+          backdropFilter: 'none', // Remove any backdrop filter
+          WebkitBackdropFilter: 'none', // Remove webkit backdrop filter
+        }}
+      >
+      <div 
+        className="max-w-7xl mx-auto px-6 relative" 
+        style={{ 
+          zIndex: 2147483647, 
+          pointerEvents: 'auto',
+          position: 'relative',
+        }}
+      >
+        <div 
+          className="flex items-center justify-between h-16" 
+          style={{ 
+            zIndex: 2147483647, 
+            pointerEvents: 'auto',
+            position: 'relative',
+          }}
+        >
           {/* Clean Brand Logo */}
           <motion.div 
             className="flex items-center space-x-4 cursor-pointer group"
@@ -230,11 +267,11 @@ const Navigation = () => {
             
             {/* Available Status Indicator */}
             <motion.div 
-              className="hidden md:flex items-center space-x-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30 rounded-full px-4 py-2 backdrop-blur-sm"
+              className="hidden md:flex items-center space-x-2 bg-green-800/80 border border-green-400/50 rounded-full px-4 py-2"
               whileHover={{
                 scale: 1.05,
                 borderColor: "rgba(34, 197, 94, 0.6)",
-                backgroundColor: "rgba(34, 197, 94, 0.25)",
+                backgroundColor: "rgba(34, 197, 94, 0.4)",
               }}
               transition={{ duration: 0.2 }}
             >
@@ -249,14 +286,19 @@ const Navigation = () => {
           <div className="flex items-center space-x-6">
             {/* Modern 3D Desktop Navigation */}
             <motion.div 
-              className="hidden md:flex items-center space-x-2 bg-gray-800/90 rounded-2xl p-2 border border-gray-600/50"
+              className="hidden md:flex items-center space-x-2 rounded-2xl p-2 border border-gray-600/50"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
               style={{
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
-                zIndex: 99999,
+                background: 'rgba(31, 41, 55, 1)', // Completely solid background - no transparency
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)',
+                zIndex: 2147483647,
                 position: 'relative',
+                pointerEvents: 'auto',
+                isolation: 'isolate',
+                backdropFilter: 'none',
+                WebkitBackdropFilter: 'none',
               }}
             >
               {navItems.map((item, idx) => (
@@ -286,8 +328,10 @@ const Navigation = () => {
                           : '0 4px 20px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                         : 'none',
                       transform: activeSection === item.id ? 'translateY(-1px)' : 'translateY(0)',
-                      zIndex: 99999,
+                      zIndex: 2147483647,
                       position: 'relative',
+                      pointerEvents: 'auto',
+                      cursor: 'pointer',
                     }}
                     whileHover={{ 
                       scale: 1.05,
@@ -400,9 +444,8 @@ const Navigation = () => {
           className="md:hidden overflow-hidden"
           style={{
             background: pastHero 
-              ? 'rgba(15, 23, 42, 0.95)'
-              : 'rgba(0, 0, 0, 0.95)',
-            backdropFilter: 'blur(20px)',
+              ? '#0f172a'
+              : '#000000',
             borderTop: pastHero ? '1px solid rgba(6, 182, 212, 0.2)' : '1px solid rgba(59, 130, 246, 0.2)',
           }}
         >
@@ -475,6 +518,7 @@ const Navigation = () => {
         </motion.div>
       </div>
     </motion.nav>
+    </>
   );
 };
 
