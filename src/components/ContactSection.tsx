@@ -137,7 +137,7 @@ const ContactSection = () => {
   );
 
   return (
-    <section id="contact" className="py-4 pb-8 bg-gradient-to-br from-background to-muted/30 relative z-10 clear-both">
+  <section id="contact" className="py-4 pb-8 bg-gradient-to-br from-background via-card/10 to-background relative z-10 clear-both">
       {/* Simplified Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-purple-500/30 to-blue-500/30 rounded-full blur-xl" />

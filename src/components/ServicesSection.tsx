@@ -56,7 +56,7 @@ const ServicesSection = () => {
   return (
     <>
       {/* Services Section */}
-      <section id="services" className="flex items-center bg-gradient-to-br from-background to-muted/30 py-2">
+  <section id="services" className="flex items-center bg-gradient-to-br from-background via-card/10 to-background py-2">
         <div className="container-width">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-heading text-gradient">Services</h2>
@@ -123,7 +123,7 @@ const ServicesSection = () => {
       </section>
 
       {/* Development Process Section */}
-      <section id="development-process" className="flex items-center bg-gradient-to-br from-background to-muted/30 py-2">
+  <section id="development-process" className="flex items-center bg-gradient-to-br from-background via-card/10 to-background py-2 mt-4">
         <div className="container-width">
           <div className="text-center mb-12">
             <h2 className="text-heading text-gradient">Development Process</h2>

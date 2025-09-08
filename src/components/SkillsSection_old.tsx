@@ -10,7 +10,7 @@ const skillsData = {
     gradient: 'from-blue-500 to-purple-600',
     bgGradient: 'from-blue-500/10 to-purple-600/10',
     skills: [
-      { name: 'React/Next.js', level: 92, experience: '3+ years', projects: 15 },
+  { name: 'React/Next.js', level: 92, experience: '1+ years', projects: 15 },
       { name: 'TypeScript', level: 88, experience: '2+ years', projects: 12 },
       { name: 'Tailwind CSS', level: 94, experience: '2+ years', projects: 18 },
       { name: 'JavaScript', level: 90, experience: '3+ years', projects: 20 }

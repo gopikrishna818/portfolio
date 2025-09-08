@@ -96,7 +96,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section id="testimonials" className="py-12 md:py-16 bg-gradient-to-b from-background to-card/50 relative overflow-hidden">
+  <section id="testimonials" className="py-12 md:py-16 bg-gradient-to-br from-background via-card/10 to-background relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float-gentle" />
@@ -111,7 +111,7 @@ const TestimonialsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gradient mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-gradient mb-4">
             Client Testimonials
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

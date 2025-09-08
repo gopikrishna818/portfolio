@@ -527,7 +527,7 @@ const ExperienceEducationSection = () => {
   );
 
   return (
-    <section id="experience" className="pt-2 pb-2 flex items-center relative overflow-hidden">
+  <section id="experience" className="pt-2 pb-2 flex items-center bg-gradient-to-br from-background via-card/10 to-background relative overflow-hidden">
       {/* Enhanced 3D Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-card/30 to-background" />

@@ -38,9 +38,9 @@ const KeyAchievementsSection = () => {
   ];
 
   const stats = [
-    { label: "Years Experience", value: "3+", icon: Target },
+    { label: "Years Experience", value: "1+", icon: Target },
     { label: "Technologies Mastered", value: "30+", icon: Database },
-    { label: "Projects Completed", value: "25+", icon: Code },
+    { label: "Projects Completed", value: "10+", icon: Code },
     { label: "Client Satisfaction", value: "98%", icon: Award }
   ];
 

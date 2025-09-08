@@ -222,7 +222,7 @@ const AboutSection = () => {
       year: "2025",
       role: "Ready for Next Challenge",
       growth: "Seeking senior role to apply ML and leadership skills",
-      achievement: "Portfolio demonstrates 3+ years of growth and technical expertise"
+  achievement: "Portfolio demonstrates 1+ years of growth and technical expertise"
     }
   ];
 
@@ -238,17 +238,17 @@ const AboutSection = () => {
   const timelineData = [
     {
       id: 1,
-      year: '2022',
-      period: 'Jan 2022 - Dec 2022',
+      year: '2024',
+      period: 'Aug 2020 - May 2024',
       type: 'education',
-      title: 'Computer Science Engineering',
+      title: 'Computer Science & Engineering',
       subtitle: 'Final Year Student',
-      location: 'Engineering College',
+      location: 'Hyderabad, India',
       icon: GraduationCap,
       color: 'from-blue-500 to-cyan-500',
       achievements: [
-        { text: 'Machine Learning Specialization', icon: Award },
-        { text: 'Final Year Project: AI-based System', icon: Code },
+        { text: 'Data Science Specialization', icon: Award },
+        { text: 'Final Year Project: Snowflake', icon: Code },
         { text: 'CGPA: 8.5/10', icon: Star }
       ],
       skills: skillsEvolution[2022],
@@ -257,30 +257,30 @@ const AboutSection = () => {
     },
     {
       id: 2,
-      year: '2023',
-      period: 'Jan 2023 - Dec 2023',
+      year: '2024',
+      period: 'Jan 2024 - Aug 2024',
       type: 'work',
-      title: 'Junior Software Engineer',
+      title: 'Software Engineer Intern',
       subtitle: 'KreativeTimebox / Startup',
       location: 'Hyderabad, India',
       icon: Briefcase,
       color: 'from-purple-500 to-pink-500',
       achievements: [
-        { text: 'Delivered 5+ full-stack projects', icon: Code },
+        { text: 'Delivered 2+ ML projects', icon: Code },
         { text: 'Improved system performance by 30%', icon: TrendingUp },
         { text: 'Mentored 2 junior developers', icon: Users }
       ],
       skills: skillsEvolution[2023],
-      description: 'Started professional career focused on full-stack development and data processing. Quickly adapted to modern technologies and agile methodologies.',
+      description: 'Started professional career focused on AI, ML, and data processing. Quickly adapted to modern technologies and agile methodologies.',
       projects: ['E-commerce Platform', 'Data Analytics Dashboard', 'API Integration System']
     },
     {
       id: 3,
       year: '2024',
-      period: 'Jan 2024 - Dec 2024',
+      period: 'Aug 2024 - Present',
       type: 'work',
       title: 'Software Engineer',
-      subtitle: 'Growth & Advanced Projects',
+      subtitle: 'KreativeTimebox / Startup',
       location: 'Remote/Hybrid',
       icon: Rocket,
       color: 'from-green-500 to-emerald-500',
@@ -362,7 +362,7 @@ const AboutSection = () => {
       percentage: 90
     },
     {
-      value: '3+',
+  value: '1+',
       label: 'Industries',
       icon: Target,
       color: 'from-emerald-500 to-teal-500',
@@ -408,7 +408,7 @@ const AboutSection = () => {
 
             <div className="space-y-4 text-body">
               <p className="leading-relaxed">
-                AI/ML Engineer with 2+ years building intelligent systems and deploying advanced ML models. Specialized in Ollama servers, Gemma models, and Python-based frameworks.
+                AI/ML Engineer with 1+ years building intelligent systems and deploying advanced ML models. Specialized in Ollama servers, Gemma models, and Python-based frameworks.
               </p>
 
               <p className="leading-relaxed">
@@ -590,7 +590,7 @@ const AboutSection = () => {
           <div className="bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-indigo-500/10 rounded-2xl p-8 border border-primary/20">
             <h3 className="text-3xl font-bold text-center mb-8 text-gradient">
               <Calendar className="inline w-8 h-8 mr-3" />
-              Career Journey Timeline
+              Career Journey
             </h3>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
               From foundational learning to advanced AI projects - tracking my growth in data science and machine learning

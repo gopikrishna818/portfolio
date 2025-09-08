@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Code, Database, Brain, Cloud, BarChart, Zap, Layers } from 'lucide-react';
+import { Code, Database, Brain, Cloud, BarChart, Zap, Layers, Github, Linkedin, Mail } from 'lucide-react';
 import { StaggerChildren, ParallaxSection } from '@/components/InteractiveElements';
 
 // Custom CSS for 3D flip effect
@@ -28,10 +28,10 @@ const skillsData = {
     bgGradient: 'from-blue-500/10 to-purple-600/10',
     size: 'large', // Different sizes for bento layout
     skills: [
-      { name: 'Python', level: 95, experience: '3+ years', projects: 20, description: 'Advanced data science & web development' },
-      { name: 'JavaScript', level: 90, experience: '3+ years', projects: 18, description: 'Modern ES6+ & frontend frameworks' },
-      { name: 'TypeScript', level: 88, experience: '2+ years', projects: 15, description: 'Type-safe development' },
-      { name: 'SQL', level: 92, experience: '3+ years', projects: 16, description: 'Complex queries & optimization' }
+  { name: 'Python', level: 95, experience: '1+ years', projects: 7, description: 'Advanced data science & web development' },
+  { name: 'JavaScript', level: 90, experience: '1+ years', projects: 5, description: 'Modern ES6+ & frontend frameworks' },
+  { name: 'TypeScript', level: 88, experience: '1+ years', projects: 3, description: 'Type-safe development' },
+  { name: 'SQL', level: 92, experience: '1+ years', projects: 7, description: 'Complex queries & optimization' }
     ]
   },
   'Libraries & Frameworks': {
@@ -40,9 +40,9 @@ const skillsData = {
     bgGradient: 'from-green-500/10 to-emerald-600/10',
     size: 'medium',
     skills: [
-      { name: 'React', level: 92, experience: '3+ years', projects: 15, description: 'Modern hooks & state management' },
-      { name: 'FastAPI', level: 95, experience: '3+ years', projects: 14, description: 'High-performance APIs' },
-      { name: 'TensorFlow', level: 85, experience: '2+ years', projects: 10, description: 'Deep learning models' }
+  { name: 'React', level: 92, experience: '1+ years', projects: 5, description: 'Modern hooks & state management' },
+  { name: 'FastAPI', level: 95, experience: '1+ years', projects: 5, description: 'High-performance APIs' },
+  { name: 'TensorFlow', level: 85, experience: '1+ years', projects: 5, description: 'Deep learning models' }
     ]
   },
   'Databases': {
@@ -51,8 +51,8 @@ const skillsData = {
     bgGradient: 'from-purple-500/10 to-pink-600/10',
     size: 'small',
     skills: [
-      { name: 'PostgreSQL', level: 89, experience: '3+ years', projects: 16, description: 'Advanced database design' },
-      { name: 'MongoDB', level: 82, experience: '2+ years', projects: 12, description: 'NoSQL & aggregation' }
+  { name: 'PostgreSQL', level: 89, experience: '1+ years', projects: 5, description: 'Advanced database design' },
+  { name: 'MongoDB', level: 82, experience: '1+ years', projects: 5, description: 'NoSQL & aggregation' }
     ]
   },
   'Tools & Technologies': {
@@ -61,9 +61,9 @@ const skillsData = {
     bgGradient: 'from-orange-500/10 to-red-600/10',
     size: 'medium',
     skills: [
-      { name: 'Git/GitHub', level: 92, experience: '3+ years', projects: 25, description: 'Version control mastery' },
-      { name: 'Docker', level: 85, experience: '2+ years', projects: 13, description: 'Containerization expert' },
-      { name: 'AWS', level: 87, experience: '2+ years', projects: 11, description: 'Cloud infrastructure' }
+  { name: 'Git/GitHub', level: 92, experience: '1+ years', projects: 7, description: 'Version control mastery' },
+  { name: 'Docker', level: 85, experience: '1+ years', projects: 2, description: 'Containerization expert' },
+  { name: 'AWS', level: 87, experience: '1+ years', projects: 5, description: 'Cloud infrastructure' }
     ]
   },
   'Data Science & AI': {
@@ -72,10 +72,10 @@ const skillsData = {
     bgGradient: 'from-indigo-500/10 to-cyan-600/10',
     size: 'large',
     skills: [
-      { name: 'Machine Learning', level: 90, experience: '2+ years', projects: 12, description: 'Supervised & unsupervised learning' },
-      { name: 'Deep Learning', level: 85, experience: '2+ years', projects: 8, description: 'Neural networks & AI models' },
-      { name: 'Computer Vision', level: 80, experience: '1+ years', projects: 6, description: 'Image processing & recognition' },
-      { name: 'Data Analysis', level: 93, experience: '3+ years', projects: 18, description: 'Statistical analysis & insights' }
+  { name: 'Machine Learning', level: 90, experience: '1+ years', projects: 5, description: 'Supervised & unsupervised learning' },
+  { name: 'Deep Learning', level: 85, experience: '1+ years', projects: 2, description: 'Neural networks & AI models' },
+      { name: 'Computer Vision', level: 80, experience: '1+ years', projects: 3, description: 'Image processing & recognition' },
+  { name: 'Data Analysis', level: 93, experience: '1+ years', projects: 5, description: 'Statistical analysis & insights' }
     ]
   },
   'Web Technologies': {
@@ -84,8 +84,8 @@ const skillsData = {
     bgGradient: 'from-rose-500/10 to-pink-600/10',
     size: 'small',
     skills: [
-      { name: 'HTML/CSS', level: 94, experience: '3+ years', projects: 22, description: 'Modern web standards' },
-      { name: 'REST APIs', level: 90, experience: '3+ years', projects: 20, description: 'API design & integration' }
+  { name: 'HTML/CSS', level: 94, experience: '1+ years', projects: 5, description: 'Modern web standards' },
+  { name: 'REST APIs', level: 90, experience: '1+ years', projects: 5, description: 'API design & integration' }
     ]
   }
 };
@@ -119,7 +119,7 @@ const BentoSkillCard = ({ categoryName, categoryData, index }: {
           className="absolute inset-0 w-full h-full"
           style={{ backfaceVisibility: 'hidden' }}
         >
-          <div className={`relative bg-gradient-to-br ${categoryData.bgGradient} backdrop-blur-sm rounded-3xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-500 overflow-hidden h-full flex flex-col justify-between`}>
+          <div className="relative bg-card/50 backdrop-blur-sm rounded-3xl p-6 border border-border/50 hover:border-primary/50 transition-all duration-500 overflow-hidden h-full flex flex-col justify-between">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5">
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/20 to-transparent"></div>
@@ -159,7 +159,7 @@ const BentoSkillCard = ({ categoryName, categoryData, index }: {
           className="absolute inset-0 w-full h-full"
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
         >
-          <div className={`relative bg-gradient-to-br ${categoryData.bgGradient} backdrop-blur-sm rounded-3xl p-6 border border-primary/50 transition-all duration-500 overflow-hidden h-full flex flex-col`}>
+          <div className="relative bg-card/50 backdrop-blur-sm rounded-3xl p-6 border border-primary/50 transition-all duration-500 overflow-hidden h-full flex flex-col">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5">
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/20 to-transparent"></div>
@@ -215,7 +215,40 @@ const SkillsSection = () => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section className="py-20 bg-background relative overflow-hidden" id="skills">
+    <section className="py-20 bg-gradient-to-br from-background via-card/10 to-background relative overflow-hidden" id="skills">
+      {/* Left Side Social Icons (original Lucide icons) */}
+      <div className="fixed left-6 top-1/2 transform -translate-y-1/2 z-20 hidden md:flex flex-col space-y-4">
+        <div className="group">
+          <a
+            href="https://github.com/gopikrishna818"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-card/30 backdrop-blur-md border border-border/50 transition-all duration-300 hover:scale-110 hover:bg-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/25"
+          >
+            <Github size={20} className="text-foreground/80 group-hover:text-primary transition-colors duration-300" />
+          </a>
+        </div>
+        <div className="group">
+          <a
+            href="https://linkedin.com/in/gopikrishna-chegoni"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-card/30 backdrop-blur-md border border-border/50 transition-all duration-300 hover:scale-110 hover:bg-secondary/20 hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/25"
+          >
+            <Linkedin size={20} className="text-foreground/80 group-hover:text-secondary transition-colors duration-300" />
+          </a>
+        </div>
+        <div className="group">
+          <a
+            href="mailto:gkchegoni@gmail.com"
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-card/30 backdrop-blur-md border border-border/50 transition-all duration-300 hover:scale-110 hover:bg-accent/20 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/25"
+          >
+            <Mail size={20} className="text-foreground/80 group-hover:text-accent transition-colors duration-300" />
+          </a>
+        </div>
+        {/* Connecting Line */}
+        <div className="w-px h-16 bg-gradient-to-b from-transparent via-border/50 to-transparent mx-auto"></div>
+      </div>
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-purple-500/5"></div>
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl"></div>
@@ -240,7 +273,7 @@ const SkillsSection = () => {
             <span className="text-sm font-medium text-primary">Technical Expertise</span>
           </motion.div>
           
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
             Skills & Technologies
           </h2>
           
