@@ -494,7 +494,7 @@ const StunningLoadingAnimation = ({ onComplete }: StunningLoadingAnimationProps)
                   ease: "easeInOut"
                 }}
               >
-                {progress}% Complete
+                {Math.min(Math.floor(progress), 100)}% Complete
               </motion.p>
             </motion.div>
           </div>

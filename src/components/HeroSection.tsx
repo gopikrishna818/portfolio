@@ -115,7 +115,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="container-width relative z-10 px-4 py-8 md:py-12">
+  <div className="container-width relative z-10 px-4 py-8 md:py-12 pt-16 md:pt-24">
         <div className="text-center space-y-4 md:space-y-6 lg:space-y-8">
           {/* Profile Image with Enhanced Design */}
           <div className="relative mx-auto w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 group mb-4 md:mb-6 mt-4 md:mt-8">
