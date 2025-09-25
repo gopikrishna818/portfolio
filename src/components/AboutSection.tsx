@@ -192,46 +192,40 @@ const AboutSection = () => {
   // Work Authorization & Location Info
   const workAuthInfo = {
     status: "Indian Citizen",
-    visaStatus: "Available for H1-B sponsorship",
-    locationPrefs: ["Remote-First", "Hybrid", "On-site (willing to relocate)"],
-    remoteCapability: "Fully equipped for remote work with proven track record",
-    timeZones: "Flexible across US/Europe/Asia Pacific time zones"
+    visaStatus: "Fresher, open to opportunities",
+    locationPrefs: ["Remote", "Hybrid", "On-site (Hyderabad/India)"],
+    remoteCapability: "Ready for remote internships and entry-level roles",
+    timeZones: "Flexible for India/Global internships"
   };
 
   // Career Progression Story
   const careerProgression = [
     {
-      year: "2022",
-      role: "Software Engineering Student",
-      growth: "Built foundation in programming and data structures",
-      achievement: "Completed multiple projects in Python, Java, and web development"
+      year: "2020-2024",
+      role: "Engineering Student",
+      growth: "Built strong foundation in computer science, data structures, and algorithms",
+      achievement: "Completed academic projects in web development and data analysis"
     },
     {
       year: "2023",
-      role: "Junior Software Engineer",
-      growth: "Started professional career, learned industry practices",
-      achievement: "Contributed to data processing workflows and automated reporting"
+      role: "Data Analyst Intern",
+      growth: "Explored data analysis and visualization in a real-world setting",
+      achievement: "Created a basic sales dashboard and summary reports at IBM Skill Build"
     },
     {
       year: "2024",
-      role: "Software Engineer",
-      growth: "Expanded to full-stack development and data engineering",
-      achievement: "Led feature development and improved system performance by 30%"
-    },
-    {
-      year: "2025",
-      role: "Ready for Next Challenge",
-      growth: "Seeking senior role to apply ML and leadership skills",
-  achievement: "Portfolio demonstrates 1+ years of growth and technical expertise"
+      role: "Software Engineering Intern",
+      growth: "Worked on web app development and automation as a fresher",
+      achievement: "Built a simple analytics dashboard and automated data entry at KreativeTimebox"
     }
   ];
 
   // Skills progression data
   const skillsEvolution = {
-    2022: ['HTML/CSS', 'JavaScript', 'Python Basics', 'SQL'],
-    2023: ['React', 'Node.js', 'MongoDB', 'Git', 'Python (Advanced)', 'Machine Learning'],
-    2024: ['FastAPI', 'PostgreSQL', 'AWS', 'Docker', 'Deep Learning', 'Data Engineering'],
-    2025: ['AI/ML Production', 'Cloud Architecture', 'Team Leadership', 'System Design']
+  2022: ['HTML/CSS', 'JavaScript', 'Python Basics', 'SQL'],
+  2023: ['React', 'Python (Intermediate)', 'Git', 'Data Analysis', 'Matplotlib'],
+  2024: ['Chart.js', 'Excel', 'REST APIs', 'Team Collaboration'],
+  2025: []
   };
 
   // Timeline data with achievements (comprehensive version)
@@ -248,69 +242,47 @@ const AboutSection = () => {
       color: 'from-blue-500 to-cyan-500',
       achievements: [
         { text: 'Data Science Specialization', icon: Award },
-        { text: 'Final Year Project: Snowflake', icon: Code },
         { text: 'CGPA: 8.5/10', icon: Star }
       ],
       skills: skillsEvolution[2022],
-      description: 'Built foundation in computer science with focus on AI and machine learning. Completed multiple projects in web development and data analysis.',
-      projects: ['Student Management System', 'ML Prediction Model', 'Web Portfolio']
+      description: 'Built a strong foundation in computer science, participated in coding contests, and completed academic projects in web and data analysis.',
+      projects: ['Student Management System', 'Mini Data Dashboard']
     },
     {
       id: 2,
-      year: '2024',
-      period: 'Jan 2024 - Aug 2024',
+      year: '2023',
+      period: 'Jun 2023 - Jul 2023',
       type: 'work',
-      title: 'Software Engineer Intern',
-      subtitle: 'KreativeTimebox / Startup',
-      location: 'Hyderabad, India',
+      title: 'Data Analyst Intern',
+      subtitle: 'IBM Skill Build',
+      location: 'Remote',
       icon: Briefcase,
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-blue-500 to-cyan-500',
       achievements: [
-        { text: 'Delivered 2+ ML projects', icon: Code },
-        { text: 'Improved system performance by 30%', icon: TrendingUp },
-        { text: 'Mentored 2 junior developers', icon: Users }
+        { text: 'Created sales dashboard with Python', icon: Code },
+        { text: 'Cleaned and organized raw data', icon: Database }
       ],
       skills: skillsEvolution[2023],
-      description: 'Started professional career focused on AI, ML, and data processing. Quickly adapted to modern technologies and agile methodologies.',
-      projects: ['E-commerce Platform', 'Data Analytics Dashboard', 'API Integration System']
+      description: 'Explored data analysis and visualization as a fresher, working on small projects and learning industry tools.',
+      projects: ['Retail Sales Dashboard']
     },
     {
       id: 3,
       year: '2024',
-      period: 'Aug 2024 - Present',
+      period: 'Jan 2024 – Mar 2024',
       type: 'work',
-      title: 'Software Engineer',
-      subtitle: 'KreativeTimebox / Startup',
-      location: 'Remote/Hybrid',
-      icon: Rocket,
-      color: 'from-green-500 to-emerald-500',
+      title: 'Software Engineering Intern',
+      subtitle: 'KreativeTimebox',
+      location: 'Remote',
+      icon: Briefcase,
+      color: 'from-purple-500 to-indigo-500',
       achievements: [
-        { text: 'Led ML implementation projects', icon: Award },
-        { text: 'Architected scalable data pipelines', icon: Code },
-        { text: 'Contributed to 3 open-source projects', icon: BookOpen }
+        { text: 'Built analytics dashboard with React', icon: Code },
+        { text: 'Automated data entry tasks', icon: Zap }
       ],
       skills: skillsEvolution[2024],
-      description: 'Expanded expertise to ML engineering and cloud technologies. Led multiple high-impact projects and contributed to team technical decisions.',
-      projects: ['ML Recommendation Engine', 'Cloud Data Platform', 'Real-time Analytics']
-    },
-    {
-      id: 4,
-      year: '2025',
-      period: 'Present',
-      type: 'growth',
-      title: 'Seeking Senior Opportunities',
-      subtitle: 'Ready for Leadership Roles',
-      location: 'Open to Global Remote',
-      icon: TrendingUp,
-      color: 'from-orange-500 to-red-500',
-      achievements: [
-        { text: 'AI/ML Production Experience', icon: Award },
-        { text: 'Full-Stack + Data Engineering', icon: Code },
-        { text: 'Leadership & Mentoring Ready', icon: Users }
-      ],
-      skills: skillsEvolution[2025],
-      description: 'Prepared for senior engineering roles with proven track record. Combining technical expertise with growing leadership experience.',
-      projects: ['Portfolio Showcase', 'Open Source Contributions', 'Technical Blog']
+      description: 'Worked on web application development and automation projects as a fresher, contributing to real-world solutions in a collaborative team environment.',
+      projects: ['Internal Analytics Dashboard']
     }
   ];
 
@@ -339,9 +311,9 @@ const AboutSection = () => {
 
   // Personal story and journey
   const personalStory = {
-    title: "My Journey in Technology",
-    story: "My passion for technology began during my engineering studies, where I discovered the power of data to solve real-world problems. What started as curiosity about algorithms evolved into a career dedicated to transforming complex data into actionable business insights. I've had the privilege of working across diverse industries, from healthcare to e-commerce, each presenting unique challenges that have shaped my problem-solving approach.",
-    motivation: "I believe technology should serve people, not the other way around. This philosophy drives me to create solutions that are not only technically robust but also user-friendly and impactful."
+    title: "My Journey as a Fresher",
+    story: "My interest in technology started in college, where I enjoyed building small web apps and exploring how data can solve real problems. As a fresher, I focused on learning the basics, participating in coding contests, and completing internships that gave me hands-on experience with real projects.",
+    motivation: "I'm excited to keep learning, contribute to meaningful projects, and grow as a developer."
   };
 
   const stats = [

@@ -31,29 +31,29 @@ const ExperienceEducationSection = () => {
   const experiences = [
     {
       id: 1,
-      title: "Software Engineer",
+      title: "Software Engineering Intern",
       company: "KreativeTimebox",
       location: "Remote",
-      duration: "Jan 2024 – Present",
-      type: "Full-time",
-      description: "Leading development of scalable web applications and data analytics solutions with focus on fraud detection and automation.",
+      duration: "Jan 2024 – Mar 2024",
+      type: "Internship",
+      description: "Worked on web application development and automation projects as a fresher, contributing to real-world solutions in a collaborative team environment.",
       achievements: [
-        "Developed a comprehensive financial analytics platform for fraud and duplicate detection",
-        "Achieved 95% accuracy in ML-powered fraud detection algorithms", 
-        "Reduced manual reconciliation time by 60% through automated processes",
-        "Built responsive web interfaces using React and modern frontend technologies"
+        "Built a simple dashboard for internal analytics using React and Chart.js",
+        "Assisted in automating data entry tasks, reducing manual effort",
+        "Learned basics of REST APIs and integrated backend data",
+        "Participated in code reviews and daily standups"
       ],
-      technologies: ["Python", "FastAPI", "React", "PostgreSQL", "Machine Learning", "Docker"],
+      technologies: ["React", "JavaScript", "Chart.js", "HTML", "CSS"],
       metrics: {
-        projects: 4,
-        accuracy: 95,
-        impact: 60,
-        teamSize: 7
+        projects: 1,
+        accuracy: 0,
+        impact: 10,
+        teamSize: 4
       },
       gradient: "from-purple-500/20 via-indigo-500/20 to-blue-500/20",
       glowColor: "shadow-purple-500/25",
       iconBg: "from-purple-500 to-indigo-600",
-      status: "current"
+      status: "completed"
     },
     {
       id: 2,
@@ -62,19 +62,19 @@ const ExperienceEducationSection = () => {
       location: "Remote", 
       duration: "Jun 2023 – Jul 2023",
       type: "Internship",
-      description: "Focused on data analysis, visualization, and business intelligence solutions with emphasis on retail analytics.",
+      description: "Explored data analysis and visualization as a fresher, working on small projects and learning industry tools.",
       achievements: [
-        "Created interactive retail sales analysis dashboards using Python",
-        "Improved data processing efficiency by implementing automated pipelines",
-        "Developed comprehensive reports that influenced strategic business decisions",
-        "Gained expertise in data cleaning, transformation, and statistical analysis"
+        "Created a basic sales dashboard using Python and Matplotlib",
+        "Cleaned and organized raw data for reporting",
+        "Generated summary reports for a sample retail dataset",
+        "Practiced SQL queries and Excel data analysis"
       ],
-      technologies: ["Python", "Pandas", "Matplotlib", "Plotly", "SQL", "Excel"],
+      technologies: ["Python", "Pandas", "Matplotlib", "SQL", "Excel"],
       metrics: {
-        projects: 2,
-        accuracy: 88,
-        impact: 40,
-        teamSize: 5
+        projects: 1,
+        accuracy: 0,
+        impact: 5,
+        teamSize: 3
       },
       gradient: "from-blue-500/20 via-cyan-500/20 to-teal-500/20",
       glowColor: "shadow-blue-500/25", 
