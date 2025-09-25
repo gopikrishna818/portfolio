@@ -4,7 +4,6 @@ import AboutSection from '@/components/AboutSection';
 import KeyAchievementsSection from '@/components/KeyAchievementsSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import SkillsSection from '@/components/SkillsSection';
-import ServicesSection from '@/components/ServicesSection';
 import ExperienceEducationSection from '@/components/ExperienceEducationSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import CertificationsSection from '@/components/CertificationsSection';
@@ -98,7 +97,6 @@ const Index = () => {
             
             <SectionErrorBoundary sectionName="Services">
               <div className="section-spacing">
-                <ServicesSection />
               </div>
             </SectionErrorBoundary>
             

@@ -179,47 +179,47 @@ const HeroSection = () => {
                 GOPIKRISHNA CHEGONI
                 {/* Professional Title Badge - Hide on mobile for cleaner look */}
                 <div className="hidden md:block absolute -top-4 right-0 bg-gradient-to-r from-green-500/20 to-blue-600/20 backdrop-blur-xl border border-green-400/30 px-4 py-2 rounded-full text-sm text-green-400 font-medium animate-pulse-glow">
-                  🟢 Available for Full-time Opportunities
+                  🟢 Open to Internships & Entry-Level Roles
                 </div>
               </h1>
               
               {/* Mobile Professional Badge */}
               <div className="md:hidden bg-gradient-to-r from-green-500/20 to-blue-600/20 backdrop-blur-xl border border-green-400/30 px-3 py-2 rounded-full text-xs text-green-400 font-medium animate-pulse-glow inline-block">
-                🟢 Available for Full-time Opportunities
+                🟢 Open to Internships & Entry-Level Roles
               </div>
               
               {/* Enhanced Value Proposition */}
               <div className="space-y-1 md:space-y-2">
                 <p className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent animate-slide-up" style={{ animationDelay: '0.2s' }}>
-                  Engineering Scalable Data Pipelines & AI Systems
+                  Aspiring Machine Learning & Data Science Engineer
                 </p>
                 <p className="text-lg md:text-xl lg:text-2xl font-semibold text-muted-foreground animate-slide-up" style={{ animationDelay: '0.25s' }}>
-                  AI & Data Engineer | Specializing in Real-Time Data Processing, ML Deployment
+                  Passionate about AI, Data, and Building Real-World Projects
                 </p>
                 
                 {/* Impact Metrics Row */}
                 <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
                   <div className="bg-black/30 backdrop-blur-xl border border-green-400/30 px-3 py-2 rounded-lg">
-                    <div className="text-green-400 font-bold text-sm md:text-base">100M+</div>
-                    <div className="text-xs text-gray-400">Records Processed</div>
+                    <div className="text-green-400 font-bold text-sm md:text-base">2</div>
+                    <div className="text-xs text-gray-400">Internships Completed</div>
                   </div>
                   <div className="bg-black/30 backdrop-blur-xl border border-blue-400/30 px-3 py-2 rounded-lg">
-                    <div className="text-blue-400 font-bold text-sm md:text-base">15+</div>
-                    <div className="text-xs text-gray-400">AI Models Deployed</div>
+                    <div className="text-blue-400 font-bold text-sm md:text-base">6+</div>
+                    <div className="text-xs text-gray-400">Certifications</div>
                   </div>
                   <div className="bg-black/30 backdrop-blur-xl border border-purple-400/30 px-3 py-2 rounded-lg">
                     <div className="text-purple-400 font-bold text-sm md:text-base">10+</div>
-                    <div className="text-xs text-gray-400">Projects Delivered</div>
+                    <div className="text-xs text-gray-400">Projects</div>
                   </div>
                   <div className="bg-black/30 backdrop-blur-xl border border-orange-400/30 px-3 py-2 rounded-lg">
-                    <div className="text-orange-400 font-bold text-sm md:text-base">1+</div>
-                    <div className="text-xs text-gray-400">Years Experience</div>
+                    <div className="text-orange-400 font-bold text-sm md:text-base">2024</div>
+                    <div className="text-xs text-gray-400">CSE Graduate</div>
                   </div>
                 </div>
                 
                 {/* Elevator Pitch */}
                 <p className="text-sm md:text-base text-foreground/70 animate-slide-up max-w-2xl mx-auto mt-4" style={{ animationDelay: '0.35s' }}>
-                  From data ingestion to model deployment, I engineer end-to-end AI systems that transform raw data into reliable, scalable, and automated solutions.
+                  Eager to apply my academic knowledge and internship experience to real-world challenges. I love learning, collaborating, and building practical solutions with code and data.
                 </p>
                 
                 {/* Location & Remote Preference */}

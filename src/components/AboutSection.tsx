@@ -268,44 +268,45 @@ const AboutSection = () => {
     },
     {
       id: 3,
-      year: '2024',
-      period: 'Jan 2024 – Mar 2024',
+      year: '2025',
+      period: 'May 2025 – Aug 2025',
       type: 'work',
-      title: 'Software Engineering Intern',
+      title: 'Machine Learning Intern',
       subtitle: 'KreativeTimebox',
-      location: 'Remote',
+      location: 'Hyderabad',
       icon: Briefcase,
       color: 'from-purple-500 to-indigo-500',
       achievements: [
-        { text: 'Built analytics dashboard with React', icon: Code },
-        { text: 'Automated data entry tasks', icon: Zap }
+        { text: 'Implemented an end-to-end document intelligence system that processed 50K+ financial documents per month, achieving over 95% extraction accuracy.', icon: Award },
+        { text: 'Engineered RESTful FastAPI services for fraud detection and anomaly classification, reducing API latency by 30%.', icon: Code },
+        { text: 'Collaborated in Agile sprints with Git-based workflows, enhancing team delivery speed by 20%.', icon: Users }
       ],
-      skills: skillsEvolution[2024],
-      description: 'Worked on web application development and automation projects as a fresher, contributing to real-world solutions in a collaborative team environment.',
-      projects: ['Internal Analytics Dashboard']
+      skills: ['Python', 'FastAPI', 'Machine Learning', 'Agile', 'Git'],
+      description: 'Worked on document intelligence, fraud detection APIs, and Agile team collaboration as a Machine Learning Intern.',
+      projects: ['Document Intelligence System', 'Fraud Detection API']
     }
   ];
 
   const highlights = [
     {
       icon: Code,
-      title: 'Full-Stack Development',
-      description: 'Building scalable web applications with modern technologies',
+      title: 'Internship Experience',
+      description: 'Completed internships in Machine Learning and Data Analysis at KreativeTimebox and IBM Skill Build',
     },
     {
-      icon: Database,
-      title: 'Data Engineering',
-      description: 'Designing robust data pipelines and analytics systems',
+      icon: Award,
+      title: 'Certifications',
+      description: 'Earned 6+ industry-recognized certifications in Data Science, ML, and Web Development',
     },
     {
-      icon: Brain,
-      title: 'AI & Machine Learning',
-      description: 'Implementing intelligent solutions for complex problems',
+      icon: BookOpen,
+      title: 'Academic Projects',
+      description: 'Built mini projects and dashboards applying classroom knowledge to real-world problems',
     },
     {
-      icon: TrendingUp,
-      title: 'Business Impact',
-      description: 'Delivering measurable results that drive growth',
+      icon: Users,
+      title: 'Teamwork & Collaboration',
+      description: 'Worked with diverse teams, participated in coding clubs, and contributed to group projects',
     },
   ];
 
@@ -380,11 +381,10 @@ const AboutSection = () => {
 
             <div className="space-y-4 text-body">
               <p className="leading-relaxed">
-                AI/ML Engineer with 1+ years building intelligent systems and deploying advanced ML models. Specialized in Ollama servers, Gemma models, and Python-based frameworks.
+                Computer Science graduate with a specialization in Data Science, passionate about Machine Learning, Agentic AI, Workflow Automation, and Document Intelligence. Skilled in building scalable AI systems and end-to-end data pipelines on cloud platforms, with strong problem-solving abilities and a focus on delivering production-ready AI solutions.
               </p>
-
               <p className="leading-relaxed">
-                Delivered 4+ AI projects at KreativeTimebox focusing on computer vision, NLP, and predictive analytics. Expert in model optimization and scalable deployment pipelines.
+                I am always eager to learn new technologies and enjoy collaborating with diverse teams. My academic journey and internships have helped me develop a practical mindset, allowing me to apply theoretical knowledge to solve real-world problems and deliver impactful results.
               </p>
             </div>
           </div>

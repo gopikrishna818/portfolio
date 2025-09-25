@@ -19,26 +19,7 @@ const Footer = () => {
     }
   };
 
-  const services = [
-    { 
-      name: 'Web Development', 
-      icon: Globe, 
-      color: 'from-blue-500 to-cyan-500',
-      description: 'Modern web applications'
-    },
-    { 
-      name: 'AI Research & Implementation', 
-      icon: Brain, 
-      color: 'from-purple-500 to-pink-500',
-      description: 'Intelligent solutions'
-    },
-    { 
-      name: 'Data Engineering', 
-      icon: Database, 
-      color: 'from-green-500 to-emerald-500',
-      description: 'Scalable data pipelines'
-    }
-  ];
+
 
   return (
     <footer className="relative bg-black/40 backdrop-blur-xl border-t border-white/10 overflow-hidden">
@@ -220,7 +201,6 @@ const Footer = () => {
                 { href: '#about', label: 'About Me' },
                 { href: '#portfolio', label: 'Portfolio' },
                 { href: '#skills', label: 'Skills' },
-                { href: '#services', label: 'Services' },
                 { href: '#experience', label: 'Experience' },
                 { href: '#contact', label: 'Contact' }
               ].map((link, index) => (
@@ -243,51 +223,7 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Services with Simple Text */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40, rotateX: 45 }}
-            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
-            viewport={{ once: true }}
-            className="space-y-3"
-          >
-            <motion.h3 
-              whileHover={{}}
-              className="text-lg font-bold flex items-center space-x-2 text-white"
-            >
-              <motion.div
-                animate={{ 
-                  rotate: [0, 15, -15, 0]
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <Zap className="w-5 h-5 text-purple-400" />
-              </motion.div>
-              <span>Services</span>
-            </motion.h3>
-            <div className="space-y-1">
-              {[
-                'Web Development',
-                'AI Research & Implementation', 
-                'Data Engineering'
-              ].map((service, index) => (
-                <motion.div 
-                  key={service}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  whileHover={{ x: 8, color: '#a855f7' }}
-                  transition={{ 
-                    duration: 0.3, 
-                    delay: index * 0.1,
-                  }}
-                  viewport={{ once: true }}
-                  className="text-sm text-gray-400 hover:text-purple-400 transition-colors cursor-default"
-                >
-                  {service}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+
         </div>
 
         {/* Enhanced Bottom Bar */}

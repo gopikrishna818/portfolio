@@ -1,80 +1,72 @@
 import { motion } from 'framer-motion';
-import { Award, FileCheck, ExternalLink, Calendar } from 'lucide-react';
+import { Award, FileCheck, ExternalLink, Calendar, Star } from 'lucide-react';
 
 const CertificationsSection = () => {
+  // Screenshot-style data (replace with your real data as needed)
   const certifications = [
     {
       id: 1,
-      title: "AWS Certified Solutions Architect",
-      issuer: "Amazon Web Services",
+      title: "Python for Data Science Certification",
+      issuer: "NPTEL IIT Madras",
       date: "2024",
-      type: "certification",
-      status: "Active",
-      credentialId: "AWS-CSA-2024-001",
-      skills: ["Cloud Architecture", "AWS Services", "Infrastructure Design"],
-      logo: "/aws-logo.png", // Replace with actual logo
-      verifyUrl: "https://aws.amazon.com/verification"
+      rating: 4.7,
+      tags: ["Python", "Data Science", "NPTEL", "IIT Madras"],
+      score: "73%",
+      verified: true,
+      color: "from-blue-500 to-cyan-500",
+  viewUrl: "https://drive.google.com/file/d/1OU9nMXGrZNgj96H0vhI9zko3UW3CWp29/view?usp=sharing",
     },
     {
       id: 2,
-      title: "Google Cloud Professional Data Engineer",
-      issuer: "Google Cloud",
-      date: "2023",
-      type: "certification",
-      status: "Active",
-      credentialId: "GCP-PDE-2023-015",
-      skills: ["BigQuery", "Data Pipeline", "ML Engineering"],
-      logo: "/gcp-logo.png", // Replace with actual logo
-      verifyUrl: "https://cloud.google.com/certification"
+      title: "Java Full Stack Course Completion Certificate",
+      issuer: "Wipro",
+      date: "2024",
+      rating: 4.6,
+      tags: ["Java", "Full Stack", "Wipro"],
+      level: "Intermediate",
+      verified: true,
+      color: "from-green-500 to-emerald-500",
+  viewUrl: "https://drive.google.com/file/d/1uq2d-DiwDjT8iprVuUSvIYUNrkfQBdHs/view?usp=sharing",
     },
     {
       id: 3,
-      title: "Microsoft Azure AI Engineer Associate",
-      issuer: "Microsoft",
-      date: "2023",
-      type: "certification",
-      status: "Active",
-      credentialId: "MSFT-AI-2023-092",
-      skills: ["Azure AI", "Cognitive Services", "Machine Learning"],
-      logo: "/azure-logo.png", // Replace with actual logo
-      verifyUrl: "https://docs.microsoft.com/en-us/learn/certifications"
+      title: "Java Full Stack Development (MERN) Course + Project Certification",
+      issuer: "Pregrad",
+      date: "2024",
+      rating: 4.5,
+      tags: ["Java", "Full Stack", "MERN", "Project"],
+      level: "Intermediate",
+      verified: true,
+      color: "from-purple-500 to-pink-500",
+  viewUrl: "#",
     },
     {
       id: 4,
-      title: "Best Innovation Award",
-      issuer: "TechCorp Solutions",
-      date: "2024",
-      type: "award",
-      status: "Received",
-      description: "Recognized for developing an AI-powered customer analytics platform that increased business efficiency by 40%",
-      skills: ["Innovation", "AI/ML", "Business Impact"]
+      title: "Codekaze Naukri Engineers Week",
+      issuer: "Naukri.com",
+      date: "2025",
+      rating: 5.0,
+      tags: ["Competitive Programming", "All India Rank", "Coding Contest"],
+      rank: "992/1.05M",
+      verified: true,
+      color: "from-yellow-500 to-orange-500",
+  viewUrl: "https://drive.google.com/file/d/1KiTjA__xHuyBm_NMaltfkUcStqItvIb4/view?usp=sharing",
     },
     {
       id: 5,
-      title: "Certified Kubernetes Administrator (CKA)",
-      issuer: "Cloud Native Computing Foundation",
+      title: "Ethical Hacking Workshop Certification",
+      issuer: "Remark Skill / Elan & Nvision IIT Hyderabad",
       date: "2023",
-      type: "certification",
-      status: "Active",
-      credentialId: "CKA-2023-150892",
-      skills: ["Kubernetes", "Container Orchestration", "DevOps"],
-      logo: "/kubernetes-logo.png", // Replace with actual logo
-      verifyUrl: "https://www.cncf.io/certification/cka"
-    },
-    {
-      id: 6,
-      title: "Excellence in Data Science",
-      issuer: "DataFlow Inc",
-      date: "2023",
-      type: "award",
-      status: "Received",
-      description: "Outstanding performance in developing real-time data pipelines and predictive analytics solutions",
-      skills: ["Data Science", "Analytics", "Performance"]
+      rating: 4.8,
+      tags: ["Ethical Hacking", "Workshop", "IIT Hyderabad"],
+      level: "Beginner",
+      verified: true,
+      color: "from-red-500 to-yellow-500",
+  viewUrl: "https://drive.google.com/file/d/1MHmlGtFXCKjFLMIaaZaijJQRxehDIa-V/view?usp=sharing"
     }
   ];
 
-  const certificationItems = certifications.filter(item => item.type === 'certification');
-  const awards = certifications.filter(item => item.type === 'award');
+
 
   return (
     <section id="certifications" className="py-8 md:py-12 bg-gradient-to-b from-card/30 to-background relative z-10 clear-both">
@@ -94,124 +86,79 @@ const CertificationsSection = () => {
           </p>
         </motion.div>
 
-        {/* Combined Compact Grid Layout - Like Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6 max-w-7xl mx-auto">
-          {/* Certifications */}
-          {certificationItems.map((cert, index) => (
+        {/* Screenshot-style Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {certifications.map((cert, index) => (
             <motion.div
               key={cert.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.02, y: -3 }}
-              transition={{ 
-                duration: 0.3, 
-                delay: index * 0.1
-              }}
+              whileHover={{ scale: 1.03, y: -4 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="group relative"
             >
-              <div className="relative h-full glass-enhanced rounded-xl p-4 border border-border/50 hover:border-blue-500/50 backdrop-blur-xl transition-all duration-300 hover:shadow-lg">
-                {/* Simple Status Icon */}
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <FileCheck size={12} className="text-white" />
+              <div className="relative h-full rounded-2xl p-5 bg-gradient-to-br from-black/60 to-card/80 border border-border/60 shadow-lg hover:shadow-xl transition-all duration-300">
+                {/* Verified Badge */}
+                {cert.verified && (
+                  <span className="absolute top-3 right-3 bg-green-900/80 text-green-300 text-xs px-3 py-1 rounded-full font-semibold flex items-center gap-1 border border-green-500/30">
+                    <FileCheck size={14} className="inline-block mr-1 text-green-400" /> Verified
+                  </span>
+                )}
+
+                {/* Icon */}
+                <div className={`w-10 h-10 rounded-lg bg-gradient-to-r ${cert.color} flex items-center justify-center mb-3 shadow-md`}>
+                  <Award size={22} className="text-white" />
                 </div>
 
-                {/* Compact Icon */}
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mb-3">
-                  <FileCheck size={14} className="text-white" />
-                </div>
-
-                {/* Certification Info - Very Compact */}
-                <h4 className="text-sm font-semibold text-foreground mb-2 line-clamp-2">
+                {/* Title & Issuer */}
+                <h4 className="text-base font-semibold text-blue-100 mb-1 leading-tight">
                   {cert.title}
                 </h4>
-                
-                <p className="text-xs text-blue-400 font-medium mb-2">{cert.issuer}</p>
-                
-                <div className="flex items-center text-xs text-muted-foreground mb-3">
-                  <Calendar size={10} className="mr-1" />
-                  {cert.date}
-                </div>
+                <a href="#" className="text-sm font-medium text-blue-400 hover:underline mb-2 block">{cert.issuer}</a>
 
-                {/* Single Key Skill */}
-                <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 mb-3">
-                  <div className="text-center">
-                    <div className="text-xs font-bold text-blue-400">{cert.skills[0]}</div>
-                    <div className="text-xs text-muted-foreground">+{cert.skills.length - 1} more skills</div>
+                {/* Year & Rating */}
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center text-xs text-muted-foreground">
+                    <Calendar size={13} className="mr-1" />
+                    {cert.date}
+                  </div>
+                  <div className="flex items-center gap-1 text-yellow-400 font-bold">
+                    <Star size={14} className="inline-block" />
+                    <span className="text-xs">{cert.rating}</span>
                   </div>
                 </div>
 
-                {/* Verify Link */}
-                {cert.verifyUrl && (
-                  <div className="flex items-center justify-center">
-                    <a
-                      href={cert.verifyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-xs text-blue-400 hover:text-blue-300 transition-colors"
-                    >
-                      Verify
-                      <ExternalLink size={10} className="ml-1" />
-                    </a>
+                {/* Description (optional) */}
+                {/* <p className="text-xs text-muted-foreground mb-2">{cert.description}</p> */}
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {cert.tags.map((tag, i) => (
+                    <span key={i} className="px-2 py-1 bg-black/30 text-purple-200 rounded text-xs font-medium border border-purple-700/30">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Score, Level, or Rank */}
+                {(cert.score || cert.level || cert.rank) && (
+                  <div className="bg-black/40 border border-border/30 rounded-lg px-3 py-2 text-xs text-gray-300 font-mono mb-3">
+                    {cert.score && (<span>Score: <span className="font-semibold">{cert.score}</span></span>)}
+                    {cert.level && (<span>Level: <span className="font-semibold">{cert.level}</span></span>)}
+                    {cert.rank && (<span>Rank: <span className="font-semibold">{cert.rank}</span></span>)}
                   </div>
                 )}
-              </div>
-            </motion.div>
-          ))}
 
-          {/* Awards */}
-          {awards.map((award, index) => (
-            <motion.div
-              key={award.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.02, y: -3 }}
-              transition={{ 
-                duration: 0.3, 
-                delay: (certificationItems.length + index) * 0.1
-              }}
-              viewport={{ once: true }}
-              className="group relative"
-            >
-              <div className="relative h-full glass-enhanced rounded-xl p-4 border border-border/50 hover:border-yellow-500/50 backdrop-blur-xl transition-all duration-300 hover:shadow-lg">
-                {/* Simple Award Icon */}
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center">
-                  <Award size={12} className="text-white" />
-                </div>
-
-                {/* Compact Icon */}
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center mb-3">
-                  <Award size={14} className="text-white" />
-                </div>
-
-                {/* Award Info - Very Compact */}
-                <h4 className="text-sm font-semibold text-foreground mb-2 line-clamp-2">
-                  {award.title}
-                </h4>
-                
-                <p className="text-xs text-yellow-400 font-medium mb-2">{award.issuer}</p>
-                
-                <div className="flex items-center text-xs text-muted-foreground mb-3">
-                  <Calendar size={10} className="mr-1" />
-                  {award.date}
-                </div>
-
-                {/* Truncated Description */}
-                {award.description && (
-                  <p className="text-xs text-foreground/80 mb-3 line-clamp-3">
-                    {award.description}
-                  </p>
-                )}
-
-                {/* Single Key Achievement */}
-                <div className="p-2 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
-                  <div className="text-center">
-                    <div className="text-xs font-bold text-yellow-400">{award.skills[0]}</div>
-                    <div className="text-xs text-muted-foreground">
-                      {award.skills.length > 1 ? `+${award.skills.length - 1} more` : 'Achievement'}
-                    </div>
-                  </div>
-                </div>
+                {/* View Certificate Button */}
+                <a
+                  href={cert.viewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full block mt-1 px-4 py-2 rounded-lg bg-purple-600/80 text-white font-semibold text-sm text-center hover:bg-purple-700/90 transition-all"
+                >
+                  <ExternalLink size={15} className="inline-block mr-1 mb-0.5" /> View Certificate
+                </a>
               </div>
             </motion.div>
           ))}

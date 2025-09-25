@@ -28,10 +28,10 @@ const skillsData = {
     bgGradient: 'from-blue-500/10 to-purple-600/10',
     size: 'large', // Different sizes for bento layout
     skills: [
-  { name: 'Python', level: 95, experience: '1+ years', projects: 7, description: 'Advanced data science & web development' },
-  { name: 'JavaScript', level: 90, experience: '1+ years', projects: 5, description: 'Modern ES6+ & frontend frameworks' },
-  { name: 'TypeScript', level: 88, experience: '1+ years', projects: 3, description: 'Type-safe development' },
-  { name: 'SQL', level: 92, experience: '1+ years', projects: 7, description: 'Complex queries & optimization' }
+  { name: 'Python', level: 95, experience: '', projects: 7, description: 'Advanced data science & web development' },
+  { name: 'JavaScript', level: 90, experience: '', projects: 6, description: 'Modern ES6+ & frontend frameworks' },
+  { name: 'TypeScript', level: 88, experience: '', projects: 5, description: 'Type-safe development' },
+  { name: 'SQL', level: 92, experience: '', projects: 6, description: 'Complex queries & optimization' }
     ]
   },
   'Libraries & Frameworks': {
@@ -40,9 +40,9 @@ const skillsData = {
     bgGradient: 'from-green-500/10 to-emerald-600/10',
     size: 'medium',
     skills: [
-  { name: 'React', level: 92, experience: '1+ years', projects: 5, description: 'Modern hooks & state management' },
-  { name: 'FastAPI', level: 95, experience: '1+ years', projects: 5, description: 'High-performance APIs' },
-  { name: 'TensorFlow', level: 85, experience: '1+ years', projects: 5, description: 'Deep learning models' }
+  { name: 'React', level: 92, experience: '', projects: 4, description: 'Modern hooks & state management' },
+  { name: 'FastAPI', level: 95, experience: '', projects: 3, description: 'High-performance APIs' },
+  { name: 'TensorFlow', level: 85, experience: '', projects: 2, description: 'Deep learning models' }
     ]
   },
   'Databases': {
@@ -51,8 +51,8 @@ const skillsData = {
     bgGradient: 'from-purple-500/10 to-pink-600/10',
     size: 'small',
     skills: [
-  { name: 'PostgreSQL', level: 89, experience: '1+ years', projects: 5, description: 'Advanced database design' },
-  { name: 'MongoDB', level: 82, experience: '1+ years', projects: 5, description: 'NoSQL & aggregation' }
+  { name: 'PostgreSQL', level: 89, experience: '', projects: 3, description: 'Advanced database design' },
+  { name: 'MongoDB', level: 82, experience: '', projects: 2, description: 'NoSQL & aggregation' }
     ]
   },
   'Tools & Technologies': {
@@ -61,9 +61,9 @@ const skillsData = {
     bgGradient: 'from-orange-500/10 to-red-600/10',
     size: 'medium',
     skills: [
-  { name: 'Git/GitHub', level: 92, experience: '1+ years', projects: 7, description: 'Version control mastery' },
-  { name: 'Docker', level: 85, experience: '1+ years', projects: 2, description: 'Containerization expert' },
-  { name: 'AWS', level: 87, experience: '1+ years', projects: 5, description: 'Cloud infrastructure' }
+  { name: 'Git/GitHub', level: 92, experience: '', projects: 5, description: 'Version control mastery' },
+  { name: 'Docker', level: 85, experience: '', projects: 2, description: 'Containerization expert' },
+  { name: 'AWS', level: 87, experience: '', projects: 3, description: 'Cloud infrastructure' }
     ]
   },
   'Data Science & AI': {
@@ -72,10 +72,10 @@ const skillsData = {
     bgGradient: 'from-indigo-500/10 to-cyan-600/10',
     size: 'large',
     skills: [
-  { name: 'Machine Learning', level: 90, experience: '1+ years', projects: 5, description: 'Supervised & unsupervised learning' },
-  { name: 'Deep Learning', level: 85, experience: '1+ years', projects: 2, description: 'Neural networks & AI models' },
-      { name: 'Computer Vision', level: 80, experience: '1+ years', projects: 3, description: 'Image processing & recognition' },
-  { name: 'Data Analysis', level: 93, experience: '1+ years', projects: 5, description: 'Statistical analysis & insights' }
+  { name: 'Machine Learning', level: 90, experience: '', projects: 4, description: 'Supervised & unsupervised learning' },
+  { name: 'Deep Learning', level: 85, experience: '', projects: 2, description: 'Neural networks & AI models' },
+  { name: 'Computer Vision', level: 80, experience: '', projects: 3, description: 'Image processing & recognition' },
+  { name: 'Data Analysis', level: 93, experience: '', projects: 4, description: 'Statistical analysis & insights' }
     ]
   },
   'Web Technologies': {
@@ -84,8 +84,8 @@ const skillsData = {
     bgGradient: 'from-rose-500/10 to-pink-600/10',
     size: 'small',
     skills: [
-  { name: 'HTML/CSS', level: 94, experience: '1+ years', projects: 5, description: 'Modern web standards' },
-  { name: 'REST APIs', level: 90, experience: '1+ years', projects: 5, description: 'API design & integration' }
+  { name: 'HTML/CSS', level: 94, experience: '', projects: 5, description: 'Modern web standards' },
+  { name: 'REST APIs', level: 90, experience: '', projects: 3, description: 'API design & integration' }
     ]
   }
 };

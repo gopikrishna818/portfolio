@@ -31,24 +31,23 @@ const ExperienceEducationSection = () => {
   const experiences = [
     {
       id: 1,
-      title: "Software Engineering Intern",
+      title: "Machine Learning Intern",
       company: "KreativeTimebox",
-      location: "Remote",
-      duration: "Jan 2024 – Mar 2024",
+      location: "Hyderabad",
+      duration: "May 2025 – Aug 2025",
       type: "Internship",
-      description: "Worked on web application development and automation projects as a fresher, contributing to real-world solutions in a collaborative team environment.",
+      description: "Implemented an end-to-end document intelligence system that processed 50K+ financial documents per month, achieving over 95% extraction accuracy.",
       achievements: [
-        "Built a simple dashboard for internal analytics using React and Chart.js",
-        "Assisted in automating data entry tasks, reducing manual effort",
-        "Learned basics of REST APIs and integrated backend data",
-        "Participated in code reviews and daily standups"
+        "Implemented an end-to-end document intelligence system that processed 50K+ financial documents per month, achieving over 95% extraction accuracy.",
+        "Engineered RESTful FastAPI services for fraud detection and anomaly classification, reducing API latency by 30%.",
+        "Collaborated in Agile sprints with Git-based workflows, enhancing team delivery speed by 20%."
       ],
-      technologies: ["React", "JavaScript", "Chart.js", "HTML", "CSS"],
+      technologies: ["Python", "FastAPI", "Machine Learning", "Agile", "Git"],
       metrics: {
-        projects: 1,
-        accuracy: 0,
-        impact: 10,
-        teamSize: 4
+        projects: 2,
+        accuracy: 95,
+        impact: 45,
+        teamSize: 5
       },
       gradient: "from-purple-500/20 via-indigo-500/20 to-blue-500/20",
       glowColor: "shadow-purple-500/25",
@@ -72,7 +71,7 @@ const ExperienceEducationSection = () => {
       technologies: ["Python", "Pandas", "Matplotlib", "SQL", "Excel"],
       metrics: {
         projects: 1,
-        accuracy: 0,
+        accuracy: 30,
         impact: 5,
         teamSize: 3
       },
@@ -657,14 +656,14 @@ const ExperienceEducationSection = () => {
             {[
               { 
                 icon: Clock, 
-                value: "2+", 
-                label: "Years Experience", 
+                value: "2", 
+                label: "Internships", 
                 color: "text-purple-400",
                 bg: "from-purple-500/20 to-indigo-500/20"
               },
               { 
                 icon: Target, 
-                value: "13+", 
+                value: "10+", 
                 label: "Projects Completed", 
                 color: "text-blue-400",
                 bg: "from-blue-500/20 to-cyan-500/20"

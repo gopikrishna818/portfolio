@@ -11,187 +11,110 @@ const PortfolioSection = () => {
   const [demoViewerOpen, setDemoViewerOpen] = useState<number | null>(null);
 
   const projects = [
-    {
+  {
       id: 1,
-      title: 'Google Gemini Key-Rotating Prompt Server & n8n Automation Workflow',
-      subtitle: 'Enterprise AI Infrastructure: Scaling Gemini API Operations',
-      description: 'Built enterprise-grade AI infrastructure with automated key rotation, n8n workflows, and comprehensive automation for lead generation and outreach.',
-      fullDescription: `Built a Node.js server that rotates Google Gemini API keys, handles rate limits, and sends automated email alerts. Integrated with n8n for a full automation workflow: personalized LinkedIn messaging, Supabase logging, Retell AI voice calls, web scraping, and call analysis. Demonstrates backend, frontend, devops, and automation ownership.`,
-      // Case Study Details
-      client: "Marketing Automation Startup",
-      duration: "4 months",
-      team: "2 developers",
-      challenge: "Startup needed to scale their AI-powered lead generation but faced API rate limits, manual processes, and lack of integration between different tools. Manual outreach was limiting growth potential.",
-      solution: "Architected a Node.js server with intelligent API key rotation, integrated n8n for workflow automation, connected Supabase for data management, and implemented Retell AI for voice calls. Created seamless automation from lead discovery to conversion.",
-      results: [
-        { metric: "API Uptime", value: "99.9%", impact: "Zero downtime for critical operations" },
-        { metric: "Lead Processing", value: "Automated", impact: "Eliminated manual data entry and follow-ups" },
-        { metric: "Operational Costs", value: "-60%", impact: "Reduced staffing needs and infrastructure costs" }
-      ],
+      title: 'SmartDoc Parser – Invoice & Bank Statement Extraction',
+      subtitle: 'ML Intern Project at KreativeTimebox',
+      description: 'OCR and LLM-powered parser using DocTr, PaddleOCR, and LangChain for high-accuracy field extraction.',
+      fullDescription: `Built an OCR and LLM-powered parser using DocTr, PaddleOCR, and LangChain to extract structured fields from invoices and bank statements with over 90% accuracy, eliminating reliance on third-party APIs.`,
       achievements: [
-        'Automated Gemini API key rotation and alerting',
-        'n8n workflow with webhook, Supabase, Retell AI, cal.com integration',
-        'Advanced call analysis and multi-step fallback logic',
-        'Full documentation and live demo'
+        'Achieved 90%+ extraction accuracy on real-world documents',
+        'Integrated DocTr, PaddleOCR, and LangChain for robust parsing',
+        'Eliminated third-party API costs',
+        'Productionized for business use at KreativeTimebox'
       ],
-      techStack: ['Node.js', 'n8n', 'Supabase', 'Retell AI', 'cal.com', 'Vercel', 'SMTP', 'Python', 'Web Scraping'],
-      category: 'Full-Stack Automation',
-      image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-      demoGif: 'https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif', // Placeholder - replace with actual demo
-      githubUrl: 'https://github.com/gopikrishna818/gemini-key-rotator-n8n',
-      liveUrl: 'https://gemini-key-rotator-demo.vercel.app', // Updated with working demo
-      stars: 24,
-      forks: 8,
-      featured: true
+      techStack: ['Python', 'DocTr', 'PaddleOCR', 'LangChain', 'Streamlit'],
+      category: 'AI Document Intelligence',
+      githubUrl: 'https://github.com/gopikrishna818/smartdoc-parser',
+  featured: true,
+  image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1000&q=80' // OCR/AI document parsing
     },
     {
       id: 2,
-      title: 'AI Content Strategy Engine',
-      subtitle: 'Trend Discovery & Content Planning Platform',
-      description: 'AI-powered dashboard for real-time trend discovery, competitor analysis, and auto-generated content strategies across platforms.',
-      fullDescription: `Developed a unified dashboard for content strategists and marketers. Sources trends from Twitter, YouTube, Reddit, and Google Trends. Analyzes high-performing content, benchmarks competitors, and generates editorial calendars and strategy plans. Built with React, FastAPI, and advanced NLP models.`,
+      title: 'AI Lead-Gen & Outreach Automation Engine',
+      subtitle: 'Personal Project',
+      description: 'Production-grade multi-layered automation system for AI-driven prospecting and appointment booking.',
+      fullDescription: `Developed a production-grade multi-layered automation system using n8n, Supabase, Retell AI, and Google Gemini with key-rotation, advanced prompt engineering, real-time call analysis, and fully automated lead outreach, enabling end-to-end AI-driven prospecting and appointment booking.`,
       achievements: [
-        'Real-time cross-platform trend discovery',
-        'Content analyzer and strategy generator',
-        'Competitor tracker and benchmarking',
-        'Auto-generated 30-day content calendar'
+        'Automated lead discovery, outreach, and appointment booking',
+        'Integrated n8n, Supabase, Retell AI, and Google Gemini',
+        'Advanced prompt engineering and real-time call analysis',
+        'End-to-end AI-driven workflow'
       ],
-      techStack: ['React.js', 'FastAPI', 'OpenAI GPT', 'MongoDB', 'D3.js', 'Chart.js', 'Twitter API', 'YouTube API', 'Reddit API', 'Google Trends'],
-      category: 'AI & Data Platform',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-      demoGif: 'https://media.giphy.com/media/l46Cy1rHbQ92uuLXa/giphy.gif', // Placeholder - replace with actual demo
-      githubUrl: 'https://github.com/gopikrishna818/ai-content-strategy-engine',
-      liveUrl: 'https://ai-content-strategy-demo.vercel.app', // Working demo
-      stars: 31,
-      forks: 12,
+      techStack: ['n8n', 'Supabase', 'Retell AI', 'Google Gemini', 'Node.js'],
+      category: 'AI Automation',
+      githubUrl: 'https://github.com/gopikrishna818/ai-leadgen-automation',
       featured: true,
-      // Case Study Details
-      client: 'Digital Marketing Agency',
-      duration: '6 months',
-      team: '3 developers',
-      challenge: 'Content creators struggled with manual trend research, taking 8+ hours weekly to identify relevant topics and analyze competitor performance. Clients demanded faster content strategy turnaround with data-driven insights.',
-      solution: 'Built an AI-powered platform that aggregates trends from multiple social platforms, analyzes competitor content performance, and generates strategic content calendars. Implemented real-time data pipelines with sentiment analysis and engagement prediction.',
-      results: [
-        {
-          metric: 'Research Time Reduction',
-          value: '85%',
-          impact: 'Reduced weekly content research from 8+ hours to 1.2 hours per strategist'
-        },
-        {
-          metric: 'Client Engagement',
-          value: '65%',
-          impact: 'Average increase in social media engagement across client campaigns'
-        },
-        {
-          metric: 'Content Planning Speed',
-          value: '300%',
-          impact: 'Faster 30-day content calendar generation with automated insights'
-        },
-        {
-          metric: 'Revenue Growth',
-          value: '$180K',
-          impact: 'Additional annual revenue from improved client retention and new acquisitions'
-        }
-      ]
+  image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80' // AI automation, digital transformation
     },
-    {
+  {
       id: 3,
-      title: 'Modular AI-powered Financial Document Analysis System',
-      subtitle: 'Intelligent Document Processing & Fraud Detection',
-      description: 'FastAPI backend with OCR, transformer models, and rule-based logic for high-accuracy field extraction and fraud detection.',
-      fullDescription: `Built a modular system using FastAPI, OCR, and transformer models (LayoutLMv3, spaCy, fuzzy matching) for financial document analysis. Achieved 92% field extraction accuracy, automated supplier tagging, and improved fraud detection recall by 40%. Includes Streamlit dashboards and Dockerized microservices.`,
+      title: 'AI Content Strategy Engine',
+      subtitle: 'AI Hackathon Project',
+      description: 'AI-powered platform for trend discovery, competitor analysis, and auto-generated content strategies.',
+      fullDescription: `Built an AI-powered platform to discover trends, analyze high-performing content, track competitors, and auto-generate full content strategies. Integrated real-time data from Twitter, YouTube, Reddit, and Google Trends with OpenAI GPT for tone/format detection, delivering a unified dashboard for marketers to create data-driven content plans and 30-day calendars.`,
       achievements: [
-        '92% field extraction accuracy on receipts/invoices',
-        'Automated supplier tagging with 85% precision',
-        'Fraud/anomaly detection with Isolation Forest',
-        'Interactive dashboards and secure API'
+        'Real-time trend discovery and competitor analysis',
+        'Auto-generated content strategies and calendars',
+        'Unified dashboard for marketers',
+        'Integrated OpenAI GPT for tone/format detection'
       ],
-      techStack: ['Python', 'FastAPI', 'LayoutLMv3', 'spaCy', 'Streamlit', 'Docker', 'Swagger', 'JWT', 'Label Studio', 'EasyOCR', 'Gemma'],
-      category: 'AI Document Intelligence',
-      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-      demoGif: 'https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif', // Placeholder - replace with actual demo
-      githubUrl: 'https://github.com/gopikrishna818/ai-financial-doc-analysis',
-      liveUrl: 'https://ai-financial-docs-demo.streamlit.app', // Streamlit demo
-      stars: 18,
-      forks: 6,
-      featured: true,
-      // Case Study Details
-      client: 'Financial Services Company',
-      duration: '8 months',
-      team: '4 developers + 1 ML engineer',
-      challenge: 'Manual processing of 10,000+ monthly financial documents caused 3-day delays in expense reporting. Fraud detection relied on random sampling, missing 30% of suspicious transactions. Legacy OCR systems had 68% accuracy.',
-      solution: 'Developed modular AI system with advanced OCR, transformer models for layout understanding, and ML-based fraud detection. Implemented secure APIs, real-time processing pipelines, and interactive dashboards for finance teams.',
-      results: [
-        {
-          metric: 'Processing Speed',
-          value: '2400%',
-          impact: 'Document processing time reduced from 3 days to 3 hours average'
-        },
-        {
-          metric: 'Extraction Accuracy',
-          value: '92%',
-          impact: 'Improved from 68% legacy OCR to 92% with LayoutLMv3 integration'
-        },
-        {
-          metric: 'Fraud Detection',
-          value: '40%',
-          impact: 'Improved fraud detection recall, preventing $450K in potential losses'
-        },
-        {
-          metric: 'Operational Savings',
-          value: '$320K',
-          impact: 'Annual savings from reduced manual processing and improved accuracy'
-        }
-      ]
+      techStack: ['React.js', 'FastAPI', 'OpenAI GPT', 'MongoDB', 'Twitter API', 'YouTube API', 'Reddit API', 'Google Trends'],
+      category: 'AI & Data Platform',
+      githubUrl: 'https://github.com/gopikrishna818/ai-content-strategy-engine',
+  featured: true,
+  image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80' // Content strategy/AI dashboard
     },
     {
       id: 4,
-      title: 'Data Visualization with Snowflake',
-      subtitle: 'SQL Dashboards & Custom File Formats',
-      description: 'Designed Snowflake databases and dashboards for sales and student data, optimized analysis and data loading.',
-      fullDescription: `Created structured Snowflake databases for sales and student data, built SQL dashboards for trends and revenue insights, and optimized analysis using advanced Snowflake functions. Integrated multiple source files and custom formats for efficient data loading and analysis.`,
+      title: 'Visualization in Snowflake Snowsight',
+      subtitle: 'BTech Major Project',
+      description: 'Transformative data visualization project using Snowflake Snowsight.',
+      fullDescription: `Led a transformative data visualization project using Snowflake Snowsight, seamlessly integrating with organizational data infrastructure. Improved analysis of large datasets, driving innovation and enabling stronger data-driven strategies.`,
       achievements: [
-        'Optimized Snowflake database design',
-        'Advanced SQL dashboards for business insights',
-        'Custom file format integration and staging',
-        'Efficient data loading and analysis'
+        'Integrated Snowflake Snowsight with organizational data',
+        'Improved analysis of large datasets',
+        'Enabled stronger data-driven strategies',
+        'Major project for BTech degree'
       ],
-      techStack: ['Python', 'SQL', 'Snowflake', 'GitHub'],
-      category: 'Data Engineering & Visualization',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-      githubUrl: 'https://github.com/gopikrishna818/snowflake-visualization',
-      liveUrl: 'https://snowflake-dashboard-demo.vercel.app', // Dashboard demo
-      stars: 15,
-      forks: 5,
+      techStack: ['Snowflake', 'SQL', 'Snowsight'],
+      category: 'Data Visualization',
       featured: false,
-      // Case Study Details
-      client: 'Education Technology Platform',
-      duration: '5 months',
-      team: '2 data engineers',
-      challenge: 'Legacy reporting system took 45+ minutes to generate basic dashboards from fragmented student and sales data. Multiple data formats caused integration issues, and executives lacked real-time insights for decision-making.',
-      solution: 'Migrated to Snowflake cloud data warehouse with optimized schema design. Built automated ETL pipelines for multiple data formats, created real-time SQL dashboards, and implemented advanced analytics for trend analysis and revenue forecasting.',
-      results: [
-        {
-          metric: 'Query Performance',
-          value: '95%',
-          impact: 'Dashboard generation time reduced from 45+ minutes to 2.3 minutes'
-        },
-        {
-          metric: 'Data Integration',
-          value: '100%',
-          impact: 'Successfully unified 12 different data sources and custom formats'
-        },
-        {
-          metric: 'Real-time Insights',
-          value: '24/7',
-          impact: 'Executives now have continuous access to live business metrics'
-        },
-        {
-          metric: 'Infrastructure Costs',
-          value: '60%',
-          impact: 'Reduced data infrastructure costs through optimized Snowflake usage'
-        }
-      ]
+  image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80' // Data visualization dashboard
+    },
+    {
+      id: 6,
+      title: 'Custom Owned Projects',
+      subtitle: 'Personal & Open Source',
+      description: 'A collection of custom projects showcasing ownership, coding, and developer skills.',
+      fullDescription: `A curated set of personal and open source projects demonstrating end-to-end ownership, problem-solving, and modern development practices. Includes web apps, automation tools, and open source contributions.`,
+      achievements: [
+        'Full project lifecycle ownership',
+        'Modern web and backend stacks',
+        'Open source contributions',
+        'Continuous learning and innovation'
+      ],
+      techStack: ['React', 'Node.js', 'Python', 'Cloud', 'Open Source'],
+      category: 'Custom Projects',
+      featured: false,
+  image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1000&q=80' // Developer/coding (kept for custom owned projects)
+    },
+    {
+      id: 5,
+      title: 'Custom File Formats for Data Loading and Processing in Snowflake',
+      subtitle: 'BTech Minor Project',
+      description: 'Designed and implemented custom file formats in Snowflake to enhance data loading and processing efficiency.',
+      fullDescription: `Designed and implemented custom file formats in Snowflake to enhance data loading and processing efficiency. Streamlined handling of large datasets and improved system scalability.`,
+      achievements: [
+        'Designed custom file formats in Snowflake',
+        'Enhanced data loading and processing efficiency',
+        'Improved system scalability',
+        'Minor project for BTech degree'
+      ],
+      techStack: ['Snowflake', 'SQL'],
+      category: 'Data Engineering',
+  featured: false,
+  image: 'https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=1000&q=80' // Data engineering/file formats
     }
   ];
 
