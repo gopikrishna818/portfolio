@@ -158,19 +158,19 @@ const TimelineItem = ({ item, index, isLast }: { item: any; index: number; isLas
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="relative flex items-center w-full mb-12"
+      className="relative flex flex-col md:flex-row items-stretch md:items-center w-full mb-8 md:mb-12 px-2 md:px-0"
     >
       {/* Left Content (for even indexes) */}
       {isLeft ? (
-        <div className="w-5/12 pr-8">
+        <div className="w-full md:w-5/12 md:pr-8 mb-4 md:mb-0">
           {contentCard}
         </div>
       ) : (
-        <div className="w-5/12"></div>
+        <div className="w-full md:w-5/12 mb-4 md:mb-0"></div>
       )}
 
       {/* Center Timeline */}
-      <div className="w-2/12 flex justify-center">
+      <div className="w-full md:w-2/12 flex justify-center items-center mb-4 md:mb-0">
         <div className="relative flex flex-col items-center">
           <div className="w-4 h-4 bg-gradient-to-r from-primary to-purple-500 rounded-full border-4 border-background z-10"></div>
         </div>
@@ -178,11 +178,11 @@ const TimelineItem = ({ item, index, isLast }: { item: any; index: number; isLas
 
       {/* Right Content (for odd indexes) */}
       {!isLeft ? (
-        <div className="w-5/12 pl-8">
+        <div className="w-full md:w-5/12 md:pl-8">
           {contentCard}
         </div>
       ) : (
-        <div className="w-5/12"></div>
+        <div className="w-full md:w-5/12"></div>
       )}
     </motion.div>
   );
@@ -561,7 +561,7 @@ const AboutSection = () => {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <div className="bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-indigo-500/10 rounded-2xl p-8 border border-primary/20">
+          <div className="bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-indigo-500/10 rounded-2xl p-4 md:p-8 border border-primary/20">
             <h3 className="text-3xl font-bold text-center mb-8 text-gradient">
               <Calendar className="inline w-8 h-8 mr-3" />
               Career Journey
@@ -572,10 +572,12 @@ const AboutSection = () => {
             
             <div className="max-w-6xl mx-auto relative">
               {/* Central Timeline Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-gradient-to-b from-purple-500 via-blue-500 to-indigo-500 top-0 bottom-0"></div>
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-gradient-to-b from-purple-500 via-blue-500 to-indigo-500 top-0 bottom-0"></div>
+              {/* On mobile, show a left border for the timeline */}
+              <div className="block md:hidden absolute left-4 w-0.5 bg-gradient-to-b from-purple-500 via-blue-500 to-indigo-500 top-0 bottom-0"></div>
 
               {/* Timeline Items */}
-              <div className="space-y-0">
+              <div className="space-y-6 md:space-y-0">
                 {timelineData.map((item, index) => (
                   <TimelineItem 
                     key={index} 

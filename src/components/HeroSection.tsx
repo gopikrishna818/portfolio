@@ -118,12 +118,12 @@ const HeroSection = () => {
   <div className="container-width relative z-10 px-4 py-8 md:py-12 pt-16 md:pt-24">
         <div className="text-center space-y-4 md:space-y-6 lg:space-y-8">
           {/* Profile Image with Enhanced Design */}
-          <div className="relative mx-auto w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 group mb-4 md:mb-6 mt-4 md:mt-8">
+          <div className="relative mx-auto w-24 h-24 sm:w-28 sm:h-28 md:w-40 md:h-40 lg:w-48 lg:h-48 group mb-2 md:mb-6 mt-2 md:mt-8">
             {/* Profile Image Container */}
             <div className="relative w-full h-full z-20">
               {/* Immediate Fallback for Testing */}
               <div className="w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
-                <span className="text-white font-bold text-2xl md:text-3xl lg:text-4xl">GC</span>
+                <span className="text-white font-bold text-lg sm:text-xl md:text-3xl lg:text-4xl">GC</span>
               </div>
               
               {/* Actual Profile Image - will overlay on successful load */}
@@ -131,16 +131,13 @@ const HeroSection = () => {
                 src="/profile-placeholder.jpg"
                 alt="Gopikrishna Chegoni - AI & Data Engineer"
                 className="absolute inset-0 w-full h-full object-cover rounded-full shadow-2xl transition-transform duration-500 group-hover:scale-105"
-                style={{ opacity: 0, zIndex: 10 }}
+                style={{ opacity: 0, zIndex: 10, minWidth: '72px', minHeight: '72px', maxWidth: '100%', maxHeight: '100%' }}
                 onLoad={(e) => {
-                  console.log('Profile image loaded successfully');
                   (e.target as HTMLImageElement).style.opacity = '1';
                 }}
                 onError={(e) => {
-                  console.log('JPG failed, trying PNG...');
                   (e.target as HTMLImageElement).src = '/profile-placeholder.png';
                   (e.target as HTMLImageElement).onerror = () => {
-                    console.log('Both image formats failed');
                     (e.target as HTMLImageElement).style.display = 'none';
                   };
                 }}
@@ -175,7 +172,7 @@ const HeroSection = () => {
           <div className="space-y-4 md:space-y-6">
             {/* Main Name with Animated Typing Effect */}
             <div className="space-y-2 md:space-y-3">
-              <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight text-gradient animate-slide-up relative">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight text-gradient animate-slide-up relative break-words">
                 GOPIKRISHNA CHEGONI
                 {/* Professional Title Badge - Hide on mobile for cleaner look */}
                 <div className="hidden md:block absolute -top-4 right-0 bg-gradient-to-r from-green-500/20 to-blue-600/20 backdrop-blur-xl border border-green-400/30 px-4 py-2 rounded-full text-sm text-green-400 font-medium animate-pulse-glow">
@@ -184,16 +181,16 @@ const HeroSection = () => {
               </h1>
               
               {/* Mobile Professional Badge */}
-              <div className="md:hidden bg-gradient-to-r from-green-500/20 to-blue-600/20 backdrop-blur-xl border border-green-400/30 px-3 py-2 rounded-full text-xs text-green-400 font-medium animate-pulse-glow inline-block">
+              <div className="md:hidden bg-gradient-to-r from-green-500/20 to-blue-600/20 backdrop-blur-xl border border-green-400/30 px-2 py-1 rounded-full text-xs text-green-400 font-medium animate-pulse-glow inline-block mt-2">
                 🟢 Open to Internships & Entry-Level Roles
               </div>
               
               {/* Enhanced Value Proposition */}
               <div className="space-y-1 md:space-y-2">
-                <p className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                <p className="text-base sm:text-lg md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent animate-slide-up" style={{ animationDelay: '0.2s' }}>
                   Aspiring Machine Learning & Data Science Engineer
                 </p>
-                <p className="text-lg md:text-xl lg:text-2xl font-semibold text-muted-foreground animate-slide-up" style={{ animationDelay: '0.25s' }}>
+                <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-semibold text-muted-foreground animate-slide-up" style={{ animationDelay: '0.25s' }}>
                   Passionate about AI, Data, and Building Real-World Projects
                 </p>
                 

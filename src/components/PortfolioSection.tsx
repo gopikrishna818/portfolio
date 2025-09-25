@@ -50,8 +50,8 @@ const PortfolioSection = () => {
     githubUrl: 'https://github.com/gopikrishna818/ai-leadgen-automation',
     liveUrl: 'https://ai-leadgen-demo.vercel.app/',
     featured: true,
-    image: '/public/ironman-favicon.svg', // fallback to a local SVG as a placeholder for n8n
-    alt: 'AI Lead-Gen & Outreach Automation Engine dashboard screenshot',
+  image: '/ai-leadgen-automation.webp',
+  alt: 'AI Lead-Gen & Outreach Automation Engine project illustration',
   },
   {
     id: 3,
