@@ -1,7 +1,6 @@
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
-import KeyAchievementsSection from '@/components/KeyAchievementsSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import SkillsSection from '@/components/SkillsSection';
 import ExperienceEducationSection from '@/components/ExperienceEducationSection';
@@ -77,11 +76,6 @@ const Index = () => {
               </div>
             </SectionErrorBoundary>
             
-            <SectionErrorBoundary sectionName="Key Achievements">
-              <div className="section-spacing">
-                <KeyAchievementsSection />
-              </div>
-            </SectionErrorBoundary>
             
             <SectionErrorBoundary sectionName="Portfolio">
               <div className="section-spacing">

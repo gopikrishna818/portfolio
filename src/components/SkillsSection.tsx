@@ -22,6 +22,19 @@ if (typeof document !== 'undefined') {
 
 // Bento Box Skills Data with different card sizes and flip content
 const skillsData = {
+  'Soft Skills': {
+    icon: Layers,
+    gradient: 'from-yellow-400 to-orange-500',
+    bgGradient: 'from-yellow-400/10 to-orange-500/10',
+    size: 'small',
+    skills: [
+      { name: 'Communication', level: 90, proficiency: 'Advanced', projects: '', description: 'Clear, concise, and persuasive communicator' },
+      { name: 'Teamwork', level: 88, proficiency: 'Advanced', projects: '', description: 'Collaborative and supportive team player' },
+      { name: 'Problem-Solving', level: 92, proficiency: 'Advanced', projects: '', description: 'Creative and analytical problem solver' },
+      { name: 'Adaptability', level: 85, proficiency: 'Intermediate', projects: '', description: 'Quick to learn and adjust to new challenges' },
+      { name: 'Time Management', level: 87, proficiency: 'Intermediate', projects: '', description: 'Efficient and organized with deadlines' }
+    ]
+  },
   'Programming Languages': {
     icon: Code,
     gradient: 'from-blue-500 to-purple-600',
@@ -188,7 +201,10 @@ const BentoSkillCard = ({ categoryName, categoryData, index }: {
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm font-medium text-foreground">{skill.name}</span>
-                    <span className="text-xs font-bold text-primary">{skill.level}%</span>
+                    <span className="ml-2 text-xs font-semibold text-muted-foreground bg-muted/30 rounded px-2 py-0.5">
+                      {skill.proficiency ? skill.proficiency : skill.level >= 90 ? 'Advanced' : skill.level >= 75 ? 'Intermediate' : 'Beginner'}
+                    </span>
+                    <span className="ml-2 text-xs font-bold text-primary">{skill.level}%</span>
                   </div>
                   <div className="w-full h-1 bg-muted/30 rounded-full overflow-hidden mb-1">
                     <motion.div
@@ -230,7 +246,7 @@ const SkillsSection = () => {
         </div>
         <div className="group">
           <a
-            href="https://linkedin.com/in/gopikrishna-chegoni"
+            href="http://www.linkedin.com/in/gopikrishnachegoni"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-12 h-12 rounded-full bg-card/30 backdrop-blur-md border border-border/50 transition-all duration-300 hover:scale-110 hover:bg-secondary/20 hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/25"
@@ -285,14 +301,22 @@ const SkillsSection = () => {
 
         {/* Simplified Bento Box Skills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {Object.entries(skillsData).map(([categoryName, categoryData], index) => (
-            <BentoSkillCard
-              key={categoryName}
-              categoryName={categoryName}
-              categoryData={categoryData}
-              index={index}
-            />
-          ))}
+          {(() => {
+            const entries = Object.entries(skillsData);
+            const softSkillIndex = entries.findIndex(([name]) => name === 'Soft Skills');
+            if (softSkillIndex !== -1) {
+              const [softSkill] = entries.splice(softSkillIndex, 1);
+              entries.push(softSkill);
+            }
+            return entries.map(([categoryName, categoryData], index) => (
+              <BentoSkillCard
+                key={categoryName}
+                categoryName={categoryName}
+                categoryData={categoryData}
+                index={index}
+              />
+            ));
+          })()}
         </div>
 
         {/* Bottom CTA */}

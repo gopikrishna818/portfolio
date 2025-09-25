@@ -144,8 +144,8 @@ const SimplifiedAboutSection = () => {
             <motion.button
               onClick={() => {
                 const link = document.createElement('a');
-                link.href = '/resume-gopikrishna-chegoni.pdf';
-                link.download = 'Gopikrishna-Chegoni-Resume.pdf';
+                link.href = 'https://drive.google.com/file/d/1rBJOCfMSB0yoa61KGqFbpuppXe2ntFCr/view?usp=sharing';
+                // No download for Google Drive link
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);

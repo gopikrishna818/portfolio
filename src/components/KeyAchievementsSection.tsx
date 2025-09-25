@@ -4,44 +4,44 @@ import { TrendingUp, Award, Users, Target, Code, Zap, Database, Brain } from 'lu
 const KeyAchievementsSection = () => {
   const achievements = [
     {
-      icon: TrendingUp,
-      title: "95% ML Accuracy",
-      description: "Fraud Detection System",
-      detail: "Achieved 95% accuracy in ML-powered fraud detection algorithms, reducing false positives by 40%",
-      gradient: "from-green-500 to-emerald-600",
-      impact: "Business Impact"
-    },
-    {
-      icon: Zap,
-      title: "60% Efficiency Boost",
-      description: "Process Automation",
-      detail: "Reduced manual reconciliation time by 60% through automated data processing pipelines",
+      icon: Award,
+      title: "Internship Experience",
+      description: "Machine Learning & Data Analysis Intern",
+      detail: "Completed internships at KreativeTimebox and IBM Skill Build, gaining hands-on experience in real-world projects.",
       gradient: "from-blue-500 to-cyan-600",
-      impact: "Process Improvement"
+      impact: "Internships"
     },
     {
       icon: Code,
-      title: "8+ Projects Delivered",
-      description: "Full-Stack Solutions",
-      detail: "Successfully delivered 8+ production-ready applications using modern tech stack",
+      title: "Academic Projects",
+      description: "Mini Projects & Dashboards",
+      detail: "Built web apps and data dashboards applying classroom knowledge to practical problems.",
       gradient: "from-purple-500 to-indigo-600",
-      impact: "Technical Excellence"
+      impact: "Academics"
+    },
+    {
+      icon: Award,
+      title: "Certifications Earned",
+      description: "6+ Industry Certifications",
+      detail: "Achieved certifications in Data Science, ML, and Web Development from recognized platforms.",
+      gradient: "from-green-500 to-emerald-600",
+      impact: "Certifications"
     },
     {
       icon: Users,
-      title: "Cross-Functional Leadership",
-      description: "Team Collaboration",
-      detail: "Led cross-functional teams and mentored junior developers in best practices",
+      title: "Teamwork & Collaboration",
+      description: "Coding Clubs & Group Projects",
+      detail: "Worked with diverse teams, participated in coding clubs, and contributed to group projects.",
       gradient: "from-orange-500 to-red-600",
-      impact: "Leadership"
+      impact: "Teamwork"
     }
   ];
 
   const stats = [
-    { label: "Years Experience", value: "1+", icon: Target },
-    { label: "Technologies Mastered", value: "30+", icon: Database },
-    { label: "Projects Completed", value: "10+", icon: Code },
-    { label: "Client Satisfaction", value: "98%", icon: Award }
+  { label: "Internships", value: "2", icon: Award },
+  { label: "Certifications", value: "6+", icon: Award },
+  { label: "Academic Projects", value: "5+", icon: Code },
+  { label: "Tech Stack", value: "7+", icon: Database }
   ];
 
   return (

@@ -72,7 +72,7 @@ const ContactSection = () => {
       title: "LinkedIn",
       description: "Professional networking",
       action: "Connect",
-      href: "https://linkedin.com/in/gopikrishna-chegoni",
+  href: "http://www.linkedin.com/in/gopikrishnachegoni",
       color: "bg-blue-600",
       hoverColor: "hover:bg-blue-700",
       responseTime: "Within 24 hours"
@@ -91,7 +91,7 @@ const ContactSection = () => {
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com/gopikrishna-chegoni',
+  href: 'https://github.com/gopikrishna818',
       color: 'hover:text-foreground',
       bgColor: 'hover:bg-muted'
     },

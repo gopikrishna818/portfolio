@@ -284,7 +284,7 @@ const HeroSection = () => {
         
         <div className="group">
           <a
-            href="https://linkedin.com/in/gopikrishna-chegoni"
+            href="http://www.linkedin.com/in/gopikrishnachegoni"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-12 h-12 rounded-full bg-card/30 backdrop-blur-md border border-border/50 transition-all duration-300 hover:scale-110 hover:bg-secondary/20 hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/25"

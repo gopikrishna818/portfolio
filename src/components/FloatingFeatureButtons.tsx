@@ -80,11 +80,11 @@ const FloatingFeatureButtons = () => {
     } else if (lower.includes('experience') || lower.includes('work') || lower.includes('intern')) {
       answer = `Experience:\n- Machine Learning Intern at KreativeTimebox (May-Aug 2025): Built document intelligence systems, 95%+ accuracy, FastAPI, ML, Agile.\n- Data Analyst Intern at IBM Skill Build (Jun-Jul 2023): Data analysis, dashboards, SQL, Python.`;
     } else if (lower.includes('project')) {
-      answer = `Key Projects:\n1. SmartDoc Parser: OCR & LLM-powered parser, 90%+ accuracy, DocTr, PaddleOCR, LangChain.\n2. AI Lead-Gen Automation: End-to-end AI-driven prospecting, n8n, Supabase, Retell AI, Google Gemini.\n3. AI Content Strategy Engine: Trend discovery, OpenAI GPT, real-time data, content plans.\nSee more at: https://github.com/gopikrishna818`;
+  answer = `Key Projects:\n1. SmartDoc Parser: OCR & LLM-powered parser, 90%+ accuracy, DocTr, PaddleOCR, LangChain.\n2. AI Lead-Gen Automation: End-to-end AI-driven prospecting, n8n, Supabase, Retell AI, Google Gemini.\n3. AI Content Strategy Engine: Trend discovery, OpenAI GPT, real-time data, content plans.\nSee more at: https://github.com/gopikrishna818`;
     } else if (lower.includes('certification')) {
       answer = `Certifications:\n- Python for Data Science (NPTEL IIT Madras, 2024)\n- Java Full Stack (Wipro, 2024)\n- Java Full Stack Development (MERN, Pregrad, 2024)`;
     } else if (lower.includes('contact') || lower.includes('email') || lower.includes('linkedin')) {
-      answer = `You can contact me at gopikrishna818@gmail.com or via LinkedIn: https://www.linkedin.com/in/gopikrishna818/`;
+  answer = `You can contact me at gopikrishna818@gmail.com or via LinkedIn: http://www.linkedin.com/in/gopikrishnachegoni`;
     }
 
     setTimeout(() => {

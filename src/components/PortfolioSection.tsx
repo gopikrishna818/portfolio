@@ -12,110 +12,106 @@ const PortfolioSection = () => {
 
   const projects = [
   {
-      id: 1,
-      title: 'SmartDoc Parser – Invoice & Bank Statement Extraction',
-      subtitle: 'ML Intern Project at KreativeTimebox',
-      description: 'OCR and LLM-powered parser using DocTr, PaddleOCR, and LangChain for high-accuracy field extraction.',
-      fullDescription: `Built an OCR and LLM-powered parser using DocTr, PaddleOCR, and LangChain to extract structured fields from invoices and bank statements with over 90% accuracy, eliminating reliance on third-party APIs.`,
-      achievements: [
-        'Achieved 90%+ extraction accuracy on real-world documents',
-        'Integrated DocTr, PaddleOCR, and LangChain for robust parsing',
-        'Eliminated third-party API costs',
-        'Productionized for business use at KreativeTimebox'
-      ],
-      techStack: ['Python', 'DocTr', 'PaddleOCR', 'LangChain', 'Streamlit'],
-      category: 'AI Document Intelligence',
-      githubUrl: 'https://github.com/gopikrishna818/smartdoc-parser',
-  featured: true,
-  image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1000&q=80' // OCR/AI document parsing
-    },
+    id: 1,
+    title: 'SmartDoc Parser – Invoice & Bank Statement Extraction',
+    subtitle: 'ML Intern Project at KreativeTimebox',
+    description: 'Built an OCR and LLM-powered parser using DocTr, PaddleOCR, and LangChain for high-accuracy field extraction.',
+    fullDescription: `Built an OCR and LLM-powered parser using DocTr, PaddleOCR, and LangChain to extract structured fields from invoices and bank statements with over 90% accuracy, eliminating reliance on third-party APIs.`,
+    achievements: [
+      'Achieved 90%+ extraction accuracy on real-world documents',
+      'Integrated DocTr, PaddleOCR, and LangChain for robust parsing',
+      'Eliminated third-party API costs',
+      'Productionized for business use at KreativeTimebox',
+      'Key takeaway: Learned to combine OCR and LLMs for real-world business automation.'
+    ],
+    techStack: ['Python', 'DocTr', 'PaddleOCR', 'LangChain', 'Streamlit'],
+    category: 'AI Document Intelligence',
+    githubUrl: 'https://github.com/gopikrishna818/smartdoc-parser',
+    liveUrl: 'https://smartdoc-demo.vercel.app/',
+    featured: true,
+    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1000&q=80', // OCR/AI document parsing
+    alt: 'Screenshot of SmartDoc Parser extracting fields from a bank statement',
+  },
     {
-      id: 2,
-      title: 'AI Lead-Gen & Outreach Automation Engine',
-      subtitle: 'Personal Project',
-      description: 'Production-grade multi-layered automation system for AI-driven prospecting and appointment booking.',
-      fullDescription: `Developed a production-grade multi-layered automation system using n8n, Supabase, Retell AI, and Google Gemini with key-rotation, advanced prompt engineering, real-time call analysis, and fully automated lead outreach, enabling end-to-end AI-driven prospecting and appointment booking.`,
-      achievements: [
-        'Automated lead discovery, outreach, and appointment booking',
-        'Integrated n8n, Supabase, Retell AI, and Google Gemini',
-        'Advanced prompt engineering and real-time call analysis',
-        'End-to-end AI-driven workflow'
-      ],
-      techStack: ['n8n', 'Supabase', 'Retell AI', 'Google Gemini', 'Node.js'],
-      category: 'AI Automation',
-      githubUrl: 'https://github.com/gopikrishna818/ai-leadgen-automation',
-      featured: true,
-  image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80' // AI automation, digital transformation
-    },
+    id: 2,
+    title: 'AI Lead-Gen & Outreach Automation Engine',
+    subtitle: 'Personal Project',
+    description: 'Built and deployed automated lead generation and outreach using n8n workflows, Supabase, and Retell AI.',
+    fullDescription: `Built an end-to-end AI-driven lead generation and outreach system using n8n for workflow automation, Supabase for data management, and Retell AI for real-time call analysis. Mastered automation, API integration, and prompt engineering for practical business use.`,
+    achievements: [
+      'Built and deployed n8n workflows for lead automation',
+      'Integrated Supabase and Retell AI for real-time data and call analysis',
+      'Engineered advanced prompt engineering and API integration',
+      'Automated prospecting and appointment booking as a solo fresher project',
+      'Key takeaway: Learned to orchestrate multiple APIs and automate business processes.'
+    ],
+    techStack: ['n8n', 'Supabase', 'Retell AI', 'Google Gemini', 'Node.js'],
+    category: 'AI Automation',
+    githubUrl: 'https://github.com/gopikrishna818/ai-leadgen-automation',
+    liveUrl: 'https://ai-leadgen-demo.vercel.app/',
+    featured: true,
+    image: '/public/ironman-favicon.svg', // fallback to a local SVG as a placeholder for n8n
+    alt: 'AI Lead-Gen & Outreach Automation Engine dashboard screenshot',
+  },
   {
-      id: 3,
-      title: 'AI Content Strategy Engine',
-      subtitle: 'AI Hackathon Project',
-      description: 'AI-powered platform for trend discovery, competitor analysis, and auto-generated content strategies.',
-      fullDescription: `Built an AI-powered platform to discover trends, analyze high-performing content, track competitors, and auto-generate full content strategies. Integrated real-time data from Twitter, YouTube, Reddit, and Google Trends with OpenAI GPT for tone/format detection, delivering a unified dashboard for marketers to create data-driven content plans and 30-day calendars.`,
-      achievements: [
-        'Real-time trend discovery and competitor analysis',
-        'Auto-generated content strategies and calendars',
-        'Unified dashboard for marketers',
-        'Integrated OpenAI GPT for tone/format detection'
-      ],
-      techStack: ['React.js', 'FastAPI', 'OpenAI GPT', 'MongoDB', 'Twitter API', 'YouTube API', 'Reddit API', 'Google Trends'],
-      category: 'AI & Data Platform',
-      githubUrl: 'https://github.com/gopikrishna818/ai-content-strategy-engine',
-  featured: true,
-  image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80' // Content strategy/AI dashboard
-    },
+    id: 3,
+    title: 'AI Content Strategy Engine',
+    subtitle: 'AI Hackathon Project',
+    description: 'Developed an AI-powered platform for trend discovery, competitor analysis, and auto-generated content strategies.',
+    fullDescription: `Developed an AI-powered platform to discover trends, analyze high-performing content, track competitors, and auto-generate full content strategies. Integrated real-time data from Twitter, YouTube, Reddit, and Google Trends with OpenAI GPT for tone/format detection, delivering a unified dashboard for marketers to create data-driven content plans and 30-day calendars.`,
+    achievements: [
+      'Enabled real-time trend discovery and competitor analysis',
+      'Auto-generated content strategies and calendars',
+      'Unified dashboard for marketers',
+      'Integrated OpenAI GPT for tone/format detection',
+      'Key takeaway: Learned to aggregate and visualize multi-source data for actionable insights.'
+    ],
+    techStack: ['React.js', 'FastAPI', 'OpenAI GPT', 'MongoDB', 'Twitter API', 'YouTube API', 'Reddit API', 'Google Trends'],
+    category: 'AI & Data Platform',
+    githubUrl: 'https://github.com/gopikrishna818/ai-content-strategy-engine',
+    liveUrl: 'https://content-strategy-demo.vercel.app/',
+    featured: true,
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80', // Content strategy/AI dashboard
+    alt: 'AI Content Strategy Engine dashboard screenshot',
+  },
     {
-      id: 4,
-      title: 'Visualization in Snowflake Snowsight',
-      subtitle: 'BTech Major Project',
-      description: 'Transformative data visualization project using Snowflake Snowsight.',
-      fullDescription: `Led a transformative data visualization project using Snowflake Snowsight, seamlessly integrating with organizational data infrastructure. Improved analysis of large datasets, driving innovation and enabling stronger data-driven strategies.`,
-      achievements: [
-        'Integrated Snowflake Snowsight with organizational data',
-        'Improved analysis of large datasets',
-        'Enabled stronger data-driven strategies',
-        'Major project for BTech degree'
-      ],
-      techStack: ['Snowflake', 'SQL', 'Snowsight'],
-      category: 'Data Visualization',
-      featured: false,
-  image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80' // Data visualization dashboard
-    },
+    id: 4,
+    title: 'Visualization in Snowflake Snowsight',
+    subtitle: 'BTech Major Project',
+    description: 'Led a transformative data visualization project using Snowflake Snowsight.',
+    fullDescription: `Led a transformative data visualization project using Snowflake Snowsight, seamlessly integrating with organizational data infrastructure. Improved analysis of large datasets, driving innovation and enabling stronger data-driven strategies.`,
+    achievements: [
+      'Integrated Snowflake Snowsight with organizational data',
+      'Improved analysis of large datasets',
+      'Enabled stronger data-driven strategies',
+      'Major project for BTech degree',
+      'Key takeaway: Learned to visualize and communicate complex data for business impact.'
+    ],
+    techStack: ['Snowflake', 'SQL', 'Snowsight'],
+    category: 'Data Visualization',
+    featured: false,
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80', // Data visualization dashboard
+    alt: 'Visualization in Snowflake Snowsight dashboard screenshot',
+  },
     {
-      id: 6,
-      title: 'Custom Owned Projects',
-      subtitle: 'Personal & Open Source',
-      description: 'A collection of custom projects showcasing ownership, coding, and developer skills.',
-      fullDescription: `A curated set of personal and open source projects demonstrating end-to-end ownership, problem-solving, and modern development practices. Includes web apps, automation tools, and open source contributions.`,
-      achievements: [
-        'Full project lifecycle ownership',
-        'Modern web and backend stacks',
-        'Open source contributions',
-        'Continuous learning and innovation'
-      ],
-      techStack: ['React', 'Node.js', 'Python', 'Cloud', 'Open Source'],
-      category: 'Custom Projects',
-      featured: false,
-  image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1000&q=80' // Developer/coding (kept for custom owned projects)
-    },
-    {
-      id: 5,
-      title: 'Custom File Formats for Data Loading and Processing in Snowflake',
-      subtitle: 'BTech Minor Project',
-      description: 'Designed and implemented custom file formats in Snowflake to enhance data loading and processing efficiency.',
-      fullDescription: `Designed and implemented custom file formats in Snowflake to enhance data loading and processing efficiency. Streamlined handling of large datasets and improved system scalability.`,
-      achievements: [
-        'Designed custom file formats in Snowflake',
-        'Enhanced data loading and processing efficiency',
-        'Improved system scalability',
-        'Minor project for BTech degree'
-      ],
-      techStack: ['Snowflake', 'SQL'],
-      category: 'Data Engineering',
-  featured: false,
-  image: 'https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=1000&q=80' // Data engineering/file formats
-    }
+    id: 5,
+    title: 'Custom File Formats for Data Loading and Processing in Snowflake',
+    subtitle: 'BTech Minor Project',
+    description: 'Designed and implemented custom file formats in Snowflake to enhance data loading and processing efficiency.',
+    fullDescription: `Designed and implemented custom file formats in Snowflake to enhance data loading and processing efficiency. Streamlined handling of large datasets and improved system scalability.`,
+    achievements: [
+      'Designed custom file formats in Snowflake',
+      'Enhanced data loading and processing efficiency',
+      'Improved system scalability',
+      'Minor project for BTech degree',
+      'Key takeaway: Learned to optimize data pipelines for performance and scalability.'
+    ],
+    techStack: ['Snowflake', 'SQL'],
+    category: 'Data Engineering',
+    featured: false,
+    image: 'https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=1000&q=80', // Data engineering/file formats
+    alt: 'Custom file formats for data loading in Snowflake dashboard screenshot',
+  }
   ];
 
   const ProjectModal = ({ project }: { project: typeof projects[0] }) => (
@@ -477,8 +473,10 @@ const PortfolioSection = () => {
                     <div className="aspect-video rounded-xl mb-3 overflow-hidden relative">
                       <img 
                         src={project.image} 
-                        alt={project.title}
+                        alt={project.alt ? project.alt : project.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
                       />
                       
                       {/* Enhanced Overlay */}
@@ -571,17 +569,35 @@ const PortfolioSection = () => {
                       <h3 className="text-xl font-bold text-foreground mb-3">
                         {project.title}
                       </h3>
-                      
                       <div className="space-y-3 text-sm">
                         <div>
-                          <span className="font-semibold text-primary">Client:</span>
-                          <span className="ml-2 text-muted-foreground">{project.client}</span>
+                          <span className="font-semibold text-primary">Project Overview:</span>
+                          <span className="ml-2 text-muted-foreground">{project.fullDescription}</span>
                         </div>
-                        <div>
-                          <span className="font-semibold text-primary">Duration:</span>
-                          <span className="ml-2 text-muted-foreground">{project.duration}</span>
-                        </div>
-                        
+                        {project.achievements && project.achievements.length > 0 && (
+                          <div>
+                            <span className="font-semibold text-primary">Key Achievements:</span>
+                            <ul className="ml-2 mt-1 space-y-1">
+                              {project.achievements.slice(0, 3).map((ach, idx) => (
+                                <li key={idx} className="text-xs text-muted-foreground">
+                                  • {ach}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {project.client && (
+                          <div>
+                            <span className="font-semibold text-primary">Client:</span>
+                            <span className="ml-2 text-muted-foreground">{project.client}</span>
+                          </div>
+                        )}
+                        {project.duration && (
+                          <div>
+                            <span className="font-semibold text-primary">Duration:</span>
+                            <span className="ml-2 text-muted-foreground">{project.duration}</span>
+                          </div>
+                        )}
                         {project.results && (
                           <div>
                             <span className="font-semibold text-primary">Key Results:</span>
@@ -596,7 +612,6 @@ const PortfolioSection = () => {
                         )}
                       </div>
                     </div>
-                    
                     <div className="flex space-x-2 mt-4">
                       <MagneticButton
                         onClick={() => setSelectedProject(index)}

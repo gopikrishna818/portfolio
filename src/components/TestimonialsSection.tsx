@@ -15,7 +15,7 @@ const TestimonialsSection = () => {
       text: "As Gopikrishna's project guide, I was impressed by his initiative and problem-solving skills. He consistently delivered high-quality work and was always eager to learn new technologies.",
       main: true,
       contacts: [
-        { type: 'linkedin', url: 'https://www.linkedin.com/in/gopikrishna818/' },
+  { type: 'linkedin', url: 'http://www.linkedin.com/in/gopikrishnachegoni' },
         { type: 'email', url: 'mailto:gopikrishna818@gmail.com' }
       ]
     },

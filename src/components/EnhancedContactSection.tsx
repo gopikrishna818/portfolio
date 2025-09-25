@@ -388,7 +388,7 @@ const EnhancedContactSection = () => {
                 <h4 className="text-white font-medium mb-4">Professional Links</h4>
                 <div className="flex space-x-4">
                   <a
-                    href="https://linkedin.com/in/gopikrishna-chegoni"
+                    href="http://www.linkedin.com/in/gopikrishnachegoni"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-xl flex items-center justify-center transition-colors"
@@ -396,7 +396,7 @@ const EnhancedContactSection = () => {
                     <Linkedin size={20} className="text-white" />
                   </a>
                   <a
-                    href="https://github.com/gpkc"
+                    href="https://github.com/gopikrishna818"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 bg-gray-700 hover:bg-gray-600 rounded-xl flex items-center justify-center transition-colors"
@@ -404,7 +404,7 @@ const EnhancedContactSection = () => {
                     <Github size={20} className="text-white" />
                   </a>
                   <a
-                    href="/resume-gopikrishna-chegoni.pdf"
+                    href="https://drive.google.com/file/d/1rBJOCfMSB0yoa61KGqFbpuppXe2ntFCr/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-xl transition-colors"

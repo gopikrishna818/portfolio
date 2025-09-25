@@ -204,19 +204,21 @@ const AboutSection = () => {
       year: "2020-2024",
       role: "Engineering Student",
       growth: "Built strong foundation in computer science, data structures, and algorithms",
-      achievement: "Completed academic projects in web development and data analysis"
     },
     {
       year: "2023",
       role: "Data Analyst Intern",
       growth: "Explored data analysis and visualization in a real-world setting",
-      achievement: "Created a basic sales dashboard and summary reports at IBM Skill Build"
     },
     {
       year: "2024",
       role: "Software Engineering Intern",
       growth: "Worked on web app development and automation as a fresher",
-      achievement: "Built a simple analytics dashboard and automated data entry at KreativeTimebox"
+    },
+    {
+      year: "2025",
+      role: "Ready for Next Challenge",
+      growth: "Seeking senior role to apply ML and leadership skills",
     }
   ];
 
@@ -335,7 +337,7 @@ const AboutSection = () => {
       percentage: 90
     },
     {
-  value: '1+',
+      value: '1+',
       label: 'Industries',
       icon: Target,
       color: 'from-emerald-500 to-teal-500',
@@ -394,16 +396,16 @@ const AboutSection = () => {
             {highlights.map((item, index) => (
               <div
                 key={index}
-                className="card-elevated group cursor-pointer py-4 px-5"
+                className="card-elevated group cursor-pointer py-3 px-4"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-start space-x-3">
                   <div className="p-2 bg-gradient-primary rounded-lg group-hover:scale-110 transition-transform duration-300">
-                    <item.icon size={20} className="text-primary-foreground" />
+                    <item.icon size={18} className="text-primary-foreground" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                    <h3 className="font-semibold text-[1.05rem] text-foreground mb-1">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-normal">{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -571,7 +573,7 @@ const AboutSection = () => {
             <div className="max-w-6xl mx-auto relative">
               {/* Central Timeline Line */}
               <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-gradient-to-b from-purple-500 via-blue-500 to-indigo-500 top-0 bottom-0"></div>
-              
+
               {/* Timeline Items */}
               <div className="space-y-0">
                 {timelineData.map((item, index) => (

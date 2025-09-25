@@ -107,7 +107,7 @@ const MobileOptimizedNavigation = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
-                href="/resume-gopikrishna-chegoni.pdf"
+                href="https://drive.google.com/file/d/1rBJOCfMSB0yoa61KGqFbpuppXe2ntFCr/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/25"
@@ -236,7 +236,7 @@ const MobileOptimizedNavigation = () => {
                   {/* Footer Actions */}
                   <div className="p-6 border-t border-white/10 space-y-4">
                     <a
-                      href="/resume-gopikrishna-chegoni.pdf"
+                      href="https://drive.google.com/file/d/1rBJOCfMSB0yoa61KGqFbpuppXe2ntFCr/view?usp=sharing"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center space-x-2 w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-3 rounded-xl font-medium transition-all duration-300"

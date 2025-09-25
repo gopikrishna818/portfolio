@@ -110,7 +110,7 @@ const Enhanced3DHeroSection = () => {
         </motion.a>
         
         <motion.a
-          href="https://linkedin.com/in/gopikrishna-chegoni"
+          href="http://www.linkedin.com/in/gopikrishnachegoni"
           target="_blank"
           rel="noopener noreferrer"
           className="p-3 bg-background/20 backdrop-blur-sm rounded-full border border-primary/30 hover:bg-primary/20 transition-all duration-300 group"
