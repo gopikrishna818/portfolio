@@ -122,7 +122,7 @@ const HeroSection = () => {
             {/* Profile Image Container */}
             <div className="relative w-full h-full z-20">
               {/* Immediate Fallback for Testing */}
-              <div className="w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
+                <div className="w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl mt-16">
                 <span className="text-white font-bold text-lg sm:text-xl md:text-3xl lg:text-4xl">GC</span>
               </div>
               
