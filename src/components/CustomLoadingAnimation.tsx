@@ -1,328 +1,200 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
-interface CustomLoadingAnimationProps {
-  onComplete: () => void;
+import React, { useRef, useEffect, useState } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { OrbitControls, Text3D, Center, Environment, Float, Html, useProgress, useGLTF, Sparkles, ContactShadows } from '@react-three/drei';
+import * as THREE from 'three';
+
+// 3D Progress Orb
+function ProgressOrb({ progress }: { progress: number }) {
+  const mesh = useRef<THREE.Mesh>(null!);
+  useFrame(() => {
+    mesh.current.rotation.y += 0.01;
+    mesh.current.rotation.x += 0.005;
+  });
+  return (
+    <group>
+      <mesh ref={mesh}>
+        <sphereGeometry args={[1.1, 64, 64]} />
+        <meshPhysicalMaterial color="#00fff7" metalness={0.7} roughness={0.1} clearcoat={1} transmission={0.7} ior={1.5} thickness={1.2} />
+      </mesh>
+      {/* Glowing ring for progress */}
+      <mesh rotation-x={Math.PI / 2}>
+        <torusGeometry args={[1.25, 0.08, 32, 128, (progress / 100) * Math.PI * 2]} />
+        <meshStandardMaterial color="#fff176" emissive="#fff176" emissiveIntensity={1.5} transparent opacity={0.8} />
+      </mesh>
+    </group>
+  );
 }
 
-const CustomLoadingAnimation = ({ onComplete }: CustomLoadingAnimationProps) => {
-  const [progress, setProgress] = useState(0);
-  const [showInitials, setShowInitials] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
+// 3D Initials with depth, glass/metallic material, and hologram effect
+// Error boundary for Text3D font loading
+function Initials3D({ onClick }: { onClick?: () => void }) {
+  const [error, setError] = useState<string | null>(null);
+  // Try both with and without leading slash
+  const fontPaths = ["fonts/helvetiker_regular.typeface.json", "/fonts/helvetiker_regular.typeface.json"];
+  const [fontIdx, setFontIdx] = useState(0);
 
+  // Fallback: if error, try alternate path
   useEffect(() => {
-    // Start showing initials after a brief delay
-    setTimeout(() => setShowInitials(true), 300);
+    if (error && fontIdx === 0) setFontIdx(1);
+  }, [error, fontIdx]);
 
-    // Progress animation - optimized for 3 second experience
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setIsComplete(true);
-            setTimeout(onComplete, 400);
-          }, 300);
-          return 100;
-        }
-        return prev + 4; // Optimized for ~2.5 seconds progress
-      });
-    }, 100); // 25 steps × 100ms = 2.5 seconds + delays = ~3 seconds total
-
-    // Failsafe timer - set to 4 seconds to allow full 3-second experience
-    const failsafeTimer = setTimeout(() => {
-      clearInterval(interval);
-      setIsComplete(true);
-      onComplete();
-    }, 4000);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(failsafeTimer);
-    };
-  }, [onComplete]);
-
-  const letterVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 50, 
-      scale: 0.5,
-      rotate: -180 
-    },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        delay: 0.8 + i * 0.3, // Adjusted for 3-second experience
-        duration: 1.0, // Slightly shorter duration
-        type: "spring" as const,
-        stiffness: 80,
-        damping: 12
-      }
-    }),
-    pulse: {
-      scale: [1, 1.15, 1], // More dramatic scaling
-      transition: {
-        duration: 3, // Slower pulse (was 2)
-        repeat: Infinity,
-        ease: "easeInOut" as const
-      }
-    }
-  };
-
-  const progressVariants = {
-    hidden: { width: 0 },
-    visible: { 
-      width: `${progress}%`,
-      transition: { duration: 0.1, ease: "easeOut" as const }
-    }
-  };
-
-  const backgroundVariants = {
-    hidden: { opacity: 1 },
-    exit: { 
-      opacity: 0,
-      scale: 1.1,
-      transition: { duration: 0.8, ease: [0.25, 0.25, 0, 1] as const }
-    }
-  };
+  // Show error if both fail
+  if (error && fontIdx === 1) {
+    return (
+      <group>
+        <mesh>
+          <boxGeometry args={[2, 1, 0.2]} />
+          <meshStandardMaterial color="red" />
+        </mesh>
+        <Html center style={{ color: 'white', background: 'rgba(0,0,0,0.7)', padding: 8, borderRadius: 8 }}>
+          3D Text failed to load font<br />
+          <span style={{ fontSize: 12 }}>{error}</span>
+        </Html>
+      </group>
+    );
+  }
 
   return (
-    <AnimatePresence>
-      {!isComplete && (
-        <motion.div
-          variants={backgroundVariants}
-          initial="hidden"
-          exit="exit"
-          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
-          style={{
-            background: `
-              radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.3) 0%, transparent 70%),
-              radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.2) 0%, transparent 70%),
-              radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-              linear-gradient(135deg, 
-                hsl(var(--background)) 0%, 
-                hsl(var(--background)) 40%,
-                rgba(139, 92, 246, 0.05) 60%,
-                rgba(59, 130, 246, 0.05) 100%
-              )
-            `
-          }}
+    <Float speed={2} rotationIntensity={0.5} floatIntensity={1.2}>
+      <Center>
+        <Text3D
+          font={fontPaths[fontIdx]}
+          size={1.5}
+          height={0.5}
+          bevelEnabled
+          bevelSize={0.04}
+          bevelThickness={0.1}
+          curveSegments={32}
+          onClick={onClick}
+          onError={(e: any) => setError(e?.message || 'Font load error')}
         >
-          {/* Animated Background Particles */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-full"
-                initial={{
-                  x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1920,
-                  y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 1080,
-                  scale: 0,
-                  opacity: 0
-                }}
-                animate={{
-                  x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1920,
-                  y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 1080,
-                  scale: [0, 1, 0],
-                  opacity: [0, 0.6, 0]
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                  ease: "easeInOut"
-                }}
-              />
-            ))}
+          GK
+          <meshPhysicalMaterial
+            color="#00fff7"
+            metalness={0.8}
+            roughness={0.15}
+            clearcoat={1}
+            transmission={0.7}
+            ior={1.5}
+            thickness={1.2}
+            reflectivity={1}
+            envMapIntensity={1.5}
+          />
+        </Text3D>
+        {/* Visible box for debug: always show */}
+        <mesh position={[0, -1.5, 0]}>
+          <boxGeometry args={[2, 0.2, 0.2]} />
+          <meshStandardMaterial color="#00fff7" opacity={0.3} transparent />
+        </mesh>
+      </Center>
+    </Float>
+  );
+}
+
+// 3D Particles with depth and glow
+function Particles3D() {
+  const count = 120;
+  const mesh = useRef<THREE.Points>(null!);
+  const positions = React.useMemo(() => {
+    const arr = [];
+    for (let i = 0; i < count; i++) {
+      arr.push((Math.random() - 0.5) * 8, (Math.random() - 0.5) * 8, (Math.random() - 0.5) * 8);
+    }
+    return new Float32Array(arr);
+  }, [count]);
+  return (
+    <points ref={mesh}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
+      </bufferGeometry>
+      <pointsMaterial color="#fff" size={0.12} sizeAttenuation transparent opacity={0.7} />
+    </points>
+  );
+}
+
+// Parallax camera motion
+function ParallaxCamera() {
+  const { camera, mouse } = useThree();
+  useFrame(() => {
+    camera.position.x += (mouse.x * 1.2 - camera.position.x) * 0.08;
+    camera.position.y += (mouse.y * 1.2 - camera.position.y) * 0.08;
+    camera.lookAt(0, 0, 0);
+  });
+  return null;
+}
+
+// Aurora gradient background (shader effect)
+function AuroraBackground() {
+  return (
+    <Html fullscreen style={{ pointerEvents: 'none', zIndex: 0 }}>
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        background: 'radial-gradient(ellipse at 60% 40%, #00fff7 0%, transparent 70%), radial-gradient(ellipse at 30% 70%, #fff176 0%, transparent 80%), linear-gradient(120deg, #0f2027 0%, #2c5364 100%)',
+        filter: 'blur(8px) brightness(1.1)',
+        width: '100vw',
+        height: '100vh',
+        zIndex: 0
+      }} />
+    </Html>
+  );
+}
+
+// Main Loading Animation Component
+const CustomLoadingAnimation = ({ onComplete }: { onComplete: () => void }) => {
+  const [progress, setProgress] = useState(0);
+  const [done, setDone] = useState(false);
+  // Simulate loading progress
+  useEffect(() => {
+    if (progress < 100) {
+      const t = setTimeout(() => setProgress(progress + 2 + Math.random() * 3), 60);
+      return () => clearTimeout(t);
+    } else {
+      setTimeout(() => {
+        setDone(true);
+        onComplete();
+      }, 1200);
+    }
+  }, [progress, onComplete]);
+
+  // Easter egg: click initials for a burst
+  const [burst, setBurst] = useState(false);
+  const handleInitialsClick = () => {
+    setBurst(true);
+    setTimeout(() => setBurst(false), 800);
+  };
+
+  if (done) return null;
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'black' }}>
+      <Canvas camera={{ position: [0, 0, 7], fov: 50 }} shadows>
+        <color attach="background" args={["#0f2027"]} />
+        <AuroraBackground />
+        <ambientLight intensity={0.7} />
+        <directionalLight position={[5, 10, 7]} intensity={1.2} castShadow />
+        <Environment preset="city" />
+        <ParallaxCamera />
+        <Particles3D />
+        <Sparkles count={40} scale={[8, 8, 8]} size={2.5} color="#fff176" speed={0.5} />
+        <ContactShadows position={[0, -2, 0]} opacity={0.25} width={10} height={10} blur={2.5} far={2.5} />
+        <group position={[0, 0.5, 0]}>
+          <Initials3D onClick={handleInitialsClick} />
+          {burst && <Sparkles count={80} scale={[2, 2, 2]} size={4} color="#00fff7" speed={2} />} 
+        </group>
+        <group position={[0, -2.2, 0]}>
+          <ProgressOrb progress={progress} />
+        </group>
+        <Html center style={{ pointerEvents: 'none', textAlign: 'center', color: 'white', fontFamily: 'sans-serif', fontWeight: 600, fontSize: 24, textShadow: '0 2px 16px #000' }}>
+          <div style={{ marginTop: 220 }}>
+            <div style={{ fontSize: 32, letterSpacing: 2 }}>Gopi Krishna</div>
+            <div style={{ fontSize: 18, opacity: 0.8 }}>Data Whisperer & Full-Stack Engineer</div>
+            <div style={{ fontSize: 16, marginTop: 16, color: '#fff176' }}>{Math.round(progress)}% Loading Experience...</div>
           </div>
-
-          {/* Floating Geometric Shapes */}
-          <div className="absolute inset-0">
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={`shape-${i}`}
-                className={`absolute ${
-                  i % 3 === 0 ? 'w-8 h-8 rounded-full' : 
-                  i % 3 === 1 ? 'w-6 h-6 rotate-45' : 'w-4 h-12 rounded-full'
-                } bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-sm`}
-                initial={{
-                  x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1920,
-                  y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 1080,
-                  rotate: 0,
-                  scale: 0
-                }}
-                animate={{
-                  x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1920,
-                  y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 1080,
-                  rotate: 360,
-                  scale: [0, 1, 0.5, 1, 0]
-                }}
-                transition={{
-                  duration: 4 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                  ease: "easeInOut"
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Central Glow Effect */}
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <motion.div
-              className="w-96 h-96 rounded-full bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 blur-3xl"
-              animate={{
-                scale: [1, 1.2, 1],
-                rotate: [0, 180, 360]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          </motion.div>
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-          }}
-        >
-          {/* Animated Background Particles */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 bg-white/20 rounded-full"
-                initial={{
-                  x: Math.random() * window.innerWidth,
-                  y: Math.random() * window.innerHeight,
-                }}
-                animate={{
-                  y: [null, -100],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: Math.random() * 3 + 2,
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                }}
-              />
-            ))}
-          </div>
-
-          <div className="relative z-10 text-center">
-            {/* Initials Animation */}
-            <div className="mb-12">
-              <AnimatePresence>
-                {showInitials && (
-                  <div className="flex items-center justify-center space-x-4">
-                    {['G', 'K'].map((letter, index) => (
-                      <motion.div
-                        key={letter}
-                        custom={index}
-                        variants={letterVariants}
-                        initial="hidden"
-                        animate={["visible", "pulse"]}
-                        className="relative"
-                      >
-                        <div className="text-8xl md:text-9xl font-bold text-white font-serif relative z-10">
-                          {letter}
-                        </div>
-                        {/* Glowing effect */}
-                        <motion.div
-                          className="absolute inset-0 text-8xl md:text-9xl font-bold text-white font-serif blur-sm opacity-50"
-                          animate={{
-                            opacity: [0.3, 0.8, 0.3],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: index * 0.5
-                          }}
-                        >
-                          {letter}
-                        </motion.div>
-                      </motion.div>
-                    ))}
-                  </div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Loading Text */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.6, duration: 0.6 }}
-              className="mb-8"
-            >
-              <h2 className="text-2xl md:text-3xl font-light text-white/90 mb-2">
-                Gopi Krishna
-              </h2>
-              <p className="text-lg text-white/70">
-                Data Whisperer & Full-Stack Engineer
-              </p>
-            </motion.div>
-
-            {/* Progress Bar */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 2, duration: 0.5 }}
-              className="w-64 mx-auto"
-            >
-              <div className="relative h-2 bg-white/20 rounded-full overflow-hidden">
-                <motion.div
-                  variants={progressVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="h-full bg-gradient-to-r from-white to-yellow-300 rounded-full relative"
-                >
-                  {/* Shimmer effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12"
-                    animate={{
-                      x: [-100, 300],
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  />
-                </motion.div>
-              </div>
-              <motion.p
-                className="text-white/80 text-sm mt-3 font-medium"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                {progress}% Loading Experience...
-              </motion.p>
-            </motion.div>
-
-            {/* Spinning Elements */}
-            <motion.div
-              className="absolute top-1/4 left-1/4 w-16 h-16 border-2 border-white/30 rounded-full"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.div
-              className="absolute bottom-1/4 right-1/4 w-12 h-12 border-2 border-white/20 rounded-full"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-            />
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </Html>
+      </Canvas>
+    </div>
   );
 };
 

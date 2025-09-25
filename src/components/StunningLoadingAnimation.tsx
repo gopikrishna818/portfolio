@@ -390,7 +390,7 @@ const StunningLoadingAnimation = ({ onComplete }: StunningLoadingAnimationProps)
                   ease: "easeInOut"
                 }}
               >
-                Gopi Krishna Chegoni
+                GOPIKRISHNA CHEGONI
               </motion.h2>
               <motion.p 
                 className="text-xl text-white/80"
