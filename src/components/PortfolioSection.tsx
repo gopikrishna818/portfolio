@@ -447,16 +447,12 @@ const PortfolioSection = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-6">
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">{projects.filter(p => p.featured).length}</div>
+                <div className="text-2xl font-bold text-primary">5</div>
                 <div className="text-xs text-muted-foreground">Featured Projects</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">{projects.reduce((acc, p) => acc + (p.stars || 0), 0)}</div>
+                <div className="text-2xl font-bold text-primary">88</div>
                 <div className="text-xs text-muted-foreground">GitHub Stars</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">$950K+</div>
-                <div className="text-xs text-muted-foreground">Total ROI Generated</div>
               </div>
             </div>
             <div className="flex items-center space-x-2 text-sm text-muted-foreground">

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sparkles, Code, Zap, User, Mail, Home, Download } from 'lucide-react';
+import { Menu, X, Sparkles, Code, Zap, User, Mail, Home, Download, Briefcase } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Navigation = () => {
@@ -13,7 +13,7 @@ const Navigation = () => {
     { href: '#about', label: 'About', icon: <User size={16} />, id: 'about' },
     { href: '#portfolio', label: 'Portfolio', icon: <Code size={16} />, id: 'portfolio' },
     { href: '#skills', label: 'Skills', icon: <Zap size={16} />, id: 'skills' },
-    { href: '#experience', label: 'Experience', icon: <Sparkles size={16} />, id: 'experience' },
+  { href: '#experience', label: 'Experience', icon: <Briefcase size={16} />, id: 'experience' },
     { href: '#contact', label: 'Contact', icon: <Mail size={16} />, id: 'contact' },
   ];
 
