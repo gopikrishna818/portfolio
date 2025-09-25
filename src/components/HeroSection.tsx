@@ -118,11 +118,11 @@ const HeroSection = () => {
   <div className="container-width relative z-10 px-4 py-8 md:py-12 pt-16 md:pt-24">
         <div className="text-center space-y-4 md:space-y-6 lg:space-y-8">
           {/* Profile Image with Enhanced Design */}
-          <div className="relative mx-auto w-24 h-24 sm:w-28 sm:h-28 md:w-40 md:h-40 lg:w-48 lg:h-48 group mb-2 md:mb-6 mt-2 md:mt-8">
+          <div className="relative mx-auto w-24 h-24 sm:w-28 sm:h-28 md:w-40 md:h-40 lg:w-48 lg:h-48 group mb-2 md:mb-6 mt-12 md:mt-8">
             {/* Profile Image Container */}
             <div className="relative w-full h-full z-20">
               {/* Immediate Fallback for Testing */}
-                <div className="w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl mt-16">
+                <div className="w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl mt-20 md:mt-0">
                 <span className="text-white font-bold text-lg sm:text-xl md:text-3xl lg:text-4xl">GC</span>
               </div>
               
